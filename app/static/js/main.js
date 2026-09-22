@@ -181,7 +181,7 @@ function fillEvidence(data, state) {
   const content = d3.select("#evidence-content");
   content.html("");
   if (state.taskId === "task1") {
-    title.textContent = "Medianas por grupo"; description.textContent = "La línea gruesa representa el perfil agregado; las líneas suaves conservan la variabilidad de las canciones.";
+    title.textContent = "Cómo leer la comparación"; description.textContent = "En Parallel Coordinates, cada canción cruza los seis ejes con una línea fina. Las líneas gruesas superpuestas son perfiles medianos: resumen el centro de cada grupo y no representan una canción adicional.";
     const task = data.tasks.task1;
     addTable(content, ["Atributo", "Energía baja", "Energía alta", "Diferencia"], FEATURES.map(feature => [LABELS[feature], fmt(task.low_medians[feature]), fmt(task.high_medians[feature]), fmt(task.differences[feature])]));
   } else if (state.taskId === "task2") {

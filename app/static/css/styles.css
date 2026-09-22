@@ -91,7 +91,7 @@ h2, h3, p { margin-top: 0; }
 .axis-title { fill: #59676b; font-size: 11px; }
 .subtle-axis .domain { stroke: #a9b6b8; }
 .profile-line { fill: none; cursor: pointer; }
-.summary-line { fill: none; pointer-events: none; }
+.summary-line { fill: none; pointer-events: none; stroke-linecap: round; }
 .summary-mark { pointer-events: none; }
 .summary-mark circle { stroke: white; stroke-width: 2px; }
 .summary-mark text { fill: #17222e; font-size: 11px; font-weight: 850; text-anchor: middle; }
