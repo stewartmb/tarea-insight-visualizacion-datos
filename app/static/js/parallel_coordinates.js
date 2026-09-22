@@ -53,7 +53,13 @@ export class ParallelCoordinatesChart {
   updateSummaries() {
     const summaries = this.summaries || [];
     const lines = this.summaryLayer.selectAll("path.summary-line").data(summaries, summary => summary.id || summary.label).join("path").attr("class", "summary-line");
-    lines.attr("d", summary => this.path(summary)).attr("stroke", summary => summary.color || "#17222e").attr("stroke-width", 4).attr("stroke-opacity", .9);
+    lines.attr("d", summary => this.path(summary)).attr("stroke", summary => summary.color || "#17222e").attr("stroke-width", 4).attr("stroke-opacity", .95);
+    const labels = this.summaryLayer.selectAll("text.summary-label").data(summaries, summary => summary.id || summary.label).join("text").attr("class", "summary-label");
+    labels
+      .attr("x", summary => this.position(this.dimensions.at(-1)) + 9)
+      .attr("y", summary => this.y[this.dimensions.at(-1)](summary.normalized[this.dimensions.at(-1)]))
+      .attr("fill", summary => summary.color || "#17222e")
+      .text(summary => `${summary.label} · mediana`);
   }
 
   renderAxes() {
