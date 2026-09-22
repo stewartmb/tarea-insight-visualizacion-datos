@@ -1,0 +1,189 @@
+{
+  "metadata": {
+    "source_url": "https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-1921-2020-160k-tracks?select=data.csv",
+    "source_file": "data.csv",
+    "unit": "canción",
+    "original_rows": 170653,
+    "exact_duplicates_removed": 0,
+    "invalid_rows_excluded": 0,
+    "clean_rows": 170653,
+    "sample_rows": 800,
+    "sample_limit": 800,
+    "sample_seed": 5343,
+    "features_requested": [
+      "energy",
+      "valence",
+      "danceability",
+      "acousticness",
+      "instrumentalness",
+      "speechiness"
+    ],
+    "features_used": [
+      "energy",
+      "valence",
+      "danceability",
+      "acousticness",
+      "instrumentalness",
+      "speechiness"
+    ],
+    "constant_features_excluded": [],
+    "ranges": {
+      "energy": {
+        "min": 0.0,
+        "max": 1.0,
+        "constant": false
+      },
+      "valence": {
+        "min": 0.0,
+        "max": 1.0,
+        "constant": false
+      },
+      "danceability": {
+        "min": 0.0,
+        "max": 0.988,
+        "constant": false
+      },
+      "acousticness": {
+        "min": 0.0,
+        "max": 0.996,
+        "constant": false
+      },
+      "instrumentalness": {
+        "min": 0.0,
+        "max": 1.0,
+        "constant": false
+      },
+      "speechiness": {
+        "min": 0.0,
+        "max": 0.97,
+        "constant": false
+      }
+    },
+    "mds_positive_eigenvalues": 6
+  },
+  "thresholds": {
+    "energy_q1": 0.25275000000000003,
+    "energy_q3": 0.7152499999999999,
+    "valence_q1": 0.29874999999999996,
+    "valence_q3": 0.72525
+  },
+  "quality": {
+    "normalized_stress": 0.26329866673419167,
+    "distance_correlation": 0.9090800111152926,
+    "neighborhood_k": 10,
+    "neighborhood_preservation": 0.31550000000000006
+  },
+  "tasks": {
+    "task1": {
+      "low_count": 200,
+      "high_count": 200,
+      "low_medians": {
+        "energy": 0.14450000000000002,
+        "valence": 0.3365,
+        "danceability": 0.444,
+        "acousticness": 0.9555,
+        "instrumentalness": 0.0036000000000000003,
+        "speechiness": 0.0425
+      },
+      "high_medians": {
+        "energy": 0.869,
+        "valence": 0.583,
+        "danceability": 0.5225,
+        "acousticness": 0.0223,
+        "instrumentalness": 0.0001735,
+        "speechiness": 0.054000000000000006
+      },
+      "differences": {
+        "energy": 0.7244999999999999,
+        "valence": 0.24649999999999994,
+        "danceability": 0.07849999999999996,
+        "acousticness": -0.9332,
+        "instrumentalness": -0.0034265000000000003,
+        "speechiness": 0.011500000000000003
+      },
+      "low_representatives": [
+        "3Dd4LMqWBf8KnrXEVuJ3ny",
+        "6AUYtnjshAVaMBzaO0Z5Op",
+        "4396IE5C7R1hR7LCSIafqE"
+      ],
+      "high_representatives": [
+        "6fvxos1qSHrIgOkKw4dhWS",
+        "0W5Pa3GW06IQ7BS5CbTTOM",
+        "2HieRfsSSwQA1JUtfmRNgo"
+      ]
+    },
+    "task2": {
+      "default_uid": "69vlMrzHwATKzupwNcUPyK",
+      "neighbor_uids": [
+        "5bgYTzUDzerRFN7fp86MkQ",
+        "1BuZAIO8WZpavWVbbq3Lci",
+        "61u3kwCoVSdYc8DH7JQZlN",
+        "5JUufCEin0aXyFLXCzJbUL",
+        "6exfsW3tiYeKR8tV5AUPlb",
+        "6p3bhE5jahFtOk9QVNFnNY",
+        "6Zo3wgDE076K2AuiGZF3CS",
+        "6JrbcoCC9Zotanq4Or4nST",
+        "57CeIB4zE8utvUAI4FcBNZ",
+        "6OPOa3qlKoDUzGpS8MrcLi"
+      ],
+      "neighbor_distances": [
+        0.07517842620888252,
+        0.11783254942405948,
+        0.12685827263020516,
+        0.12823486074805313,
+        0.15879045843810602,
+        0.16069238214072776,
+        0.16783168235113735,
+        0.17540931359280243,
+        0.18135674989272346,
+        0.18275504581105068
+      ],
+      "feature_contributions": {
+        "energy": 0.1951032273129928,
+        "valence": 0.14521611733695963,
+        "danceability": 0.37593259096816295,
+        "acousticness": 0.21256388677264848,
+        "instrumentalness": 0.01723965549212566,
+        "speechiness": 0.05394452211711038
+      }
+    },
+    "task3": {
+      "energetic_somber_count": 37,
+      "calm_positive_count": 17,
+      "energetic_somber_medians": {
+        "energy": 0.924,
+        "valence": 0.193,
+        "danceability": 0.363,
+        "acousticness": 0.00398,
+        "instrumentalness": 0.0005070000000000001,
+        "speechiness": 0.0771
+      },
+      "calm_positive_medians": {
+        "energy": 0.188,
+        "valence": 0.8190000000000001,
+        "danceability": 0.614,
+        "acousticness": 0.941,
+        "instrumentalness": 0.00691,
+        "speechiness": 0.0829
+      },
+      "differences": {
+        "energy": 0.736,
+        "valence": -0.6260000000000001,
+        "danceability": -0.251,
+        "acousticness": -0.93702,
+        "instrumentalness": -0.006403000000000001,
+        "speechiness": -0.0058
+      },
+      "energetic_somber_examples": [
+        "4xn4Ilg53Mg8uJAJbTzmP2",
+        "7E5GuDVoXQSYHnYPQcbLll",
+        "2Cz0wgwqdZJgaSOA1Dg6aS"
+      ],
+      "calm_positive_examples": [
+        "6lGM86SXGL8N1u6euSQzpv",
+        "4g3d8tjGIQLLabdwJEukKm",
+        "2I6gZKKBu7kXaM2GHMZ49I"
+      ]
+    }
+  }
+}

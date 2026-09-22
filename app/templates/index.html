@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perfiles musicales de Spotify</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">DS5343 · Visualización de Datos</p>
+      <h1>Perfiles musicales de Spotify</h1>
+      <p class="lede">Compara características de audio, encuentra canciones similares y examina combinaciones contrastantes con cuatro técnicas multidimensionales.</p>
+    </div>
+    <div class="hero-stats" aria-label="Resumen del conjunto analizado">
+      <div><strong id="sample-count">—</strong><span>canciones analizadas</span></div>
+      <div><strong id="year-range">—</strong><span>rango de años</span></div>
+      <div><strong id="quality-score">—</strong><span>vecindad MDS (k=10)</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="study-route" aria-labelledby="tasks-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Recorrido guiado</p><h2 id="tasks-title">Tres preguntas analíticas</h2></div>
+        <p>Selecciona una tarea para restaurar sus filtros, colores y canción de referencia.</p>
+      </div>
+      <div class="task-grid">
+        <article class="task-card active" data-task="task1">
+          <span class="task-number">01</span><h3>Comparar perfiles</h3>
+          <p>¿Cómo difieren las canciones de energía alta y baja en sus otras características?</p>
+          <button class="task-button" data-task="task1">Reproducir este análisis</button>
+        </article>
+        <article class="task-card" data-task="task2">
+          <span class="task-number">02</span><h3>Encontrar similitudes</h3>
+          <p>¿Cuáles son las diez canciones más similares a una seleccionada y qué atributos explican esa semejanza?</p>
+          <button class="task-button" data-task="task2">Reproducir este análisis</button>
+        </article>
+        <article class="task-card" data-task="task3">
+          <span class="task-number">03</span><h3>Examinar contrastes</h3>
+          <p>¿Qué canciones combinan energía alta con valencia baja, o energía baja con valencia alta?</p>
+          <button class="task-button" data-task="task3">Reproducir este análisis</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="analysis-panel" aria-live="polite">
+      <div class="analysis-main">
+        <p class="eyebrow" id="analysis-kicker">Tarea 1</p>
+        <h2 id="analysis-title">Comparar perfiles de energía</h2>
+        <p id="analysis-result" class="analysis-result">Cargando resultados…</p>
+        <p id="analysis-evidence" class="analysis-evidence"></p>
+      </div>
+      <div class="why-how">
+        <div><span>WHAT</span><p id="analysis-what"></p></div>
+        <div><span>WHY</span><p id="analysis-why"></p></div>
+        <div><span>HOW</span><p id="analysis-how"></p></div>
+        <div><span>Límite</span><p id="analysis-limit"></p></div>
+      </div>
+    </section>
+
+    <section class="control-bar" aria-label="Controles de exploración">
+      <label for="track-select">Canción seleccionada</label>
+      <select id="track-select"></select>
+      <button id="reset-button" class="secondary-button">Restablecer vista</button>
+      <span id="exploration-status" class="status-chip">Configuración guardada</span>
+    </section>
+
+    <section class="selected-panel" aria-live="polite">
+      <div><p class="eyebrow">Selección coordinada</p><h2 id="selected-name">—</h2><p id="selected-meta">—</p></div>
+      <div id="selected-features" class="feature-strip"></div>
+    </section>
+
+    <section class="visual-grid" aria-label="Visualizaciones multidimensionales">
+      <article class="chart-card">
+        <div class="chart-heading"><div><p class="method-tag">Anclajes dimensionales</p><h2>RadViz</h2></div><p>Arrastra cada anclaje por la circunferencia. La posición es un promedio ponderado por las características.</p></div>
+        <div id="radviz-chart" class="chart"></div>
+      </article>
+      <article class="chart-card">
+        <div class="chart-heading"><div><p class="method-tag">Combinación de vectores</p><h2>Star Coordinates</h2></div><p>Arrastra los extremos para cambiar dirección y peso. La escala permanece estable para comparar cambios.</p></div>
+        <div id="star-chart" class="chart"></div>
+      </article>
+      <article class="chart-card wide">
+        <div class="chart-heading"><div><p class="method-tag">Perfiles por dimensión</p><h2>Parallel Coordinates</h2></div><p>Arrastra los nombres para reordenar ejes. Selecciona intervalos sobre los ejes para aplicar brushing coordinado.</p></div>
+        <div id="parallel-chart" class="chart parallel"></div>
+      </article>
+      <article class="chart-card">
+        <div class="chart-heading"><div><p class="method-tag">Proyección de distancias</p><h2>MDS</h2></div><p>La cercanía aproxima similitud en las seis características. Los ejes no representan atributos originales.</p></div>
+        <div id="mds-chart" class="chart"></div>
+      </article>
+      <article class="chart-card quality-card">
+        <div class="chart-heading"><div><p class="method-tag">Evaluación de la proyección</p><h2>Calidad MDS</h2></div></div>
+        <div class="quality-metrics">
+          <div><strong id="stress-value">—</strong><span>stress normalizado</span></div>
+          <div><strong id="correlation-value">—</strong><span>correlación de distancias</span></div>
+          <div><strong id="neighborhood-value">—</strong><span>vecinos preservados</span></div>
+        </div>
+        <p class="quality-note">Una sola métrica no determina que una proyección sea “buena”. Estas cifras describen cuánto se conservaron distancias y vecindades en esta muestra.</p>
+        <div id="legend" class="legend"></div>
+      </article>
+    </section>
+
+    <section class="methodology">
+      <p class="eyebrow">Método y alcance</p>
+      <h2>Cómo leer los resultados</h2>
+      <div class="method-grid">
+        <p><strong>Datos.</strong> Dataset exacto enlazado en el enunciado. La aplicación utiliza una muestra reproducible de 800 canciones y conserva sus seis atributos normalizados.</p>
+        <p><strong>Interpretación.</strong> Las asociaciones describen esta muestra. No prueban causalidad ni representan por sí solas todo el catálogo de Spotify.</p>
+        <p><strong>Código.</strong> RadViz y Star Coordinates adaptan el notebook de clase. Parallel Coordinates y MDS son desarrollos documentados en la trazabilidad.</p>
+      </div>
+    </section>
+  </main>
+  <div id="tooltip" class="tooltip" role="tooltip"></div>
+  <script src="{{ url_for('static', filename='vendor/d3.v7.min.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
