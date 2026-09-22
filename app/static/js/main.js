@@ -172,7 +172,12 @@ function fillLegend(taskId) {
     : taskId === "task2" ? [["#6f42c1", "Seleccionada"], ["#ef9b20", "10 vecinas"], ["#cbd2d9", "Resto"]]
       : taskId === "task3" ? [["#c44569", "Alta energía · baja valencia"], ["#278c82", "Baja energía · alta valencia"], ["#17222e", "Perfil mediano"]]
         : [["#4c78a8", "Canciones"], ["#35a779", "Perfil de década"], ["#cbd2d9", "Contexto"]];
-  d3.select("#legend").selectAll("div").data(entries).join("div").html(entry => `<i style="background:${entry[0]}"></i><span>${entry[1]}</span>`);
+  const html = entry => `<i style="background:${entry[0]}"></i><span>${entry[1]}</span>`;
+  d3.select("#legend").selectAll("div").data(entries).join("div").html(html);
+  d3.select("#active-legend").selectAll("div").data(entries).join("div").html(html);
+  document.querySelector("#active-legend-note").textContent = taskId === "task2"
+    ? "El punto morado es la canción seleccionada; los naranjas son sus diez vecinas."
+    : "Las líneas finas son canciones individuales; las líneas entrecortadas y ligeramente más marcadas son perfiles medianos.";
 }
 
 function fillEvidence(data, state) {

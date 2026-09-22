@@ -69,6 +69,10 @@ h2, h3, p { margin-top: 0; }
 .evidence-table th { color: var(--green-dark); background: #edf4f1; font-weight: 800; text-align: left; }
 .evidence-table th, .evidence-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); }
 .evidence-table tbody tr:hover { background: #f7faf9; }
+.active-legend { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 22px; background: #fff; border: 1px solid var(--line); border-radius: 13px; }
+.active-legend .eyebrow { margin-bottom: 4px; color: var(--green); }
+.active-legend p { margin: 0; color: var(--muted); font-size: .8rem; }
+.active-legend .legend { margin: 0; padding: 0; border: 0; }
 .visual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .chart-card { min-width: 0; padding: 24px; background: white; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
 .chart-card.primary-chart { border-color: #76a9a0; box-shadow: 0 0 0 2px rgba(13,111,100,.09), var(--shadow); }
