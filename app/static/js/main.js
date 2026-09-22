@@ -204,7 +204,7 @@ function fillLegend(taskId) {
       ? "El punto morado es la canción seleccionada; los naranjas son sus diez vecinas."
       : taskId === "task3"
         ? "Los puntos rosados son candidatas al brief; el marcador oscuro es su perfil mediano."
-        : "Los colores ordenan las décadas; cada marcador representa un perfil agregado.";
+        : "El color ordena las décadas. Los puntos grandes no se usan: cada perfil agregado se identifica por color, contorno y tooltip.";
 }
 
 function fillEvidence(data, state) {

@@ -3,6 +3,11 @@ import {nearestRecords} from "./math.js";
 export class Store {
   constructor(data) {
     this.data = data;
+    const decades = data.tasks.task4?.decades || [];
+    this.decadeColors = new Map(decades.map((item, index) => [
+      item.decade,
+      d3.interpolateViridis(index / Math.max(1, decades.length - 1))
+    ]));
     this.listeners = new Set();
     this.state = {
       taskId: "task1",
@@ -83,12 +88,13 @@ export class Store {
       return record.uid === this.state.selectedId ? "#6f42c1" : this.state.neighborIds.has(record.uid) ? "#ef9b20" : "#cbd2d9";
     }
     if (this.state.taskId === "task3") return "#c44569";
-    return "#4c78a8";
+    return this.decadeColors.get(record.decade) || "#4c78a8";
   }
 
   opacity(record) {
     if (record.uid === this.state.selectedId || record.uid === this.state.hoverId) return 1;
     if (this.state.brushedIds && !this.state.brushedIds.has(record.uid)) return 0.035;
+    if (this.state.taskId === "task4") return this.state.focusIds.has(record.uid) ? 0.42 : 0.08;
     return this.state.focusIds.has(record.uid) ? 0.76 : 0.12;
   }
 

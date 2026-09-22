@@ -91,13 +91,21 @@ export class RadVizChart {
     const positioned = summaries.map(summary => ({...summary, point: radvizPoint(summary, this.anchors)})).filter(summary => summary.point);
     const marks = this.summaryLayer.selectAll("g.summary-mark").data(positioned, summary => summary.id || summary.label).join(enter => {
       const group = enter.append("g").attr("class", "summary-mark");
-      group.append("circle").attr("r", 10);
+      group.append("circle").attr("r", 5.2).append("title");
       group.append("text");
       return group;
     });
     marks.attr("transform", summary => `translate(${this.center.x + summary.point.x * this.radius},${this.center.y + summary.point.y * this.radius})`);
-    marks.select("circle").attr("fill", summary => summary.color || "#17222e");
-    marks.select("text").text(summary => summary.label).attr("dy", -14);
+    marks.select("circle")
+      .attr("r", 5.2)
+      .attr("fill", summary => summary.color || "#17222e")
+      .attr("stroke", "#17222e")
+      .attr("stroke-width", 1.3)
+      .select("title")
+      .text(summary => summary.label);
+    marks.select("text")
+      .text(summary => this.store.state.taskId === "task4" ? "" : summary.label)
+      .attr("dy", -10);
   }
 
   updateStyle() {
