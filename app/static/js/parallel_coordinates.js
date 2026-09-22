@@ -132,6 +132,7 @@ export class ParallelCoordinatesChart {
   updateStyle() {
     const hasSummaries = (this.summaries || []).length > 0;
     this.paths
+      .attr("display", record => this.store.state.focusIds.has(record.uid) ? null : "none")
       .attr("stroke", record => this.store.color(record))
       .attr("stroke-opacity", record => {
         if (record.uid === this.store.state.selectedId || record.uid === this.store.state.hoverId) return 1;

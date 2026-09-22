@@ -27,6 +27,7 @@ export function attachPointEvents(selection, store) {
 
 export function stylePoints(selection, store, baseRadius = 3) {
   selection
+    .attr("display", record => store.state.focusIds.has(record.uid) ? null : "none")
     .attr("fill", record => store.color(record))
     .attr("fill-opacity", record => store.opacity(record))
     .attr("r", record => store.radius(record, baseRadius))
