@@ -92,6 +92,8 @@ h2, h3, p { margin-top: 0; }
 .subtle-axis .domain { stroke: #a9b6b8; }
 .profile-line { fill: none; cursor: pointer; }
 .summary-line { fill: none; pointer-events: none; stroke-linecap: round; }
+.summary-halo { fill: none; stroke: white; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.summary-line { stroke-linejoin: round; }
 .summary-label { font-size: 11px; font-weight: 850; dominant-baseline: middle; pointer-events: none; }
 .summary-mark { pointer-events: none; }
 .summary-mark circle { stroke: white; stroke-width: 2px; }

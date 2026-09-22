@@ -52,8 +52,10 @@ export class ParallelCoordinatesChart {
 
   updateSummaries() {
     const summaries = this.summaries || [];
+    const halos = this.summaryLayer.selectAll("path.summary-halo").data(summaries, summary => summary.id || summary.label).join("path").attr("class", "summary-halo");
+    halos.attr("d", summary => this.path(summary));
     const lines = this.summaryLayer.selectAll("path.summary-line").data(summaries, summary => summary.id || summary.label).join("path").attr("class", "summary-line");
-    lines.attr("d", summary => this.path(summary)).attr("stroke", summary => summary.color || "#17222e").attr("stroke-width", 4).attr("stroke-opacity", .95);
+    lines.attr("d", summary => this.path(summary)).attr("stroke", summary => summary.color || "#17222e").attr("stroke-width", 5).attr("stroke-opacity", 1);
     const labels = this.summaryLayer.selectAll("text.summary-label").data(summaries, summary => summary.id || summary.label).join("text").attr("class", "summary-label");
     labels
       .attr("x", summary => this.position(this.dimensions.at(-1)) + 9)
@@ -128,13 +130,14 @@ export class ParallelCoordinatesChart {
   }
 
   updateStyle() {
+    const hasSummaries = (this.summaries || []).length > 0;
     this.paths
       .attr("stroke", record => this.store.color(record))
       .attr("stroke-opacity", record => {
         if (record.uid === this.store.state.selectedId || record.uid === this.store.state.hoverId) return 1;
-        return Math.min(0.58, this.store.opacity(record) * 0.46);
+        return hasSummaries ? Math.min(0.16, this.store.opacity(record) * 0.18) : Math.min(0.58, this.store.opacity(record) * 0.46);
       })
-      .attr("stroke-width", record => record.uid === this.store.state.selectedId ? 3.2 : record.uid === this.store.state.hoverId ? 2.5 : 1.05);
+      .attr("stroke-width", record => record.uid === this.store.state.selectedId ? 3.2 : record.uid === this.store.state.hoverId ? 2.5 : hasSummaries ? 0.75 : 1.05);
   }
 
   clearBrushes() {
