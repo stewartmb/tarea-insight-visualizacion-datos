@@ -92,6 +92,12 @@ h2, h3, p { margin-top: 0; }
 .legend { display: flex; flex-wrap: wrap; gap: 13px; margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); }
 .legend div { display: flex; align-items: center; gap: 7px; font-size: .8rem; }
 .legend i { width: 11px; height: 11px; border-radius: 50%; }
+.visual-rationale { padding: 30px; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+.rationale-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+.rationale-card { padding: 18px; background: #f5f8f7; border-left: 4px solid var(--green); border-radius: 10px; }
+.rationale-card h3 { margin-bottom: 8px; font-family: Georgia, serif; font-size: 1.12rem; }
+.rationale-card p, .rationale-footer p { margin: 0; color: #415156; font-size: .86rem; line-height: 1.58; }
+.rationale-footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
 .methodology { padding: 30px; background: #e3ece9; border-radius: 16px; }
 .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 20px; }
 .method-grid p { margin: 0; color: #415156; line-height: 1.6; }
@@ -108,6 +114,7 @@ h2, h3, p { margin-top: 0; }
   .chart-card.wide { grid-column: auto; }
   .selected-panel { align-items: start; flex-direction: column; }
   .method-grid { grid-template-columns: 1fr; }
+  .rationale-grid, .rationale-footer { grid-template-columns: 1fr; }
 }
 @media (max-width: 650px) {
   main { width: min(100% - 22px, 1500px); }

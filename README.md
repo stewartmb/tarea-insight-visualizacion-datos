@@ -51,6 +51,7 @@ El preprocesamiento conserva el original, valida valores, normaliza con los rang
 - Preparación: `scripts/prepare_data.py`.
 - Datos originales y procesados: `data/`.
 - Informe, trazabilidad, matriz de rúbrica y guion: `docs/`.
+- Justificación de colores, canales, idioma y orden de ejes: `docs/justificacion_visual.md`.
 - Pruebas: `tests/`.
 - Rúbrica y enunciado: raíz de esta carpeta.
 

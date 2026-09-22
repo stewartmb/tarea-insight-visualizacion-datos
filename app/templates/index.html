@@ -101,6 +101,35 @@
       </article>
     </section>
 
+    <section class="visual-rationale" aria-labelledby="visual-rationale-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Gramática visual</p><h2 id="visual-rationale-title">Por qué se ve así</h2></div>
+        <p>Cada canal visual responde a una necesidad de lectura y conserva una configuración reproducible.</p>
+      </div>
+      <div class="rationale-grid">
+        <article class="rationale-card">
+          <h3>RadViz</h3>
+          <p><strong>Posición:</strong> promedio ponderado de las seis características. <strong>Canal:</strong> los anclajes verdes identifican dimensiones y el color separa los grupos de la tarea. La circunferencia fija una referencia común para comparar perfiles.</p>
+        </article>
+        <article class="rationale-card">
+          <h3>Star Coordinates</h3>
+          <p><strong>Posición:</strong> suma de vectores por atributo. <strong>Canal:</strong> los ejes verdes muestran dirección y peso; sus extremos se pueden mover para explorar cómo cambia la contribución de cada dimensión.</p>
+        </article>
+        <article class="rationale-card">
+          <h3>Parallel Coordinates</h3>
+          <p><strong>Posición vertical:</strong> valor normalizado de cada atributo. <strong>Canal:</strong> cada línea conserva el perfil de una canción. El orden inicial comienza por energía, continúa con valencia y bailabilidad, y luego muestra los atributos sonoros restantes; se puede reordenar para acercar las variables relevantes a la pregunta.</p>
+        </article>
+        <article class="rationale-card">
+          <h3>MDS</h3>
+          <p><strong>Posición:</strong> proximidad entre perfiles en las seis variables. Los ejes no son atributos originales. <strong>Canal:</strong> color, opacidad, cursor y selección conectan la proyección con las otras vistas; las métricas evitan interpretar la apariencia sin evaluar su calidad.</p>
+        </article>
+      </div>
+      <div class="rationale-footer">
+        <p><strong>Color y atención.</strong> El color es categórico y depende de la tarea: naranja/azul para energía alta/baja, morado/naranja para selección y vecinas, y rosado/verde para los contrastes. La opacidad deja el contexto visible y resalta el subconjunto seleccionado. No se usa color para representar magnitudes continuas.</p>
+        <p><strong>Idioma y consistencia.</strong> La interfaz está en español porque esa es la lengua de la exposición y del curso. Se conservan los nombres técnicos RadViz, Star Coordinates, Parallel Coordinates y MDS porque son las denominaciones del framework y de las API utilizadas en clase.</p>
+      </div>
+    </section>
+
     <section class="methodology">
       <p class="eyebrow">Método y alcance</p>
       <h2>Cómo leer los resultados</h2>

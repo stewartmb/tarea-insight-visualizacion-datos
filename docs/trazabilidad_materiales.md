@@ -20,6 +20,7 @@ Enunciado y rúbrica → Observable original → PDFs (texto y diagramas) → tr
 | WHY | U1_T3; tópico consolidado 03 | T1 comparar perfiles; T2 identificar similitud; T3 localizar combinaciones y comparar. Preguntas específicas desarrolladas para Spotify. |
 | HOW y claridad | U1_T4; `claridad_ejercicio.js`; tópico 04 | Posición y líneas para comparación, color para grupos de la tarea, etiquetas y escalas constantes. |
 | Insight | U1_T1; semana1_clase2 (bloque sobre propósito de insight); tópico 01 | Resultados numéricos y ejemplos interpretados sin convertir asociación en causalidad. |
+| Gramática visual | U1_T4; ejercicio de claridad; semana5_clase1 01:20:28–01:33:08 sobre orden de ejes; tópico 04 | Justificación explícita de posición, líneas, color, opacidad, etiquetas, idioma y orden de Parallel Coordinates en `justificacion_visual.md` y en la interfaz. |
 
 PDF principal: `../../../materiales/teoria/U2_T1_Multidimensional Data Visualization_Low Dimensional.pdf`.
 Notebooks originales: `../../../observable_material/notebooks/`.
