@@ -2,7 +2,7 @@
 
 ## Audiencia y propósito
 
-La aplicación está dirigida a una persona que selecciona canciones para playlists y necesita comparar perfiles, encontrar similitudes, construir contrastes y estudiar la evolución del catálogo. La visualización es un medio para producir respuestas verificables. Esta idea sigue el énfasis de fundamentos del curso: el propósito es el insight y la gráfica ayuda a obtenerlo.
+La aplicación está dirigida a una persona que selecciona canciones para playlists y necesita comparar perfiles, encontrar similitudes, diseñar un perfil objetivo y estudiar la evolución del catálogo. La visualización es un medio para producir respuestas verificables. Esta idea sigue el énfasis de fundamentos del curso: el propósito es el insight y la gráfica ayuda a obtenerlo.
 
 ## Datos
 
@@ -10,15 +10,15 @@ La fuente es el `data.csv` del dataset Kaggle enlazado en el enunciado. Contiene
 
 Se seleccionaron seis atributos cuantitativos: energía, valencia, bailabilidad, acústica, instrumentalidad y habla. Los valores se normalizaron a `[0,1]` con los mínimos y máximos del conjunto limpio completo. El análisis no utiliza género porque `data.csv` no contiene una relación género-canción verificable.
 
-## Tarea 1 — Comparar perfiles de energía
+## Tarea 1 — Comparar dos canciones para una playlist
 
-**Pregunta:** ¿Cómo difieren las canciones de energía alta y baja en sus otras características?
+**Pregunta:** ¿En qué atributos son similares o diferentes dos canciones que podrían convivir en una playlist?
 
-Se definió energía baja como `≤ 0.253` y alta como `≥ 0.715`, los cuartiles de la muestra. Cada grupo contiene 200 canciones.
+La interfaz permite seleccionar una Canción A y una Canción B. Parallel Coordinates compara sus seis perfiles normalizados directamente; no se construyen grupos por umbrales de energía ni se dibujan medianas artificiales.
 
-La diferencia más marcada aparece en acústica: la mediana es `0.956` para energía baja y `0.022` para energía alta, una diferencia de `-0.933` al restar alta menos baja. La valencia mediana aumenta de `0.337` a `0.583`, y la bailabilidad de `0.444` a `0.523`. Habla e instrumentalidad muestran diferencias medianas pequeñas en estos grupos.
+La tabla muestra la diferencia absoluta de cada atributo y la distancia euclídea entre ambos perfiles. Esto responde una decisión concreta de curaduría: si una canción mantiene un perfil suficientemente compatible con otra.
 
-Esto responde una comparación de perfiles. Parallel Coordinates muestra cada trayectoria y RadViz permite explorar el balance conjunto. La separación por cuartiles describe la muestra; no define categorías universales.
+Las líneas entrecortadas representan directamente las dos canciones seleccionadas; las líneas finas son los registros comparados de la vista activa.
 
 ## Tarea 2 — Encontrar canciones similares
 
@@ -30,15 +30,13 @@ Entre los diez vecinos, instrumentalidad y habla presentan, en promedio, las men
 
 MDS sitúa canciones intentando conservar distancias. Parallel Coordinates y Star Coordinates permiten inspeccionar los perfiles originales que sustentan esa proximidad.
 
-## Tarea 3 — Examinar combinaciones contrastantes
+## Tarea 3 — Diseñar un perfil para una playlist
 
-**Pregunta:** ¿Qué canciones combinan energía alta con valencia baja, o energía baja con valencia alta, y cómo difieren sus demás atributos?
+**Pregunta:** ¿Qué canciones cumplen mejor un objetivo energético, positivo y bailable, y qué atributos explican ese perfil?
 
-Se localizaron 37 canciones de energía alta (`≥ 0.715`) y valencia baja (`≤ 0.299`), frente a 17 de energía baja (`≤ 0.253`) y valencia alta (`≥ 0.725`).
+La configuración inicial ordena candidatas mediante el brief `energía + valencia + bailabilidad − 0.5×acústica − 0.25×habla`. Se seleccionan 60 canciones como punto de partida reproducible, pero Star Coordinates permite cambiar pesos y direcciones para explorar otro objetivo.
 
-Además de las variables usadas para formar los grupos, la diferencia mediana más grande aparece en acústica: `0.004` para alta energía/baja valencia y `0.941` para baja energía/alta valencia. La bailabilidad mediana es `0.363` y `0.614`, respectivamente. Estos valores describen combinaciones menos intuitivas que una asociación simple entre energía y valencia.
-
-Valencia es una característica provista por el dataset; el análisis no afirma conocer la emoción experimentada por cada oyente.
+El perfil mediano de las candidatas hace explícito qué combinación de atributos caracteriza el brief. El resultado no afirma que una canción sea universalmente positiva: describe una consulta de características de audio.
 
 ## Tarea 4 — Examinar evolución temporal y popularidad
 

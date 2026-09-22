@@ -199,6 +199,22 @@ def build_analysis(input_path: Path, sample_limit: int = SAMPLE_LIMIT, seed: int
     energetic_somber = high_energy & (valence <= valence_q1)
     calm_positive = low_energy & (valence >= valence_q3)
 
+    # A concrete playlist brief for the interactive Star Coordinates task:
+    # energetic, positive and danceable, while avoiding excessive acousticness
+    # and speechiness. The score is only a reproducible starting point; users
+    # can change the axes/weights in the view.
+    target_score = (
+        sample_normalized[:, FEATURES.index("energy")]
+        + sample_normalized[:, FEATURES.index("valence")]
+        + sample_normalized[:, FEATURES.index("danceability")]
+        - 0.5 * sample_normalized[:, FEATURES.index("acousticness")]
+        - 0.25 * sample_normalized[:, FEATURES.index("speechiness")]
+    )
+    target_order = np.argsort(-target_score, kind="mergesort")
+    target_indices = target_order[: min(60, len(target_order))]
+    target_mask = np.zeros(len(sampled_rows), dtype=bool)
+    target_mask[target_indices] = True
+
     default_index = max(
         range(len(sampled_rows)),
         key=lambda i: (float(sampled_rows[i].get("popularity") or 0), sampled_rows[i].get("name", "")),
@@ -322,6 +338,7 @@ def build_analysis(input_path: Path, sample_limit: int = SAMPLE_LIMIT, seed: int
             "differences": {feature: task1_high[feature] - task1_low[feature] for feature in FEATURES},
             "low_representatives": representatives(sample_original, low_energy, uids),
             "high_representatives": representatives(sample_original, high_energy, uids),
+            "default_pair_uids": [uids[default_index], uids[int(default_neighbors[0])]],
             "profiles": {
                 "low": task1_low_profile,
                 "high": task1_high_profile,
@@ -341,6 +358,9 @@ def build_analysis(input_path: Path, sample_limit: int = SAMPLE_LIMIT, seed: int
             "differences": {feature: task3_a[feature] - task3_b[feature] for feature in FEATURES},
             "energetic_somber_examples": representatives(sample_original, energetic_somber, uids),
             "calm_positive_examples": representatives(sample_original, calm_positive, uids),
+            "target_uids": [uids[index] for index in target_indices],
+            "target_profile": profile_pair(sample_original, sample_normalized, target_mask),
+            "target_definition": "energía + valencia + bailabilidad − 0.5×acústica − 0.25×habla",
             "profiles": {
                 "energetic_somber": task3_a_profile,
                 "calm_positive": task3_b_profile,

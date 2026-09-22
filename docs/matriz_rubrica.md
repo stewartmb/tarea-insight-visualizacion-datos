@@ -6,7 +6,7 @@
 | Analytical Insight | `informe_analitico.md` y panel narrativo: resultados con umbrales, recuentos, medianas, ejemplos y limitaciones. | Recalcular después de cualquier cambio de datos. |
 | Design Rationale | WHAT–WHY–HOW visible por tarea; `trazabilidad_materiales.md`; explicación del papel complementario de cada técnica. | Poder justificar variables, normalización, muestra y elección de técnica oralmente. |
 | Technical Accuracy | RadViz, Star Coordinates, Parallel Coordinates y MDS; código separado; métricas de calidad; pruebas Python y JavaScript. | Ejecutar pruebas y demostración coordinada desde una copia limpia. |
-| Tasks Coverage | Cuatro botones restauran configuraciones y cada pregunta tiene resultado, evidencia, visualizaciones y límite. | Reproducir las cuatro tareas en el orden del guion. |
+| Tasks Coverage | Cuatro botones restauran configuraciones y cada pregunta tiene resultado, evidencia, visualizaciones y límite. | Reproducir comparación, similitud, diseño de perfil y evolución temporal. |
 
 ## Requisitos adicionales del enunciado
 

@@ -39,9 +39,9 @@ El preprocesamiento conserva el original, valida valores, normaliza con los rang
 
 ## Recorrido de revisión
 
-1. Reproducir Tarea 1 y comparar energía alta/baja en Parallel Coordinates y RadViz.
+1. Reproducir Tarea 1 y seleccionar dos canciones para comparar sus perfiles en Parallel Coordinates.
 2. Reproducir Tarea 2, seleccionar una canción y observar sus diez vecinas en las cuatro vistas.
-3. Reproducir Tarea 3 y revisar combinaciones de energía/valencia con Star Coordinates.
+3. Reproducir Tarea 3 y modificar los pesos del brief de playlist con Star Coordinates.
 4. Reproducir Tarea 4 y comparar décadas en RadViz y la tabla de evidencia.
 5. Arrastrar ejes para explicar por qué el orden y el peso afectan la lectura.
 6. Mostrar las métricas de stress, correlación de distancias y preservación de vecindad.

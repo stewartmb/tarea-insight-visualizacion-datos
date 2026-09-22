@@ -22,7 +22,7 @@ Las partes entre comillas son el discurso sugerido. Las indicaciones entre corch
 
 [Mostrar la cabecera y las cuatro tarjetas de tareas. No bajar todavía a los gráficos.]
 
-> “Buenos días. Mi trabajo se llama *Perfiles musicales de Spotify*. Está pensado para una persona que crea playlists y necesita comparar perfiles de audio, encontrar canciones similares, descubrir combinaciones contrastantes y estudiar la evolución temporal del catálogo.
+> “Buenos días. Mi trabajo se llama *Perfiles musicales de Spotify*. Está pensado para una persona que crea playlists y necesita comparar perfiles de audio, encontrar canciones similares, diseñar un objetivo sonoro y estudiar la evolución temporal del catálogo.
 >
 > En lugar de elegir primero un gráfico, partí de cuatro preguntas analíticas. Después definí qué datos necesitaba y finalmente seleccioné las técnicas de representación. Es decir, seguí el marco WHAT–WHY–HOW trabajado en clase.
 >
@@ -50,19 +50,19 @@ Si el profesor pide la fórmula:
 
 ---
 
-## 3. Tarea 1: comparar perfiles de energía — 1 minuto 40 segundos
+## 3. Tarea 1: comparar dos canciones — 1 minuto 40 segundos
 
 [Pulsar **Reproducir este análisis** en la tarjeta 1. Señalar la pregunta, el resultado y los bloques WHAT–WHY–HOW. Después bajar a Parallel Coordinates y RadViz.]
 
-> “La primera pregunta es: ¿cómo difieren las canciones de energía alta y baja en sus otras características?
+> “La primera pregunta es: ¿en qué atributos son similares o diferentes dos canciones que podrían convivir en una playlist?
 >
-> Para responderla utilicé los cuartiles de la muestra. Energía baja corresponde a valores menores o iguales a 0.253 y energía alta a valores mayores o iguales a 0.715. Así comparo dos grupos del mismo tamaño: 200 canciones en cada uno.
+> Para responderla selecciono una Canción A y una Canción B. No creo categorías artificiales: comparo directamente sus seis perfiles normalizados.
 >
-> El hallazgo más fuerte no está únicamente en energía, que define los grupos, sino en acústica. La mediana baja de 0.956 en el grupo de energía baja a 0.022 en el grupo de energía alta: una disminución aproximada de 0.933. A la vez, la valencia mediana aumenta de 0.337 a 0.583 y la bailabilidad de 0.444 a 0.523.
+> La tabla permite identificar en qué atributos se separan más. Parallel Coordinates conserva el perfil completo de ambas canciones y las líneas entrecortadas señalan directamente sus perfiles, no medianas de grupos.
 >
-> Parallel Coordinates es útil aquí porque cada línea conserva el perfil de una canción a través de las seis dimensiones. Esto permite ver simultáneamente la distribución y las combinaciones individuales. RadViz complementa esa lectura al resumir el balance entre atributos mediante anclajes alrededor de una circunferencia.
+> Parallel Coordinates es útil aquí porque cada línea conserva el perfil de una canción a través de las seis dimensiones. RadViz complementa esa lectura mostrando la posición multidimensional de las dos seleccionadas.
 >
-> Por lo tanto, en esta muestra, las canciones de alta energía se distinguen sobre todo por una acústica mucho menor y, en mediana, por mayor valencia y bailabilidad. No presento esos cortes como categorías universales: son cuartiles definidos para esta muestra reproducible.”
+> Por lo tanto, puedo decidir si la segunda canción mantiene un perfil compatible con la primera y exactamente qué atributo produce la diferencia. La compatibilidad se limita a estas seis variables de audio.”
 
 [Pasar el cursor sobre una línea o punto y luego hacer clic en una canción. Señalar que el nombre y los seis valores aparecen en “Selección coordinada”.]
 
@@ -108,17 +108,17 @@ Si el profesor pide la fórmula:
 
 ---
 
-## 6. Tarea 3: combinaciones contrastantes — 1 minuto 30 segundos
+## 6. Tarea 3: diseñar un perfil de playlist — 1 minuto 30 segundos
 
 [Pulsar **Reproducir este análisis** en la tarjeta 3. Señalar pregunta y resultado.]
 
-> “La tercera pregunta busca casos menos evidentes: ¿qué canciones combinan energía alta con valencia baja, o energía baja con valencia alta, y cómo difieren sus otros atributos?
+> “La tercera pregunta es: ¿qué canciones cumplen mejor un objetivo energético, positivo y bailable, y qué atributos explican ese perfil?
 >
-> Encontré 37 canciones con energía alta y valencia baja, frente a 17 con energía baja y valencia alta. Además de las dos variables usadas para formar los grupos, la diferencia mediana más grande vuelve a aparecer en acústica: 0.004 para alta energía y baja valencia, frente a 0.941 para baja energía y alta valencia.
+> La configuración inicial usa el brief: energía más valencia más bailabilidad, menos 0.5 veces acústica y menos 0.25 veces habla. La aplicación selecciona 60 candidatas reproducibles y permite modificar los pesos y direcciones en Star Coordinates.
 >
-> La bailabilidad mediana también cambia: 0.363 en el primer grupo y 0.614 en el segundo. Esto evita reducir el análisis a una relación simple entre energía y valencia: las combinaciones contrastantes poseen perfiles distintos en otras dimensiones.
+> El perfil mediano de esas candidatas resume qué combinación de atributos caracteriza el brief. No digo que estas canciones sean universalmente positivas: son candidatas bajo una definición explícita de audio.
 >
-> Para localizar los casos uso los cuartiles de energía y valencia; con brushing puedo restringir intervalos y comprobar dónde quedan esas mismas canciones en las demás representaciones. La palabra valencia proviene del dataset y no equivale a afirmar qué emoción experimenta realmente cada oyente.”
+> Al mover un eje cambio la importancia de una dimensión y observo qué canciones siguen siendo candidatas. La palabra valencia proviene del dataset y no equivale a afirmar qué emoción experimenta realmente cada oyente.”
 
 [Aplicar brevemente brushing en energía y valencia o pasar el cursor sobre los dos grupos. No dejar el filtro activo para el cierre.]
 
@@ -174,7 +174,7 @@ No afirmar que NumPy es una biblioteca de visualización. Flask sirve la aplicac
 
 [Volver a la zona de las tres preguntas o dejar visibles las cuatro visualizaciones.]
 
-> “En síntesis, el primer análisis mostró que la separación entre energía alta y baja está acompañada principalmente por una gran diferencia de acústica. El segundo permitió encontrar vecinos de una canción en seis dimensiones y comprobar que una proyección globalmente consistente todavía puede alterar vecindades locales. El tercero localizó combinaciones contrastantes de energía y valencia y reveló diferencias adicionales en acústica y bailabilidad. El cuarto permitió comparar perfiles agregados por década con evidencia del tamaño de cada grupo.
+> “En síntesis, el primer análisis permite verificar compatibilidad entre dos canciones. El segundo encuentra vecinos de una canción en seis dimensiones y comprueba que una proyección globalmente consistente todavía puede alterar vecindades locales. El tercero permite diseñar y ajustar un perfil objetivo de playlist. El cuarto compara perfiles agregados por década con evidencia del tamaño de cada grupo.
 >
 > Las conclusiones se limitan a una muestra reproducible de 800 canciones, al dataset publicado hasta 2020 y a una definición de similitud basada únicamente en seis atributos con igual peso inicial. Por eso la aplicación permite explorar, pero siempre conserva una configuración guardada para reproducir cada respuesta.
 >
@@ -234,7 +234,7 @@ No afirmar que NumPy es una biblioteca de visualización. Flask sirve la aplicac
 
 ## ¿Qué insight consideras más importante?
 
-> “La diferencia de acústica, porque aparece con mucha magnitud tanto al comparar niveles de energía como al observar combinaciones contrastantes de energía y valencia. Sin embargo, lo presento como un patrón de esta muestra y no como causalidad.”
+> “La diferencia de acústica, porque aparece con mucha magnitud al comparar perfiles sonoros. Sin embargo, lo presento como un patrón de esta muestra y no como causalidad.”
 
 ## ¿Qué mejorarías con más tiempo?
 
@@ -252,7 +252,7 @@ Esta sección es para preparar la exposición; **no hace falta leerla ni mostrar
 | Perspectiva analítica | Se presentan cuartiles, recuentos, medianas, diferencias, vecino más cercano, métricas MDS y límites. Los resultados se conectan con la necesidad de construir playlists. |
 | Justificación de diseño | Se explica WHAT–WHY–HOW, por qué se usan seis variables, normalización, muestra, distancia y el papel complementario de cada técnica. |
 | Precisión técnica | Se describen correctamente RadViz, Star Coordinates, Parallel Coordinates y MDS; se distingue proyección de clustering; se explican interacciones, calidad, módulos, D3, Flask, NumPy y pruebas. |
-| Cobertura de tareas | Se reproducen en orden las tres tareas, cada una con pregunta, método, evidencia, respuesta y limitación. Las cuatro técnicas requeridas aparecen en el recorrido. |
+| Cobertura de tareas | Se reproducen en orden las cuatro tareas, cada una con pregunta, método, evidencia, respuesta y limitación. Las cuatro técnicas requeridas aparecen con un propósito distinto. |
 
 ---
 

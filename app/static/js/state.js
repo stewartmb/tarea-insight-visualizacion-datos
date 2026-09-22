@@ -7,6 +7,7 @@ export class Store {
     this.state = {
       taskId: "task1",
       selectedId: data.tasks.task2.default_uid,
+      selectedIdB: data.tasks.task1.default_pair_uids?.[1] || data.tasks.task2.default_uid,
       hoverId: null,
       focusIds: new Set(),
       neighborIds: new Set(),
@@ -35,6 +36,7 @@ export class Store {
     const neighbors = nearestRecords(this.data.records, uid, 10);
     const neighborIds = new Set(neighbors.map(item => item.record.uid));
     const changes = {selectedId: uid, neighborIds};
+    if (this.state.taskId === "task1") changes.focusIds = new Set([uid, this.state.selectedIdB]);
     if (this.state.taskId === "task2") changes.focusIds = new Set([uid, ...neighborIds]);
     this.patch(changes, "selection", markChanged);
   }
@@ -46,22 +48,24 @@ export class Store {
   replayTask(taskId, emit = true) {
     const records = this.data.records;
     const selectedId = this.data.tasks.task2.default_uid;
+    const pair = this.data.tasks.task1.default_pair_uids || [selectedId, selectedId];
     let focusIds;
     let neighborIds = new Set();
     if (taskId === "task1") {
-      focusIds = new Set(records.filter(record => record.energy_band !== "middle").map(record => record.uid));
+      focusIds = new Set(pair);
     } else if (taskId === "task2") {
       neighborIds = new Set(nearestRecords(records, selectedId, 10).map(item => item.record.uid));
       focusIds = new Set([selectedId, ...neighborIds]);
     } else if (taskId === "task3") {
-      focusIds = new Set(records.filter(record => record.contrast !== "other").map(record => record.uid));
+      focusIds = new Set(this.data.tasks.task3.target_uids || []);
     } else {
       const eligible = new Set((this.data.tasks.task4?.eligible_decades || []).slice(-4));
       focusIds = new Set(records.filter(record => eligible.has(record.decade)).map(record => record.uid));
     }
     Object.assign(this.state, {
       taskId,
-      selectedId,
+      selectedId: taskId === "task1" ? pair[0] : selectedId,
+      selectedIdB: pair[1],
       focusIds,
       neighborIds,
       brushedIds: null,
@@ -73,12 +77,12 @@ export class Store {
 
   color(record) {
     if (this.state.taskId === "task1") {
-      return record.energy_band === "high" ? "#e4572e" : record.energy_band === "low" ? "#2878b5" : "#cbd2d9";
+      return record.uid === this.state.selectedId ? "#e4572e" : record.uid === this.state.selectedIdB ? "#2878b5" : "#cbd2d9";
     }
     if (this.state.taskId === "task2") {
       return record.uid === this.state.selectedId ? "#6f42c1" : this.state.neighborIds.has(record.uid) ? "#ef9b20" : "#cbd2d9";
     }
-    if (this.state.taskId === "task3") return record.contrast === "energetic_somber" ? "#c44569" : record.contrast === "calm_positive" ? "#278c82" : "#cbd2d9";
+    if (this.state.taskId === "task3") return "#c44569";
     return "#4c78a8";
   }
 

@@ -17,7 +17,7 @@ Enunciado y rúbrica → Observable original → PDFs (texto y diagramas) → tr
 | Vecindad | Notebook multidimensional: `euclidean`, `kNearestNeighbors`, `neighborhoodPreservation` | Adaptación a Python para precálculo. Mismos índices, exclusión del propio punto y fracción de vecinos compartidos; desempates deterministas. |
 | SVG y data join | `d_dd72e51d927a0f1a.js`; `d_7d5703c7f30132f2.js`; `d_0dd0a49165451966.js` | Patrones `selectAll`, `data`, `join`, `attr`, `scaleLinear`, ejes y `line` adaptados. |
 | WHAT | U1_T2; tópico consolidado 02 | Canción como ítem, seis atributos cuantitativos, identificadores y metadatos. Normalización y muestra explicitadas. |
-| WHY | U1_T3; tópico consolidado 03 | T1 comparar perfiles; T2 identificar similitud; T3 localizar combinaciones y comparar. Preguntas específicas desarrolladas para Spotify. |
+| WHY | U1_T3; tópico consolidado 03 | T1 comparar dos perfiles; T2 buscar similitud; T3 diseñar un perfil objetivo; T4 estudiar evolución temporal. Preguntas específicas desarrolladas para Spotify. |
 | HOW y claridad | U1_T4; `claridad_ejercicio.js`; tópico 04 | Posición y líneas para comparación, color para grupos de la tarea, etiquetas y escalas constantes. |
 | Insight | U1_T1; semana1_clase2 (bloque sobre propósito de insight); tópico 01 | Resultados numéricos y ejemplos interpretados sin convertir asociación en causalidad. |
 | Gramática visual | U1_T4; ejercicio de claridad; semana5_clase1 01:20:28–01:33:08 sobre orden de ejes; tópico 04 | Justificación explícita de posición, líneas, color, opacidad, etiquetas, idioma y orden de Parallel Coordinates en `justificacion_visual.md` y en la interfaz. |
@@ -57,9 +57,9 @@ La aplicación separa la solución en cuatro preguntas y asigna una técnica pri
 
 | Tarea | Técnica principal | Evidencia implementada |
 |---|---|---|
-| 1. Energía alta/baja | Parallel Coordinates | orden `energía → acústica → valencia → bailabilidad → instrumentalidad → habla`, brushing y perfiles medianos |
+| 1. Comparar dos canciones | Parallel Coordinates | selector A/B, orden `energía → acústica → valencia → bailabilidad → instrumentalidad → habla`, brushing y dos perfiles directos entrecortados |
 | 2. Canciones similares | MDS | selección por canción, ranking de 10 vecinos, distancia euclídea y métricas de calidad |
-| 3. Perfiles contrastantes | Star Coordinates | vectores arrastrables, pesos, centroides y comparación de grupos |
+| 3. Diseñar un perfil de playlist | Star Coordinates | brief reproducible, 60 candidatas, vectores arrastrables, pesos y perfil objetivo |
 | 4. Evolución temporal | RadViz | perfiles medianos por década, cuartiles internos de popularidad y tabla de tamaños |
 
 RadViz y Star Coordinates adaptan las fórmulas y patrones del notebook multidimensional. Parallel Coordinates y la preparación de MDS se desarrollan a partir de las técnicas y patrones D3 trabajados en clase; esa diferencia se mantiene explícita. La tarea 4 usa únicamente columnas presentes en el CSV y no incorpora género ni el Million Playlist Dataset.

@@ -9,7 +9,7 @@ La aplicación sigue WHAT–WHY–HOW. Primero define qué entidad y atributos s
 | Decisión | Justificación | Evidencia en la interfaz |
 |---|---|---|
 | Idioma | La exposición y el curso se desarrollan en español. Se mantienen los nombres RadViz, Star Coordinates, Parallel Coordinates y MDS porque son nombres técnicos del material y de las API. | Títulos, instrucciones, tareas y etiquetas en español; nombres de técnicas sin traducción artificial. |
-| Color | El color codifica grupos nominales relacionados con la tarea: energía alta/baja, selección/vecinas o los dos contrastes. No codifica valores continuos. | Leyenda dinámica y paleta estable por tarea. |
+| Color | El color codifica categorías nominales relacionadas con la tarea: Canción A/B, selección/vecinas, candidatas/perfil objetivo o décadas. No codifica valores continuos. | Leyenda dinámica y paleta estable por tarea. |
 | Posición | Es el canal principal porque permite comparar perfiles y proximidades con mayor precisión que color o tamaño. | Coordenadas de las líneas, puntos, anclajes y proyección. |
 | Opacidad | Reduce el ruido de 800 registros sin eliminar el contexto. La selección y el elemento bajo el cursor conservan prioridad visual. | Brushing, mouseover y clic actualizan las cuatro vistas. |
 | Texto | Identifica la pregunta, las variables, las unidades de lectura y la limitación de cada análisis. | Panel WHAT–WHY–HOW, títulos, leyenda, tooltip y tarjetas de justificación. |
@@ -36,10 +36,10 @@ La aplicación sigue WHAT–WHY–HOW. Primero define qué entidad y atributos s
 
 - **Qué representa:** cada línea es una canción; la altura en cada eje es el valor normalizado de un atributo.
 - **Por qué esa marca:** la línea conserva el perfil completo y permite seguir combinaciones entre dimensiones.
-- **Orden inicial en Tarea 1:** `Energía → Acústica → Valencia → Bailabilidad → Instrumentalidad → Habla`. Energía inicia la comparación y acústica queda adyacente porque es la diferencia más fuerte de la muestra; valencia y bailabilidad siguen para leer el contraste de perfil; instrumentalidad y habla completan la lectura.
+- **Orden inicial en Tarea 1:** `Energía → Acústica → Valencia → Bailabilidad → Instrumentalidad → Habla`. Energía inicia la comparación entre las dos canciones y acústica queda adyacente para inspeccionar la diferencia de perfil; valencia y bailabilidad siguen para leer el carácter sonoro; instrumentalidad y habla completan la lectura.
 - **Orden dependiente de la tarea:** el orden no es una verdad universal. Para comparar energía con acústica se recomienda arrastrar acústica junto a energía, porque las relaciones entre ejes adyacentes se inspeccionan con mayor facilidad. El profesor enfatizó que el orden de ejes cambia la lectura.
 - **Brushing:** seleccionar un intervalo en un eje restringe por intersección los registros resaltados. Se mantienen los rangos por dimensión aunque los ejes se reordenen.
-- **Color y opacidad:** el color conserva el grupo de la tarea; la opacidad permite distinguir el subconjunto brushed sin borrar las demás líneas.
+- **Color y opacidad:** en la Tarea 1 el color identifica Canción A y Canción B; en otras tareas identifica selección, vecindad, candidatas o décadas. La opacidad mantiene solo el subconjunto relevante sin introducir registros grises que no participan en la pregunta.
 
 ## MDS
 
@@ -57,6 +57,6 @@ Todas las vistas usan el mismo identificador de canción y comparten el estado d
 ## Relación con el material de clase
 
 - **WHAT:** seis atributos cuantitativos, unidad de observación canción y normalización.
-- **WHY:** comparar perfiles, buscar similitudes y localizar combinaciones contrastantes.
+- **WHY:** comparar perfiles, buscar similitudes, diseñar un perfil objetivo y estudiar evolución temporal.
 - **HOW:** posición y líneas para comparar; color para categorías; texto y escalas para hacer explícita la lectura; interacción para explorar sin perder la configuración reproducible.
 - **Criterio de orden:** el eje debe ordenarse de acuerdo con la relación que la tarea necesita hacer visible, no por una supuesta neutralidad del gráfico.
