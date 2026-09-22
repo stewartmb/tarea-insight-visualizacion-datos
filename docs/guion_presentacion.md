@@ -2,7 +2,7 @@
 
 ## Propósito del guion
 
-Este libreto está preparado para una exposición de **10 a 12 minutos**. Integra de forma natural los cinco aspectos evaluados: claridad, profundidad analítica, justificación del diseño, precisión técnica y cobertura de las tres tareas. No conviene mencionar repetidamente la rúbrica; debes demostrarla mediante las preguntas, las cifras, las decisiones y la interacción.
+Este libreto está preparado para una exposición de **10 a 12 minutos**. Integra de forma natural los cinco aspectos evaluados: claridad, profundidad analítica, justificación del diseño, precisión técnica y cobertura de las cuatro tareas. No conviene mencionar repetidamente la rúbrica; debes demostrarla mediante las preguntas, las cifras, las decisiones y la interacción.
 
 Las partes entre comillas son el discurso sugerido. Las indicaciones entre corchetes son acciones y **no se leen**.
 
@@ -20,15 +20,15 @@ Las partes entre comillas son el discurso sugerido. Las indicaciones entre corch
 
 ## 1. Apertura: problema, audiencia y recorrido — 50 segundos
 
-[Mostrar la cabecera y las tres tarjetas de tareas. No bajar todavía a los gráficos.]
+[Mostrar la cabecera y las cuatro tarjetas de tareas. No bajar todavía a los gráficos.]
 
-> “Buenos días. Mi trabajo se llama *Perfiles musicales de Spotify*. Está pensado para una persona que crea playlists y necesita hacer tres cosas: comparar perfiles de audio, encontrar canciones similares y descubrir combinaciones contrastantes.
+> “Buenos días. Mi trabajo se llama *Perfiles musicales de Spotify*. Está pensado para una persona que crea playlists y necesita comparar perfiles de audio, encontrar canciones similares, descubrir combinaciones contrastantes y estudiar la evolución temporal del catálogo.
 >
-> En lugar de elegir primero un gráfico, partí de tres preguntas analíticas. Después definí qué datos necesitaba y finalmente seleccioné las técnicas de representación. Es decir, seguí el marco WHAT–WHY–HOW trabajado en clase.
+> En lugar de elegir primero un gráfico, partí de cuatro preguntas analíticas. Después definí qué datos necesitaba y finalmente seleccioné las técnicas de representación. Es decir, seguí el marco WHAT–WHY–HOW trabajado en clase.
 >
-> La aplicación responde esas tres preguntas con cuatro técnicas multidimensionales: RadViz, Star Coordinates, Parallel Coordinates y una proyección MDS. Durante la demostración mostraré no solo cómo se ven, sino qué respuesta aporta cada una y qué limitaciones tiene.”
+> La aplicación responde esas cuatro preguntas con cuatro técnicas multidimensionales: RadViz, Star Coordinates, Parallel Coordinates y una proyección MDS. Durante la demostración mostraré no solo cómo se ven, sino qué respuesta aporta cada una y qué limitaciones tiene.”
 
-**Idea que debe quedar clara:** existe una audiencia, un propósito y tres preguntas. Las visualizaciones son medios para responderlas.
+**Idea que debe quedar clara:** existe una audiencia, un propósito y cuatro preguntas. Las visualizaciones son medios para responderlas.
 
 ---
 
@@ -124,7 +124,21 @@ Si el profesor pide la fórmula:
 
 ---
 
-## 7. Cómo funcionan RadViz y Star Coordinates — 1 minuto 20 segundos
+## 7. Tarea 4: evolución temporal y popularidad — 1 minuto 20 segundos
+
+[Pulsar **Reproducir este análisis** en la tarjeta 4. Mostrar RadViz y la tabla de décadas.]
+
+> “La cuarta pregunta es: ¿cómo cambia el perfil sonoro de las canciones populares a través de las décadas y qué atributos explican esos cambios?
+>
+> Esta tarea utiliza únicamente columnas que ya existen en el CSV: año, fecha de lanzamiento, popularidad y los seis atributos de audio. Para evitar conclusiones basadas en grupos pequeños, solo se muestran décadas con al menos 20 canciones. Los perfiles agregados se calculan sobre el dataset limpio completo; la muestra de 800 se mantiene como contexto para las interacciones individuales.
+>
+> La popularidad se divide dentro de cada década mediante cuartiles. Así no comparo directamente un valor de popularidad de una época antigua con uno reciente como si fueran escalas históricas idénticas. RadViz es la técnica principal porque compara varios atributos simultáneamente; Parallel Coordinates sirve para inspeccionar dos décadas cuando se necesita detalle por canción.
+>
+> La tabla hace visible el tamaño de cada grupo. Si una década tuviera pocos registros, no la usaría para sostener un hallazgo. El resultado describe diferencias observadas en este catálogo y no demuestra que una época haya causado un cambio sonoro.”
+
+[Señalar una década en RadViz y luego la cantidad correspondiente en la tabla.]
+
+## 8. Cómo funcionan RadViz y Star Coordinates — 1 minuto 20 segundos
 
 [Mostrar RadViz. Arrastrar un anclaje una distancia visible pero moderada. Después mostrar Star Coordinates y arrastrar el extremo de un eje.]
 
@@ -142,7 +156,7 @@ Si pide las fórmulas:
 
 ---
 
-## 8. Procedencia del código y precisión técnica — 55 segundos
+## 9. Procedencia del código y precisión técnica — 55 segundos
 
 [Mantener las cuatro técnicas visibles o bajar a “Método y alcance”.]
 
@@ -156,11 +170,11 @@ No afirmar que NumPy es una biblioteca de visualización. Flask sirve la aplicac
 
 ---
 
-## 9. Cierre: respuestas, límites y aporte — 55 segundos
+## 10. Cierre: respuestas, límites y aporte — 55 segundos
 
 [Volver a la zona de las tres preguntas o dejar visibles las cuatro visualizaciones.]
 
-> “En síntesis, el primer análisis mostró que la separación entre energía alta y baja está acompañada principalmente por una gran diferencia de acústica. El segundo permitió encontrar vecinos de una canción en seis dimensiones y comprobar que una proyección globalmente consistente todavía puede alterar vecindades locales. El tercero localizó combinaciones contrastantes de energía y valencia y reveló diferencias adicionales en acústica y bailabilidad.
+> “En síntesis, el primer análisis mostró que la separación entre energía alta y baja está acompañada principalmente por una gran diferencia de acústica. El segundo permitió encontrar vecinos de una canción en seis dimensiones y comprobar que una proyección globalmente consistente todavía puede alterar vecindades locales. El tercero localizó combinaciones contrastantes de energía y valencia y reveló diferencias adicionales en acústica y bailabilidad. El cuarto permitió comparar perfiles agregados por década con evidencia del tamaño de cada grupo.
 >
 > Las conclusiones se limitan a una muestra reproducible de 800 canciones, al dataset publicado hasta 2020 y a una definición de similitud basada únicamente en seis atributos con igual peso inicial. Por eso la aplicación permite explorar, pero siempre conserva una configuración guardada para reproducir cada respuesta.
 >

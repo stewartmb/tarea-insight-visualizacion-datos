@@ -4,7 +4,8 @@
 
 - Dataset exacto recuperado desde el enlace incrustado en el enunciado.
 - CSV original conservado y preparación reproducible documentada.
-- Tres tareas analíticas con resultados, cifras, ejemplos y limitaciones.
+- Cuatro tareas analíticas con resultados, cifras, ejemplos y limitaciones.
+- Tarea 4 temporal calculada por décadas sobre el dataset limpio, con control de mínimo de observaciones.
 - RadViz interactivo con anclajes arrastrables.
 - Star Coordinates interactivo con dirección y peso variables.
 - Parallel Coordinates con escalamiento, brushing coordinado y reordenamiento.
