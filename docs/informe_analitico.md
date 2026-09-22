@@ -2,7 +2,7 @@
 
 ## Audiencia y propósito
 
-La aplicación está dirigida a una persona que selecciona canciones para playlists y necesita comparar perfiles, encontrar similitudes y localizar combinaciones de características. La visualización es un medio para producir respuestas verificables. Esta idea sigue el énfasis de fundamentos del curso: el propósito es el insight y la gráfica ayuda a obtenerlo.
+La aplicación está dirigida a una persona que selecciona canciones para playlists y necesita comparar perfiles, encontrar similitudes, construir contrastes y estudiar la evolución del catálogo. La visualización es un medio para producir respuestas verificables. Esta idea sigue el énfasis de fundamentos del curso: el propósito es el insight y la gráfica ayuda a obtenerlo.
 
 ## Datos
 
@@ -39,6 +39,14 @@ Se localizaron 37 canciones de energía alta (`≥ 0.715`) y valencia baja (`≤
 Además de las variables usadas para formar los grupos, la diferencia mediana más grande aparece en acústica: `0.004` para alta energía/baja valencia y `0.941` para baja energía/alta valencia. La bailabilidad mediana es `0.363` y `0.614`, respectivamente. Estos valores describen combinaciones menos intuitivas que una asociación simple entre energía y valencia.
 
 Valencia es una característica provista por el dataset; el análisis no afirma conocer la emoción experimentada por cada oyente.
+
+## Tarea 4 — Examinar evolución temporal y popularidad
+
+**Pregunta:** ¿Cómo cambia el perfil sonoro de las canciones populares a través de las décadas y qué atributos explican esos cambios?
+
+Esta tarea usa `year`, `release_date`, `popularity` y los seis atributos de audio que ya contiene el archivo. Se agrupan las canciones por década y se excluyen grupos con menos de 20 observaciones. La tabla y los perfiles agregados se calculan sobre las 170,653 filas limpias; las tareas interactivas de canción individual conservan la muestra reproducible de 800.
+
+La popularidad se divide mediante cuartiles dentro de cada década, no con un corte global que favorecería a las épocas recientes. RadViz es la vista principal para comparar perfiles medianos de décadas; Parallel Coordinates sirve para inspeccionar dos periodos. Las conclusiones se restringen a las décadas visibles y no implican causalidad histórica.
 
 ## Calidad y limitaciones de MDS
 

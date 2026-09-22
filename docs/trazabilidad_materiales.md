@@ -51,3 +51,15 @@ Se implementa **MDS clásico**, que aproxima una matriz de productos internos me
 ## Enunciado: ambigüedades pendientes
 
 El apartado general permite varios frameworks; el apartado de entrega menciona Flask. Se elige Flask. El texto solicita datos «nodes and edges», aunque las técnicas operan sobre una tabla. No se inventa una red: se incluyen tabla original y datos preparados, y se solicita aclaración antes de declarar la entrega final cerrada. La aplicación y el ZIP de revisión pueden verificarse mientras se resuelve este punto. Presentar presencialmente sigue siendo obligatorio.
+# Rediseño de cuatro tareas analíticas
+
+La aplicación separa la solución en cuatro preguntas y asigna una técnica principal a cada una:
+
+| Tarea | Técnica principal | Evidencia implementada |
+|---|---|---|
+| 1. Energía alta/baja | Parallel Coordinates | orden `energía → acústica → valencia → bailabilidad → instrumentalidad → habla`, brushing y perfiles medianos |
+| 2. Canciones similares | MDS | selección por canción, ranking de 10 vecinos, distancia euclídea y métricas de calidad |
+| 3. Perfiles contrastantes | Star Coordinates | vectores arrastrables, pesos, centroides y comparación de grupos |
+| 4. Evolución temporal | RadViz | perfiles medianos por década, cuartiles internos de popularidad y tabla de tamaños |
+
+RadViz y Star Coordinates adaptan las fórmulas y patrones del notebook multidimensional. Parallel Coordinates y la preparación de MDS se desarrollan a partir de las técnicas y patrones D3 trabajados en clase; esa diferencia se mantiene explícita. La tarea 4 usa únicamente columnas presentes en el CSV y no incorpora género ni el Million Playlist Dataset.

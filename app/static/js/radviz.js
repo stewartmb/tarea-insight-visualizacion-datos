@@ -17,6 +17,7 @@ export class RadVizChart {
     this.anchors = this.defaultAnchors();
     this.anchorLayer = this.group.append("g").attr("class", "anchor-layer");
     this.pointLayer = this.group.append("g").attr("class", "point-layer");
+    this.summaryLayer = this.group.append("g").attr("class", "summary-layer");
     this.renderAnchors();
     this.points = this.pointLayer.selectAll("circle").data(records, record => record.uid).join("circle").attr("class", "data-point");
     attachPointEvents(this.points, store);
@@ -77,6 +78,26 @@ export class RadVizChart {
       });
     this.points.attr("display", record => positioned.get(record.uid) ? null : "none");
     this.updateStyle();
+    this.updateSummaries();
+  }
+
+  setSummaries(summaries = []) {
+    this.summaries = summaries;
+    this.updateSummaries();
+  }
+
+  updateSummaries() {
+    const summaries = this.summaries || [];
+    const positioned = summaries.map(summary => ({...summary, point: radvizPoint(summary, this.anchors)})).filter(summary => summary.point);
+    const marks = this.summaryLayer.selectAll("g.summary-mark").data(positioned, summary => summary.id || summary.label).join(enter => {
+      const group = enter.append("g").attr("class", "summary-mark");
+      group.append("circle").attr("r", 10);
+      group.append("text");
+      return group;
+    });
+    marks.attr("transform", summary => `translate(${this.center.x + summary.point.x * this.radius},${this.center.y + summary.point.y * this.radius})`);
+    marks.select("circle").attr("fill", summary => summary.color || "#17222e");
+    marks.select("text").text(summary => summary.label).attr("dy", -14);
   }
 
   updateStyle() {

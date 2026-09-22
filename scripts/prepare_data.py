@@ -123,6 +123,15 @@ def median_profile(matrix: np.ndarray, mask: np.ndarray) -> dict[str, float]:
     return {feature: float(medians[i]) for i, feature in enumerate(FEATURES)}
 
 
+def profile_pair(original: np.ndarray, normalized: np.ndarray, mask: np.ndarray) -> dict:
+    """Keep the two representations explicit for tables and D3 summaries."""
+    return {
+        "count": int(mask.sum()),
+        "original": median_profile(original, mask),
+        "normalized": median_profile(normalized, mask),
+    }
+
+
 def representatives(matrix: np.ndarray, mask: np.ndarray, uids: list[str], count: int = 3) -> list[str]:
     indices = np.flatnonzero(mask)
     if len(indices) == 0:
@@ -227,6 +236,7 @@ def build_analysis(input_path: Path, sample_limit: int = SAMPLE_LIMIT, seed: int
                 "name": row.get("name") or "Canción sin nombre",
                 "artist": parse_artist(row.get("artists", "")),
                 "year": year,
+                "decade": (year // 10) * 10 if year else 0,
                 "popularity": popularity,
                 "original": original,
                 "normalized": normalized,
@@ -240,6 +250,51 @@ def build_analysis(input_path: Path, sample_limit: int = SAMPLE_LIMIT, seed: int
     task1_high = median_profile(sample_original, high_energy)
     task3_a = median_profile(sample_original, energetic_somber)
     task3_b = median_profile(sample_original, calm_positive)
+
+    # Task 4 uses the complete cleaned dataset so that older decades are not
+    # accidentally discarded by the 800-song visualization sample. The chart
+    # still renders the reproducible sample as its individual-song context.
+    def numeric_column(rows, key, default=0.0):
+        values = []
+        for row in rows:
+            try:
+                values.append(float(row.get(key) or default))
+            except (TypeError, ValueError):
+                values.append(default)
+        return np.array(values)
+
+    years = numeric_column(raw_rows, "year").astype(int)
+    popularity = numeric_column(raw_rows, "popularity")
+    decade_profiles = []
+    for decade in sorted({int(year // 10 * 10) for year in years if year}):
+        decade_mask = years == decade
+        count = int(decade_mask.sum())
+        if count < 20:
+            continue
+        popularity_values = popularity[decade_mask]
+        popularity_q3 = float(np.quantile(popularity_values, 0.75))
+        popularity_q1 = float(np.quantile(popularity_values, 0.25))
+        popular_mask = decade_mask & (popularity >= popularity_q3)
+        nonpopular_mask = decade_mask & (popularity <= popularity_q1)
+        decade_profiles.append(
+            {
+                "decade": decade,
+                "label": f"{decade}s",
+                "count": count,
+                "popular_count": int(popular_mask.sum()),
+                "nonpopular_count": int(nonpopular_mask.sum()),
+                "popularity_q1": popularity_q1,
+                "popularity_q3": popularity_q3,
+                "profile": profile_pair(full_values, full_normalized, decade_mask),
+                "popular_profile": profile_pair(full_values, full_normalized, popular_mask),
+                "nonpopular_profile": profile_pair(full_values, full_normalized, nonpopular_mask),
+            }
+        )
+
+    task1_low_profile = profile_pair(sample_original, sample_normalized, low_energy)
+    task1_high_profile = profile_pair(sample_original, sample_normalized, high_energy)
+    task3_a_profile = profile_pair(sample_original, sample_normalized, energetic_somber)
+    task3_b_profile = profile_pair(sample_original, sample_normalized, calm_positive)
 
     metadata = {
         "source_url": SOURCE_URL,
@@ -267,6 +322,10 @@ def build_analysis(input_path: Path, sample_limit: int = SAMPLE_LIMIT, seed: int
             "differences": {feature: task1_high[feature] - task1_low[feature] for feature in FEATURES},
             "low_representatives": representatives(sample_original, low_energy, uids),
             "high_representatives": representatives(sample_original, high_energy, uids),
+            "profiles": {
+                "low": task1_low_profile,
+                "high": task1_high_profile,
+            },
         },
         "task2": {
             "default_uid": uids[default_index],
@@ -282,6 +341,15 @@ def build_analysis(input_path: Path, sample_limit: int = SAMPLE_LIMIT, seed: int
             "differences": {feature: task3_a[feature] - task3_b[feature] for feature in FEATURES},
             "energetic_somber_examples": representatives(sample_original, energetic_somber, uids),
             "calm_positive_examples": representatives(sample_original, calm_positive, uids),
+            "profiles": {
+                "energetic_somber": task3_a_profile,
+                "calm_positive": task3_b_profile,
+            },
+        },
+        "task4": {
+            "min_decade_count": 20,
+            "decades": decade_profiles,
+            "eligible_decades": [item["decade"] for item in decade_profiles],
         },
     }
     return {
@@ -312,7 +380,7 @@ def write_outputs(analysis: dict, output_path: Path) -> None:
     )
     csv_path = output_path.with_name("sample.csv")
     with csv_path.open("w", newline="", encoding="utf-8") as stream:
-        columns = ["uid", "spotify_id", "name", "artist", "year", "popularity", *FEATURES, "mds_x", "mds_y", "energy_band", "contrast"]
+        columns = ["uid", "spotify_id", "name", "artist", "year", "decade", "popularity", *FEATURES, "mds_x", "mds_y", "energy_band", "contrast"]
         writer = csv.DictWriter(stream, fieldnames=columns)
         writer.writeheader()
         for record in analysis["records"]:
@@ -323,6 +391,7 @@ def write_outputs(analysis: dict, output_path: Path) -> None:
                     "name": record["name"],
                     "artist": record["artist"],
                     "year": record["year"],
+                    "decade": record["decade"],
                     "popularity": record["popularity"],
                     **record["original"],
                     "mds_x": record["mds"][0],

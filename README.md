@@ -1,6 +1,6 @@
 # Tarea Insight — Visualización multidimensional de Spotify
 
-Aplicación Flask y D3 para responder tres tareas analíticas mediante RadViz, Star Coordinates, Parallel Coordinates y MDS. Se desarrolló a partir del enunciado, la rúbrica y el material de clase. Consulta `docs/trazabilidad_materiales.md` para diferenciar código adaptado y código nuevo.
+Aplicación Flask y D3 para responder cuatro tareas analíticas mediante RadViz, Star Coordinates, Parallel Coordinates y MDS. Cada vista tiene una técnica principal y apoyos justificados. Se desarrolló a partir del enunciado, la rúbrica y el material de clase. Consulta `docs/trazabilidad_materiales.md` para diferenciar código adaptado y código nuevo.
 
 ## Ejecutar
 
@@ -41,9 +41,10 @@ El preprocesamiento conserva el original, valida valores, normaliza con los rang
 
 1. Reproducir Tarea 1 y comparar energía alta/baja en Parallel Coordinates y RadViz.
 2. Reproducir Tarea 2, seleccionar una canción y observar sus diez vecinas en las cuatro vistas.
-3. Reproducir Tarea 3 y revisar combinaciones de energía/valencia con brushing.
-4. Arrastrar ejes para explicar por qué el orden y el peso afectan la lectura.
-5. Mostrar las métricas de stress, correlación de distancias y preservación de vecindad.
+3. Reproducir Tarea 3 y revisar combinaciones de energía/valencia con Star Coordinates.
+4. Reproducir Tarea 4 y comparar décadas en RadViz y la tabla de evidencia.
+5. Arrastrar ejes para explicar por qué el orden y el peso afectan la lectura.
+6. Mostrar las métricas de stress, correlación de distancias y preservación de vecindad.
 
 ## Archivos de entrega
 

@@ -110,7 +110,47 @@
         "6fvxos1qSHrIgOkKw4dhWS",
         "0W5Pa3GW06IQ7BS5CbTTOM",
         "2HieRfsSSwQA1JUtfmRNgo"
-      ]
+      ],
+      "profiles": {
+        "low": {
+          "count": 200,
+          "original": {
+            "energy": 0.14450000000000002,
+            "valence": 0.3365,
+            "danceability": 0.444,
+            "acousticness": 0.9555,
+            "instrumentalness": 0.0036000000000000003,
+            "speechiness": 0.0425
+          },
+          "normalized": {
+            "energy": 0.14450000000000002,
+            "valence": 0.3365,
+            "danceability": 0.4493927125506073,
+            "acousticness": 0.9593373493975903,
+            "instrumentalness": 0.0036000000000000003,
+            "speechiness": 0.043814432989690726
+          }
+        },
+        "high": {
+          "count": 200,
+          "original": {
+            "energy": 0.869,
+            "valence": 0.583,
+            "danceability": 0.5225,
+            "acousticness": 0.0223,
+            "instrumentalness": 0.0001735,
+            "speechiness": 0.054000000000000006
+          },
+          "normalized": {
+            "energy": 0.869,
+            "valence": 0.583,
+            "danceability": 0.5288461538461539,
+            "acousticness": 0.022389558232931726,
+            "instrumentalness": 0.0001735,
+            "speechiness": 0.05567010309278351
+          }
+        }
+      }
     },
     "task2": {
       "default_uid": "69vlMrzHwATKzupwNcUPyK",
@@ -183,6 +223,723 @@
         "6lGM86SXGL8N1u6euSQzpv",
         "4g3d8tjGIQLLabdwJEukKm",
         "2I6gZKKBu7kXaM2GHMZ49I"
+      ],
+      "profiles": {
+        "energetic_somber": {
+          "count": 37,
+          "original": {
+            "energy": 0.924,
+            "valence": 0.193,
+            "danceability": 0.363,
+            "acousticness": 0.00398,
+            "instrumentalness": 0.0005070000000000001,
+            "speechiness": 0.0771
+          },
+          "normalized": {
+            "energy": 0.924,
+            "valence": 0.193,
+            "danceability": 0.3674089068825911,
+            "acousticness": 0.003995983935742972,
+            "instrumentalness": 0.0005070000000000001,
+            "speechiness": 0.07948453608247423
+          }
+        },
+        "calm_positive": {
+          "count": 17,
+          "original": {
+            "energy": 0.188,
+            "valence": 0.8190000000000001,
+            "danceability": 0.614,
+            "acousticness": 0.941,
+            "instrumentalness": 0.00691,
+            "speechiness": 0.0829
+          },
+          "normalized": {
+            "energy": 0.188,
+            "valence": 0.8190000000000001,
+            "danceability": 0.6214574898785425,
+            "acousticness": 0.9447791164658634,
+            "instrumentalness": 0.00691,
+            "speechiness": 0.0854639175257732
+          }
+        }
+      }
+    },
+    "task4": {
+      "min_decade_count": 20,
+      "decades": [
+        {
+          "decade": 1930,
+          "label": "1930s",
+          "count": 1924,
+          "popular_count": 1924,
+          "nonpopular_count": 1583,
+          "popularity_q1": 0.0,
+          "popularity_q3": 0.0,
+          "profile": {
+            "count": 1924,
+            "original": {
+              "energy": 0.321,
+              "valence": 0.6575,
+              "danceability": 0.5155000000000001,
+              "acousticness": 0.987,
+              "instrumentalness": 0.1395,
+              "speechiness": 0.0545
+            },
+            "normalized": {
+              "energy": 0.321,
+              "valence": 0.6575,
+              "danceability": 0.5217611336032388,
+              "acousticness": 0.9909638554216867,
+              "instrumentalness": 0.1395,
+              "speechiness": 0.05618556701030928
+            }
+          },
+          "popular_profile": {
+            "count": 1924,
+            "original": {
+              "energy": 0.321,
+              "valence": 0.6575,
+              "danceability": 0.5155000000000001,
+              "acousticness": 0.987,
+              "instrumentalness": 0.1395,
+              "speechiness": 0.0545
+            },
+            "normalized": {
+              "energy": 0.321,
+              "valence": 0.6575,
+              "danceability": 0.5217611336032388,
+              "acousticness": 0.9909638554216867,
+              "instrumentalness": 0.1395,
+              "speechiness": 0.05618556701030928
+            }
+          },
+          "nonpopular_profile": {
+            "count": 1583,
+            "original": {
+              "energy": 0.333,
+              "valence": 0.67,
+              "danceability": 0.503,
+              "acousticness": 0.987,
+              "instrumentalness": 0.17,
+              "speechiness": 0.0551
+            },
+            "normalized": {
+              "energy": 0.333,
+              "valence": 0.67,
+              "danceability": 0.5091093117408907,
+              "acousticness": 0.9909638554216867,
+              "instrumentalness": 0.17,
+              "speechiness": 0.056804123711340214
+            }
+          }
+        },
+        {
+          "decade": 1940,
+          "label": "1940s",
+          "count": 2000,
+          "popular_count": 2000,
+          "nonpopular_count": 1583,
+          "popularity_q1": 0.0,
+          "popularity_q3": 0.0,
+          "profile": {
+            "count": 2000,
+            "original": {
+              "energy": 0.3025,
+              "valence": 0.644,
+              "danceability": 0.524,
+              "acousticness": 0.968,
+              "instrumentalness": 0.0532,
+              "speechiness": 0.0525
+            },
+            "normalized": {
+              "energy": 0.3025,
+              "valence": 0.644,
+              "danceability": 0.5303643724696356,
+              "acousticness": 0.9718875502008032,
+              "instrumentalness": 0.0532,
+              "speechiness": 0.05412371134020619
+            }
+          },
+          "popular_profile": {
+            "count": 2000,
+            "original": {
+              "energy": 0.3025,
+              "valence": 0.644,
+              "danceability": 0.524,
+              "acousticness": 0.968,
+              "instrumentalness": 0.0532,
+              "speechiness": 0.0525
+            },
+            "normalized": {
+              "energy": 0.3025,
+              "valence": 0.644,
+              "danceability": 0.5303643724696356,
+              "acousticness": 0.9718875502008032,
+              "instrumentalness": 0.0532,
+              "speechiness": 0.05412371134020619
+            }
+          },
+          "nonpopular_profile": {
+            "count": 1583,
+            "original": {
+              "energy": 0.316,
+              "valence": 0.648,
+              "danceability": 0.504,
+              "acousticness": 0.977,
+              "instrumentalness": 0.0853,
+              "speechiness": 0.052000000000000005
+            },
+            "normalized": {
+              "energy": 0.316,
+              "valence": 0.648,
+              "danceability": 0.5101214574898786,
+              "acousticness": 0.9809236947791165,
+              "instrumentalness": 0.0853,
+              "speechiness": 0.053608247422680416
+            }
+          }
+        },
+        {
+          "decade": 1950,
+          "label": "1950s",
+          "count": 2000,
+          "popular_count": 598,
+          "nonpopular_count": 1198,
+          "popularity_q1": 0.0,
+          "popularity_q3": 3.0,
+          "profile": {
+            "count": 2000,
+            "original": {
+              "energy": 0.2845,
+              "valence": 0.578,
+              "danceability": 0.513,
+              "acousticness": 0.946,
+              "instrumentalness": 0.003155,
+              "speechiness": 0.0461
+            },
+            "normalized": {
+              "energy": 0.2845,
+              "valence": 0.578,
+              "danceability": 0.5192307692307693,
+              "acousticness": 0.9497991967871485,
+              "instrumentalness": 0.003155,
+              "speechiness": 0.047525773195876295
+            }
+          },
+          "popular_profile": {
+            "count": 598,
+            "original": {
+              "energy": 0.248,
+              "valence": 0.574,
+              "danceability": 0.5774999999999999,
+              "acousticness": 0.8690000000000001,
+              "instrumentalness": 0.00016150000000000002,
+              "speechiness": 0.0452
+            },
+            "normalized": {
+              "energy": 0.248,
+              "valence": 0.574,
+              "danceability": 0.5845141700404858,
+              "acousticness": 0.8724899598393575,
+              "instrumentalness": 0.00016150000000000002,
+              "speechiness": 0.046597938144329894
+            }
+          },
+          "nonpopular_profile": {
+            "count": 1198,
+            "original": {
+              "energy": 0.306,
+              "valence": 0.588,
+              "danceability": 0.483,
+              "acousticness": 0.971,
+              "instrumentalness": 0.0112,
+              "speechiness": 0.04635
+            },
+            "normalized": {
+              "energy": 0.306,
+              "valence": 0.588,
+              "danceability": 0.4888663967611336,
+              "acousticness": 0.9748995983935743,
+              "instrumentalness": 0.0112,
+              "speechiness": 0.04778350515463917
+            }
+          }
+        },
+        {
+          "decade": 1960,
+          "label": "1960s",
+          "count": 1850,
+          "popular_count": 511,
+          "nonpopular_count": 542,
+          "popularity_q1": 12.0,
+          "popularity_q3": 24.0,
+          "profile": {
+            "count": 1850,
+            "original": {
+              "energy": 0.3045,
+              "valence": 0.5345,
+              "danceability": 0.5035000000000001,
+              "acousticness": 0.812,
+              "instrumentalness": 0.0001005,
+              "speechiness": 0.0406
+            },
+            "normalized": {
+              "energy": 0.3045,
+              "valence": 0.5345,
+              "danceability": 0.5096153846153846,
+              "acousticness": 0.8152610441767069,
+              "instrumentalness": 0.0001005,
+              "speechiness": 0.04185567010309278
+            }
+          },
+          "popular_profile": {
+            "count": 511,
+            "original": {
+              "energy": 0.322,
+              "valence": 0.5539999999999999,
+              "danceability": 0.51,
+              "acousticness": 0.78,
+              "instrumentalness": 1.24e-05,
+              "speechiness": 0.0401
+            },
+            "normalized": {
+              "energy": 0.322,
+              "valence": 0.5539999999999999,
+              "danceability": 0.5161943319838057,
+              "acousticness": 0.783132530120482,
+              "instrumentalness": 1.24e-05,
+              "speechiness": 0.04134020618556701
+            }
+          },
+          "nonpopular_profile": {
+            "count": 542,
+            "original": {
+              "energy": 0.3065,
+              "valence": 0.523,
+              "danceability": 0.506,
+              "acousticness": 0.828,
+              "instrumentalness": 0.00011449999999999999,
+              "speechiness": 0.04095
+            },
+            "normalized": {
+              "energy": 0.3065,
+              "valence": 0.523,
+              "danceability": 0.5121457489878543,
+              "acousticness": 0.8313253012048193,
+              "instrumentalness": 0.00011449999999999999,
+              "speechiness": 0.04221649484536083
+            }
+          }
+        },
+        {
+          "decade": 1970,
+          "label": "1970s",
+          "count": 2000,
+          "popular_count": 535,
+          "nonpopular_count": 583,
+          "popularity_q1": 26.0,
+          "popularity_q3": 40.0,
+          "profile": {
+            "count": 2000,
+            "original": {
+              "energy": 0.4905,
+              "valence": 0.579,
+              "danceability": 0.5075000000000001,
+              "acousticness": 0.462,
+              "instrumentalness": 0.0007435,
+              "speechiness": 0.0381
+            },
+            "normalized": {
+              "energy": 0.4905,
+              "valence": 0.579,
+              "danceability": 0.513663967611336,
+              "acousticness": 0.46385542168674704,
+              "instrumentalness": 0.0007435,
+              "speechiness": 0.03927835051546392
+            }
+          },
+          "popular_profile": {
+            "count": 535,
+            "original": {
+              "energy": 0.494,
+              "valence": 0.574,
+              "danceability": 0.524,
+              "acousticness": 0.411,
+              "instrumentalness": 0.00043,
+              "speechiness": 0.0374
+            },
+            "normalized": {
+              "energy": 0.494,
+              "valence": 0.574,
+              "danceability": 0.5303643724696356,
+              "acousticness": 0.4126506024096385,
+              "instrumentalness": 0.00043,
+              "speechiness": 0.038556701030927835
+            }
+          },
+          "nonpopular_profile": {
+            "count": 583,
+            "original": {
+              "energy": 0.4970000000000001,
+              "valence": 0.586,
+              "danceability": 0.511,
+              "acousticness": 0.473,
+              "instrumentalness": 0.000628,
+              "speechiness": 0.0389
+            },
+            "normalized": {
+              "energy": 0.4970000000000001,
+              "valence": 0.586,
+              "danceability": 0.5172064777327935,
+              "acousticness": 0.47489959839357426,
+              "instrumentalness": 0.000628,
+              "speechiness": 0.04010309278350515
+            }
+          }
+        },
+        {
+          "decade": 1980,
+          "label": "1980s",
+          "count": 1950,
+          "popular_count": 512,
+          "nonpopular_count": 518,
+          "popularity_q1": 28.0,
+          "popularity_q3": 42.0,
+          "profile": {
+            "count": 1950,
+            "original": {
+              "energy": 0.619,
+              "valence": 0.64,
+              "danceability": 0.57,
+              "acousticness": 0.1805,
+              "instrumentalness": 0.0008655000000000001,
+              "speechiness": 0.0418
+            },
+            "normalized": {
+              "energy": 0.619,
+              "valence": 0.64,
+              "danceability": 0.5769230769230769,
+              "acousticness": 0.18122489959839355,
+              "instrumentalness": 0.0008655000000000001,
+              "speechiness": 0.043092783505154636
+            }
+          },
+          "popular_profile": {
+            "count": 512,
+            "original": {
+              "energy": 0.6234999999999999,
+              "valence": 0.6755,
+              "danceability": 0.5994999999999999,
+              "acousticness": 0.21550000000000002,
+              "instrumentalness": 0.00049,
+              "speechiness": 0.0415
+            },
+            "normalized": {
+              "energy": 0.6234999999999999,
+              "valence": 0.6755,
+              "danceability": 0.6067813765182186,
+              "acousticness": 0.21636546184738958,
+              "instrumentalness": 0.00049,
+              "speechiness": 0.042783505154639176
+            }
+          },
+          "nonpopular_profile": {
+            "count": 518,
+            "original": {
+              "energy": 0.6275,
+              "valence": 0.6205,
+              "danceability": 0.5465,
+              "acousticness": 0.1405,
+              "instrumentalness": 0.0005825,
+              "speechiness": 0.041749999999999995
+            },
+            "normalized": {
+              "energy": 0.6275,
+              "valence": 0.6205,
+              "danceability": 0.5531376518218625,
+              "acousticness": 0.14106425702811246,
+              "instrumentalness": 0.0005825,
+              "speechiness": 0.04304123711340206
+            }
+          }
+        },
+        {
+          "decade": 1990,
+          "label": "1990s",
+          "count": 2000,
+          "popular_count": 560,
+          "nonpopular_count": 514,
+          "popularity_q1": 33.0,
+          "popularity_q3": 46.0,
+          "profile": {
+            "count": 2000,
+            "original": {
+              "energy": 0.595,
+              "valence": 0.535,
+              "danceability": 0.5479999999999999,
+              "acousticness": 0.215,
+              "instrumentalness": 0.00015250000000000002,
+              "speechiness": 0.04035
+            },
+            "normalized": {
+              "energy": 0.595,
+              "valence": 0.535,
+              "danceability": 0.554655870445344,
+              "acousticness": 0.21586345381526104,
+              "instrumentalness": 0.00015250000000000002,
+              "speechiness": 0.041597938144329896
+            }
+          },
+          "popular_profile": {
+            "count": 560,
+            "original": {
+              "energy": 0.6154999999999999,
+              "valence": 0.5195000000000001,
+              "danceability": 0.5625,
+              "acousticness": 0.197,
+              "instrumentalness": 7.069999999999998e-05,
+              "speechiness": 0.0382
+            },
+            "normalized": {
+              "energy": 0.6154999999999999,
+              "valence": 0.5195000000000001,
+              "danceability": 0.5693319838056681,
+              "acousticness": 0.19779116465863456,
+              "instrumentalness": 7.069999999999998e-05,
+              "speechiness": 0.039381443298969074
+            }
+          },
+          "nonpopular_profile": {
+            "count": 514,
+            "original": {
+              "energy": 0.5825,
+              "valence": 0.5565,
+              "danceability": 0.5539999999999999,
+              "acousticness": 0.195,
+              "instrumentalness": 0.000196,
+              "speechiness": 0.0418
+            },
+            "normalized": {
+              "energy": 0.5825,
+              "valence": 0.5565,
+              "danceability": 0.5607287449392712,
+              "acousticness": 0.19578313253012047,
+              "instrumentalness": 0.000196,
+              "speechiness": 0.043092783505154636
+            }
+          }
+        },
+        {
+          "decade": 2000,
+          "label": "2000s",
+          "count": 1956,
+          "popular_count": 537,
+          "nonpopular_count": 574,
+          "popularity_q1": 40.0,
+          "popularity_q3": 52.0,
+          "profile": {
+            "count": 1956,
+            "original": {
+              "energy": 0.6609999999999999,
+              "valence": 0.5825,
+              "danceability": 0.603,
+              "acousticness": 0.1525,
+              "instrumentalness": 2.205e-05,
+              "speechiness": 0.0458
+            },
+            "normalized": {
+              "energy": 0.6609999999999999,
+              "valence": 0.5825,
+              "danceability": 0.6103238866396761,
+              "acousticness": 0.1531124497991968,
+              "instrumentalness": 2.205e-05,
+              "speechiness": 0.04721649484536083
+            }
+          },
+          "popular_profile": {
+            "count": 537,
+            "original": {
+              "energy": 0.695,
+              "valence": 0.573,
+              "danceability": 0.612,
+              "acousticness": 0.117,
+              "instrumentalness": 1.09e-05,
+              "speechiness": 0.0425
+            },
+            "normalized": {
+              "energy": 0.695,
+              "valence": 0.573,
+              "danceability": 0.6194331983805668,
+              "acousticness": 0.11746987951807229,
+              "instrumentalness": 1.09e-05,
+              "speechiness": 0.043814432989690726
+            }
+          },
+          "nonpopular_profile": {
+            "count": 574,
+            "original": {
+              "energy": 0.6599999999999999,
+              "valence": 0.61,
+              "danceability": 0.5985,
+              "acousticness": 0.16349999999999998,
+              "instrumentalness": 1.0549999999999999e-05,
+              "speechiness": 0.05065
+            },
+            "normalized": {
+              "energy": 0.6599999999999999,
+              "valence": 0.61,
+              "danceability": 0.6057692307692308,
+              "acousticness": 0.16415662650602408,
+              "instrumentalness": 1.0549999999999999e-05,
+              "speechiness": 0.052216494845360825
+            }
+          }
+        },
+        {
+          "decade": 2010,
+          "label": "2010s",
+          "count": 2016,
+          "popular_count": 588,
+          "nonpopular_count": 546,
+          "popularity_q1": 47.0,
+          "popularity_q3": 57.0,
+          "profile": {
+            "count": 2016,
+            "original": {
+              "energy": 0.726,
+              "valence": 0.526,
+              "danceability": 0.588,
+              "acousticness": 0.115,
+              "instrumentalness": 3.44e-06,
+              "speechiness": 0.0463
+            },
+            "normalized": {
+              "energy": 0.726,
+              "valence": 0.526,
+              "danceability": 0.5951417004048583,
+              "acousticness": 0.11546184738955824,
+              "instrumentalness": 3.44e-06,
+              "speechiness": 0.0477319587628866
+            }
+          },
+          "popular_profile": {
+            "count": 588,
+            "original": {
+              "energy": 0.7390000000000001,
+              "valence": 0.578,
+              "danceability": 0.624,
+              "acousticness": 0.115,
+              "instrumentalness": 0.0,
+              "speechiness": 0.04695
+            },
+            "normalized": {
+              "energy": 0.7390000000000001,
+              "valence": 0.578,
+              "danceability": 0.631578947368421,
+              "acousticness": 0.11546184738955824,
+              "instrumentalness": 0.0,
+              "speechiness": 0.0484020618556701
+            }
+          },
+          "nonpopular_profile": {
+            "count": 546,
+            "original": {
+              "energy": 0.733,
+              "valence": 0.502,
+              "danceability": 0.5529999999999999,
+              "acousticness": 0.09465,
+              "instrumentalness": 3.97e-06,
+              "speechiness": 0.045649999999999996
+            },
+            "normalized": {
+              "energy": 0.733,
+              "valence": 0.502,
+              "danceability": 0.5597165991902834,
+              "acousticness": 0.09503012048192772,
+              "instrumentalness": 3.97e-06,
+              "speechiness": 0.0470618556701031
+            }
+          }
+        },
+        {
+          "decade": 2020,
+          "label": "2020s",
+          "count": 2030,
+          "popular_count": 546,
+          "nonpopular_count": 546,
+          "popularity_q1": 65.0,
+          "popularity_q3": 76.0,
+          "profile": {
+            "count": 2030,
+            "original": {
+              "energy": 0.6409999999999999,
+              "valence": 0.509,
+              "danceability": 0.716,
+              "acousticness": 0.131,
+              "instrumentalness": 0.0,
+              "speechiness": 0.0864
+            },
+            "normalized": {
+              "energy": 0.6409999999999999,
+              "valence": 0.509,
+              "danceability": 0.7246963562753036,
+              "acousticness": 0.13152610441767068,
+              "instrumentalness": 0.0,
+              "speechiness": 0.08907216494845362
+            }
+          },
+          "popular_profile": {
+            "count": 546,
+            "original": {
+              "energy": 0.6575,
+              "valence": 0.516,
+              "danceability": 0.7175,
+              "acousticness": 0.1305,
+              "instrumentalness": 0.0,
+              "speechiness": 0.0784
+            },
+            "normalized": {
+              "energy": 0.6575,
+              "valence": 0.516,
+              "danceability": 0.7262145748987855,
+              "acousticness": 0.1310240963855422,
+              "instrumentalness": 0.0,
+              "speechiness": 0.08082474226804123
+            }
+          },
+          "nonpopular_profile": {
+            "count": 546,
+            "original": {
+              "energy": 0.659,
+              "valence": 0.534,
+              "danceability": 0.745,
+              "acousticness": 0.121,
+              "instrumentalness": 0.0,
+              "speechiness": 0.105
+            },
+            "normalized": {
+              "energy": 0.659,
+              "valence": 0.534,
+              "danceability": 0.7540485829959515,
+              "acousticness": 0.1214859437751004,
+              "instrumentalness": 0.0,
+              "speechiness": 0.10824742268041238
+            }
+          }
+        }
+      ],
+      "eligible_decades": [
+        1930,
+        1940,
+        1950,
+        1960,
+        1970,
+        1980,
+        1990,
+        2000,
+        2010,
+        2020
       ]
     }
   }

@@ -36,7 +36,7 @@ La aplicación sigue WHAT–WHY–HOW. Primero define qué entidad y atributos s
 
 - **Qué representa:** cada línea es una canción; la altura en cada eje es el valor normalizado de un atributo.
 - **Por qué esa marca:** la línea conserva el perfil completo y permite seguir combinaciones entre dimensiones.
-- **Orden inicial:** `Energía → Valencia → Bailabilidad → Acústica → Instrumentalidad → Habla`. Energía aparece primero porque define la primera tarea y participa en la tercera; valencia y bailabilidad siguen como atributos de carácter rítmico/afectivo; los tres atributos sonoros restantes completan la lectura.
+- **Orden inicial en Tarea 1:** `Energía → Acústica → Valencia → Bailabilidad → Instrumentalidad → Habla`. Energía inicia la comparación y acústica queda adyacente porque es la diferencia más fuerte de la muestra; valencia y bailabilidad siguen para leer el contraste de perfil; instrumentalidad y habla completan la lectura.
 - **Orden dependiente de la tarea:** el orden no es una verdad universal. Para comparar energía con acústica se recomienda arrastrar acústica junto a energía, porque las relaciones entre ejes adyacentes se inspeccionan con mayor facilidad. El profesor enfatizó que el orden de ejes cambia la lectura.
 - **Brushing:** seleccionar un intervalo en un eje restringe por intersección los registros resaltados. Se mantienen los rangos por dimensión aunque los ejes se reordenen.
 - **Color y opacidad:** el color conserva el grupo de la tarea; la opacidad permite distinguir el subconjunto brushed sin borrar las demás líneas.

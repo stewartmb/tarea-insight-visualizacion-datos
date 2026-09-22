@@ -17,6 +17,7 @@ export class ParallelCoordinatesChart {
     this.y = Object.fromEntries(FEATURES.map(feature => [feature, d3.scaleLinear().domain([0, 1]).range([this.height - this.margin.bottom, this.margin.top])]));
     this.line = d3.line();
     this.pathLayer = this.svg.append("g").attr("class", "parallel-paths");
+    this.summaryLayer = this.svg.append("g").attr("class", "parallel-summaries");
     this.paths = this.pathLayer.selectAll("path").data(records, record => record.uid).join("path").attr("class", "profile-line").attr("d", record => this.path(record));
     attachPointEvents(this.paths, store);
     this.axisLayer = this.svg.append("g").attr("class", "parallel-axes");
@@ -34,6 +35,25 @@ export class ParallelCoordinatesChart {
 
   path(record) {
     return this.line(this.dimensions.map(feature => [this.position(feature), this.y[feature](record.normalized[feature])]));
+  }
+
+  setDimensions(dimensions) {
+    this.dimensions = [...dimensions];
+    this.x.domain(this.dimensions);
+    this.renderAxes();
+    this.paths.attr("d", record => this.path(record));
+    this.updateSummaries();
+  }
+
+  setSummaries(summaries = []) {
+    this.summaries = summaries;
+    this.updateSummaries();
+  }
+
+  updateSummaries() {
+    const summaries = this.summaries || [];
+    const lines = this.summaryLayer.selectAll("path.summary-line").data(summaries, summary => summary.id || summary.label).join("path").attr("class", "summary-line");
+    lines.attr("d", summary => this.path(summary)).attr("stroke", summary => summary.color || "#17222e").attr("stroke-width", 4).attr("stroke-opacity", .9);
   }
 
   renderAxes() {
@@ -59,11 +79,13 @@ export class ParallelCoordinatesChart {
           this.x.domain(this.dimensions);
           this.axes.attr("transform", item => `translate(${this.position(item)},0)`);
           this.paths.attr("d", record => this.path(record));
+          this.updateSummaries();
         })
         .on("end", (event, feature) => {
           delete this.dragPositions[feature];
           this.axes.transition().duration(180).attr("transform", item => `translate(${this.x(item)},0)`);
           this.paths.transition().duration(180).attr("d", record => this.path(record));
+          this.updateSummaries();
           this.store.patch({}, "parallel-order", true);
         }));
 

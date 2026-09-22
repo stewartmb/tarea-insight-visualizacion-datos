@@ -53,8 +53,11 @@ export class Store {
     } else if (taskId === "task2") {
       neighborIds = new Set(nearestRecords(records, selectedId, 10).map(item => item.record.uid));
       focusIds = new Set([selectedId, ...neighborIds]);
-    } else {
+    } else if (taskId === "task3") {
       focusIds = new Set(records.filter(record => record.contrast !== "other").map(record => record.uid));
+    } else {
+      const eligible = new Set((this.data.tasks.task4?.eligible_decades || []).slice(-4));
+      focusIds = new Set(records.filter(record => eligible.has(record.decade)).map(record => record.uid));
     }
     Object.assign(this.state, {
       taskId,
@@ -75,7 +78,8 @@ export class Store {
     if (this.state.taskId === "task2") {
       return record.uid === this.state.selectedId ? "#6f42c1" : this.state.neighborIds.has(record.uid) ? "#ef9b20" : "#cbd2d9";
     }
-    return record.contrast === "energetic_somber" ? "#c44569" : record.contrast === "calm_positive" ? "#278c82" : "#cbd2d9";
+    if (this.state.taskId === "task3") return record.contrast === "energetic_somber" ? "#c44569" : record.contrast === "calm_positive" ? "#278c82" : "#cbd2d9";
+    return "#4c78a8";
   }
 
   opacity(record) {

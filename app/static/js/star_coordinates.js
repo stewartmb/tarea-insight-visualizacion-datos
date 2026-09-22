@@ -14,6 +14,7 @@ export class StarCoordinatesChart {
     this.axes = this.defaultAxes();
     this.axisLayer = this.svg.append("g");
     this.pointLayer = this.svg.append("g");
+    this.summaryLayer = this.svg.append("g").attr("class", "summary-layer");
     this.renderAxes();
     this.points = this.pointLayer.selectAll("circle").data(records, record => record.uid).join("circle").attr("class", "data-point");
     attachPointEvents(this.points, store);
@@ -64,9 +65,28 @@ export class StarCoordinatesChart {
       .attr("cx", record => this.center.x + positions.get(record.uid).x * this.radius)
       .attr("cy", record => this.center.y + positions.get(record.uid).y * this.radius);
     this.updateStyle();
+    this.updateSummaries();
   }
 
   updateStyle() { stylePoints(this.points, this.store, 3.1); }
+
+  setSummaries(summaries = []) {
+    this.summaries = summaries;
+    this.updateSummaries();
+  }
+
+  updateSummaries() {
+    const positioned = (this.summaries || []).map(summary => ({...summary, point: starPoint(summary, this.axes)}));
+    const marks = this.summaryLayer.selectAll("g.summary-mark").data(positioned, summary => summary.id || summary.label).join(enter => {
+      const group = enter.append("g").attr("class", "summary-mark");
+      group.append("circle").attr("r", 10);
+      group.append("text");
+      return group;
+    });
+    marks.attr("transform", summary => `translate(${this.center.x + summary.point.x * this.radius},${this.center.y + summary.point.y * this.radius})`);
+    marks.select("circle").attr("fill", summary => summary.color || "#17222e");
+    marks.select("text").text(summary => summary.label).attr("dy", -14);
+  }
 
   reset() {
     this.axes = this.defaultAxes(); this.renderAxes(); this.updateGeometry();
