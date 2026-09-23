@@ -10,6 +10,8 @@
     "sample_rows": 800,
     "sample_limit": 800,
     "sample_seed": 5343,
+    "year_min": 1923,
+    "year_max": 2020,
     "features_requested": [
       "energy",
       "valence",
@@ -61,100 +63,182 @@
     },
     "mds_positive_eigenvalues": 6
   },
-  "thresholds": {
-    "energy_q1": 0.25275000000000003,
-    "energy_q3": 0.7152499999999999,
-    "valence_q1": 0.29874999999999996,
-    "valence_q3": 0.72525
-  },
   "quality": {
-    "normalized_stress": 0.26329866673419167,
-    "distance_correlation": 0.9090800111152926,
+    "normalized_stress": 0.2632986667341917,
+    "distance_correlation": 0.9090800111152929,
     "neighborhood_k": 10,
     "neighborhood_preservation": 0.31550000000000006
   },
+  "correlations": {
+    "features": [
+      "energy",
+      "valence",
+      "danceability",
+      "acousticness",
+      "instrumentalness",
+      "speechiness"
+    ],
+    "matrix": [
+      [
+        1.0,
+        0.353875979168662,
+        0.22196693929946562,
+        -0.7493929916853845,
+        -0.28110143598828224,
+        -0.07055488125592192
+      ],
+      [
+        0.353875979168662,
+        1.0,
+        0.5589464770684042,
+        -0.18410103124551055,
+        -0.1985009673236953,
+        0.04638097928533869
+      ],
+      [
+        0.2219669392994656,
+        0.5589464770684043,
+        0.9999999999999999,
+        -0.26685210389929886,
+        -0.2780634962103852,
+        0.23549141249736186
+      ],
+      [
+        -0.7493929916853844,
+        -0.18410103124551055,
+        -0.26685210389929886,
+        1.0,
+        0.32981932794518415,
+        -0.04398031985571818
+      ],
+      [
+        -0.28110143598828224,
+        -0.1985009673236953,
+        -0.2780634962103852,
+        0.32981932794518415,
+        1.0,
+        -0.12169983628868163
+      ],
+      [
+        -0.07055488125592192,
+        0.04638097928533869,
+        0.23549141249736188,
+        -0.04398031985571818,
+        -0.12169983628868164,
+        1.0
+      ]
+    ],
+    "rows": 170653
+  },
   "tasks": {
     "task1": {
-      "low_count": 200,
-      "high_count": 200,
-      "low_medians": {
-        "energy": 0.14450000000000002,
-        "valence": 0.3365,
-        "danceability": 0.444,
-        "acousticness": 0.9555,
-        "instrumentalness": 0.0036000000000000003,
-        "speechiness": 0.0425
-      },
-      "high_medians": {
-        "energy": 0.869,
-        "valence": 0.583,
-        "danceability": 0.5225,
-        "acousticness": 0.0223,
-        "instrumentalness": 0.0001735,
-        "speechiness": 0.054000000000000006
-      },
-      "differences": {
-        "energy": 0.7244999999999999,
-        "valence": 0.24649999999999994,
-        "danceability": 0.07849999999999996,
-        "acousticness": -0.9332,
-        "instrumentalness": -0.0034265000000000003,
-        "speechiness": 0.011500000000000003
-      },
-      "low_representatives": [
-        "3Dd4LMqWBf8KnrXEVuJ3ny",
-        "6AUYtnjshAVaMBzaO0Z5Op",
-        "4396IE5C7R1hR7LCSIafqE"
-      ],
-      "high_representatives": [
-        "6fvxos1qSHrIgOkKw4dhWS",
-        "0W5Pa3GW06IQ7BS5CbTTOM",
-        "2HieRfsSSwQA1JUtfmRNgo"
-      ],
       "default_pair_uids": [
         "69vlMrzHwATKzupwNcUPyK",
         "5bgYTzUDzerRFN7fp86MkQ"
       ],
-      "profiles": {
-        "low": {
-          "count": 200,
-          "original": {
-            "energy": 0.14450000000000002,
-            "valence": 0.3365,
-            "danceability": 0.444,
-            "acousticness": 0.9555,
-            "instrumentalness": 0.0036000000000000003,
-            "speechiness": 0.0425
-          },
-          "normalized": {
-            "energy": 0.14450000000000002,
-            "valence": 0.3365,
-            "danceability": 0.4493927125506073,
-            "acousticness": 0.9593373493975903,
-            "instrumentalness": 0.0036000000000000003,
-            "speechiness": 0.043814432989690726
-          }
-        },
-        "high": {
-          "count": 200,
-          "original": {
-            "energy": 0.869,
-            "valence": 0.583,
-            "danceability": 0.5225,
-            "acousticness": 0.0223,
-            "instrumentalness": 0.0001735,
-            "speechiness": 0.054000000000000006
-          },
-          "normalized": {
-            "energy": 0.869,
-            "valence": 0.583,
-            "danceability": 0.5288461538461539,
-            "acousticness": 0.022389558232931726,
-            "instrumentalness": 0.0001735,
-            "speechiness": 0.05567010309278351
-          }
-        }
-      }
+      "distance_percentiles": [
+        0.021071809393486234,
+        0.18150874580790238,
+        0.22592818986422153,
+        0.2573999045607307,
+        0.283352496238466,
+        0.3055140957270046,
+        0.32588277220201073,
+        0.3440537376988239,
+        0.3616721121451339,
+        0.37800298530849014,
+        0.3937567605009401,
+        0.40863709770807427,
+        0.42285878107527686,
+        0.43732885683070777,
+        0.4509316977927353,
+        0.46430958772661823,
+        0.4773701327265351,
+        0.48996091012984266,
+        0.5025035703654612,
+        0.5150745802505391,
+        0.5275798966813747,
+        0.5396953763515805,
+        0.5518031569847387,
+        0.5638344920165076,
+        0.5760035148566618,
+        0.5879521139134662,
+        0.6000953056905617,
+        0.6126629169421783,
+        0.6249256082147221,
+        0.6371930057903681,
+        0.6490346502796797,
+        0.6612687727216228,
+        0.6737931768015415,
+        0.6862439405839997,
+        0.6987440409594664,
+        0.7111511249436325,
+        0.7232648848852762,
+        0.7355565598110744,
+        0.7482959414864839,
+        0.7604374148096203,
+        0.7724816937382925,
+        0.7843378656180273,
+        0.7964045109465535,
+        0.8085293029378365,
+        0.8204903367606291,
+        0.8323376783183017,
+        0.8439858436179105,
+        0.8556843773394277,
+        0.8672282197730744,
+        0.878251323995545,
+        0.8895048591037451,
+        0.900438902545963,
+        0.9110131083120547,
+        0.921506053676067,
+        0.9311909099127597,
+        0.9407640244991146,
+        0.9501531216260266,
+        0.9594547222405112,
+        0.9687487035378285,
+        0.9782657930616692,
+        0.9877445226453784,
+        0.9972791523036592,
+        1.0068382476675841,
+        1.0163678622121555,
+        1.0258387942576992,
+        1.0355464674176682,
+        1.0454871935711807,
+        1.0555418023555008,
+        1.0654006972159298,
+        1.0758702120473405,
+        1.0865090139058937,
+        1.0971315869898468,
+        1.1078550373673084,
+        1.1188492211650987,
+        1.1300970094013745,
+        1.1419710114489567,
+        1.1535201700246303,
+        1.1653744482026382,
+        1.1774455218804332,
+        1.1898542077490903,
+        1.2025079518361546,
+        1.2155964304920714,
+        1.2289859315977696,
+        1.2431155353070815,
+        1.257246414869155,
+        1.2720137423096776,
+        1.2876030125248987,
+        1.3039624094154143,
+        1.3205416682656592,
+        1.3377342200684414,
+        1.3562332920786744,
+        1.3751053262751736,
+        1.3946980044173771,
+        1.4162161272872662,
+        1.4407537804138157,
+        1.4681821390984917,
+        1.498474595976187,
+        1.5324684250356473,
+        1.5750806843420508,
+        1.6349178737113148,
+        2.0064774223834747
+      ]
     },
     "task2": {
       "default_uid": "69vlMrzHwATKzupwNcUPyK",
@@ -192,42 +276,7 @@
       }
     },
     "task3": {
-      "energetic_somber_count": 37,
-      "calm_positive_count": 17,
-      "energetic_somber_medians": {
-        "energy": 0.924,
-        "valence": 0.193,
-        "danceability": 0.363,
-        "acousticness": 0.00398,
-        "instrumentalness": 0.0005070000000000001,
-        "speechiness": 0.0771
-      },
-      "calm_positive_medians": {
-        "energy": 0.188,
-        "valence": 0.8190000000000001,
-        "danceability": 0.614,
-        "acousticness": 0.941,
-        "instrumentalness": 0.00691,
-        "speechiness": 0.0829
-      },
-      "differences": {
-        "energy": 0.736,
-        "valence": -0.6260000000000001,
-        "danceability": -0.251,
-        "acousticness": -0.93702,
-        "instrumentalness": -0.006403000000000001,
-        "speechiness": -0.0058
-      },
-      "energetic_somber_examples": [
-        "4xn4Ilg53Mg8uJAJbTzmP2",
-        "7E5GuDVoXQSYHnYPQcbLll",
-        "2Cz0wgwqdZJgaSOA1Dg6aS"
-      ],
-      "calm_positive_examples": [
-        "6lGM86SXGL8N1u6euSQzpv",
-        "4g3d8tjGIQLLabdwJEukKm",
-        "2I6gZKKBu7kXaM2GHMZ49I"
-      ],
+      "target_size": 60,
       "target_uids": [
         "3df4fSoW5zsdNi5Wf3K5RP",
         "7pWcjb71SqY2256QasmAhJ",
@@ -309,653 +358,759 @@
           "speechiness": 0.04680412371134021
         }
       },
-      "target_definition": "energía + valencia + bailabilidad − 0.5×acústica − 0.25×habla",
-      "profiles": {
-        "energetic_somber": {
-          "count": 37,
-          "original": {
-            "energy": 0.924,
-            "valence": 0.193,
-            "danceability": 0.363,
-            "acousticness": 0.00398,
-            "instrumentalness": 0.0005070000000000001,
-            "speechiness": 0.0771
-          },
-          "normalized": {
-            "energy": 0.924,
-            "valence": 0.193,
-            "danceability": 0.3674089068825911,
-            "acousticness": 0.003995983935742972,
-            "instrumentalness": 0.0005070000000000001,
-            "speechiness": 0.07948453608247423
-          }
+      "rest_profile": {
+        "count": 740,
+        "original": {
+          "energy": 0.463,
+          "valence": 0.4825,
+          "danceability": 0.516,
+          "acousticness": 0.5479999999999999,
+          "instrumentalness": 0.0002875,
+          "speechiness": 0.0439
         },
-        "calm_positive": {
-          "count": 17,
-          "original": {
-            "energy": 0.188,
-            "valence": 0.8190000000000001,
-            "danceability": 0.614,
-            "acousticness": 0.941,
-            "instrumentalness": 0.00691,
-            "speechiness": 0.0829
-          },
-          "normalized": {
-            "energy": 0.188,
-            "valence": 0.8190000000000001,
-            "danceability": 0.6214574898785425,
-            "acousticness": 0.9447791164658634,
-            "instrumentalness": 0.00691,
-            "speechiness": 0.0854639175257732
-          }
+        "normalized": {
+          "energy": 0.463,
+          "valence": 0.4825,
+          "danceability": 0.5222672064777328,
+          "acousticness": 0.5502008032128514,
+          "instrumentalness": 0.0002875,
+          "speechiness": 0.04525773195876289
         }
-      }
+      },
+      "target_definition": "energía + valencia + bailabilidad − 0.5×acústica − 0.25×habla",
+      "candidate_decades": {
+        "1950": 2,
+        "1960": 5,
+        "1970": 7,
+        "1980": 11,
+        "1990": 15,
+        "2000": 9,
+        "2010": 8,
+        "2020": 3
+      },
+      "findings": [
+        "Las 60 candidatas se concentran en los 1990s (15 canciones) y el 58% es posterior a 1990: el brief energético, positivo y bailable describe sobre todo música reciente.",
+        "Su popularidad mediana en Spotify es 41 frente a 34 en toda la muestra.",
+        "Lo que más separa a las candidatas del resto es valencia (mediana 0.88 frente a 0.48) y acústica (0.04 frente a 0.55).",
+        "Mayor puntaje del brief: “Tú No Eres Para Mi” de Fanny Lu (2008); “Nolia Clap” de Juvenile, Wacko, & Skip (2004); “If I Never See Your Face Again” de Maroon 5 (2007)."
+      ]
     },
     "task4": {
       "min_decade_count": 20,
+      "popular_share": 0.25,
       "decades": [
         {
-          "decade": 1930,
-          "label": "1930s",
-          "count": 1924,
-          "popular_count": 1924,
-          "nonpopular_count": 1583,
-          "popularity_q1": 0.0,
-          "popularity_q3": 0.0,
+          "decade": 1920,
+          "label": "1920s",
+          "year_min": 1921,
+          "year_max": 1929,
+          "count": 5126,
+          "popular_count": 1282,
+          "nonpopular_count": 1282,
+          "popular_cut": 1.0,
+          "nonpopular_cut": 0.0,
+          "popularity_median": 0.0,
+          "popularity_zero_share": 0.7456106125634022,
           "profile": {
-            "count": 1924,
+            "count": 5126,
             "original": {
-              "energy": 0.321,
-              "valence": 0.6575,
-              "danceability": 0.5155000000000001,
-              "acousticness": 0.987,
-              "instrumentalness": 0.1395,
-              "speechiness": 0.0545
+              "energy": 0.219,
+              "valence": 0.578,
+              "danceability": 0.635,
+              "acousticness": 0.986,
+              "instrumentalness": 0.11,
+              "speechiness": 0.08215
             },
             "normalized": {
-              "energy": 0.321,
-              "valence": 0.6575,
-              "danceability": 0.5217611336032388,
-              "acousticness": 0.9909638554216867,
-              "instrumentalness": 0.1395,
-              "speechiness": 0.05618556701030928
+              "energy": 0.219,
+              "valence": 0.578,
+              "danceability": 0.6427125506072875,
+              "acousticness": 0.9899598393574297,
+              "instrumentalness": 0.11,
+              "speechiness": 0.08469072164948455
             }
           },
           "popular_profile": {
-            "count": 1924,
+            "count": 1282,
             "original": {
-              "energy": 0.321,
-              "valence": 0.6575,
-              "danceability": 0.5155000000000001,
-              "acousticness": 0.987,
-              "instrumentalness": 0.1395,
-              "speechiness": 0.0545
+              "energy": 0.187,
+              "valence": 0.433,
+              "danceability": 0.657,
+              "acousticness": 0.951,
+              "instrumentalness": 0.006410000000000001,
+              "speechiness": 0.08005000000000001
             },
             "normalized": {
-              "energy": 0.321,
-              "valence": 0.6575,
-              "danceability": 0.5217611336032388,
-              "acousticness": 0.9909638554216867,
-              "instrumentalness": 0.1395,
-              "speechiness": 0.05618556701030928
+              "energy": 0.187,
+              "valence": 0.433,
+              "danceability": 0.6649797570850203,
+              "acousticness": 0.9548192771084337,
+              "instrumentalness": 0.006410000000000001,
+              "speechiness": 0.08252577319587628
             }
           },
           "nonpopular_profile": {
-            "count": 1583,
+            "count": 1282,
             "original": {
-              "energy": 0.333,
-              "valence": 0.67,
-              "danceability": 0.503,
-              "acousticness": 0.987,
-              "instrumentalness": 0.17,
-              "speechiness": 0.0551
+              "energy": 0.212,
+              "valence": 0.546,
+              "danceability": 0.6154999999999999,
+              "acousticness": 0.989,
+              "instrumentalness": 0.455,
+              "speechiness": 0.0718
             },
             "normalized": {
-              "energy": 0.333,
-              "valence": 0.67,
-              "danceability": 0.5091093117408907,
-              "acousticness": 0.9909638554216867,
-              "instrumentalness": 0.17,
-              "speechiness": 0.056804123711340214
+              "energy": 0.212,
+              "valence": 0.546,
+              "danceability": 0.6229757085020242,
+              "acousticness": 0.9929718875502008,
+              "instrumentalness": 0.455,
+              "speechiness": 0.07402061855670103
+            }
+          }
+        },
+        {
+          "decade": 1930,
+          "label": "1930s",
+          "year_min": 1930,
+          "year_max": 1939,
+          "count": 9549,
+          "popular_count": 2388,
+          "nonpopular_count": 2388,
+          "popular_cut": 1.0,
+          "nonpopular_cut": 0.0,
+          "popularity_median": 0.0,
+          "popularity_zero_share": 0.7005969211435752,
+          "profile": {
+            "count": 9549,
+            "original": {
+              "energy": 0.252,
+              "valence": 0.5870000000000001,
+              "danceability": 0.5670000000000001,
+              "acousticness": 0.966,
+              "instrumentalness": 0.0177,
+              "speechiness": 0.0576
+            },
+            "normalized": {
+              "energy": 0.252,
+              "valence": 0.5870000000000001,
+              "danceability": 0.5738866396761134,
+              "acousticness": 0.9698795180722891,
+              "instrumentalness": 0.0177,
+              "speechiness": 0.05938144329896907
+            }
+          },
+          "popular_profile": {
+            "count": 2388,
+            "original": {
+              "energy": 0.2675,
+              "valence": 0.608,
+              "danceability": 0.602,
+              "acousticness": 0.942,
+              "instrumentalness": 0.0027549999999999996,
+              "speechiness": 0.0525
+            },
+            "normalized": {
+              "energy": 0.2675,
+              "valence": 0.608,
+              "danceability": 0.6093117408906883,
+              "acousticness": 0.9457831325301205,
+              "instrumentalness": 0.0027549999999999996,
+              "speechiness": 0.05412371134020619
+            }
+          },
+          "nonpopular_profile": {
+            "count": 2388,
+            "original": {
+              "energy": 0.256,
+              "valence": 0.589,
+              "danceability": 0.5325,
+              "acousticness": 0.973,
+              "instrumentalness": 0.0338,
+              "speechiness": 0.05765
+            },
+            "normalized": {
+              "energy": 0.256,
+              "valence": 0.589,
+              "danceability": 0.5389676113360324,
+              "acousticness": 0.9769076305220883,
+              "instrumentalness": 0.0338,
+              "speechiness": 0.05943298969072165
             }
           }
         },
         {
           "decade": 1940,
           "label": "1940s",
-          "count": 2000,
-          "popular_count": 2000,
-          "nonpopular_count": 1583,
-          "popularity_q1": 0.0,
-          "popularity_q3": 0.0,
+          "year_min": 1940,
+          "year_max": 1949,
+          "count": 15378,
+          "popular_count": 3845,
+          "nonpopular_count": 3845,
+          "popular_cut": 0.0,
+          "nonpopular_cut": 0.0,
+          "popularity_median": 0.0,
+          "popularity_zero_share": 0.7519183248796982,
           "profile": {
-            "count": 2000,
+            "count": 15378,
             "original": {
-              "energy": 0.3025,
-              "valence": 0.644,
-              "danceability": 0.524,
+              "energy": 0.218,
+              "valence": 0.507,
+              "danceability": 0.472,
               "acousticness": 0.968,
-              "instrumentalness": 0.0532,
-              "speechiness": 0.0525
+              "instrumentalness": 0.119,
+              "speechiness": 0.05
             },
             "normalized": {
-              "energy": 0.3025,
-              "valence": 0.644,
-              "danceability": 0.5303643724696356,
+              "energy": 0.218,
+              "valence": 0.507,
+              "danceability": 0.47773279352226716,
               "acousticness": 0.9718875502008032,
-              "instrumentalness": 0.0532,
-              "speechiness": 0.05412371134020619
+              "instrumentalness": 0.119,
+              "speechiness": 0.051546391752577324
             }
           },
           "popular_profile": {
-            "count": 2000,
+            "count": 3845,
             "original": {
-              "energy": 0.3025,
-              "valence": 0.644,
-              "danceability": 0.524,
-              "acousticness": 0.968,
-              "instrumentalness": 0.0532,
-              "speechiness": 0.0525
+              "energy": 0.225,
+              "valence": 0.451,
+              "danceability": 0.457,
+              "acousticness": 0.948,
+              "instrumentalness": 0.00977,
+              "speechiness": 0.0445
             },
             "normalized": {
-              "energy": 0.3025,
-              "valence": 0.644,
-              "danceability": 0.5303643724696356,
-              "acousticness": 0.9718875502008032,
-              "instrumentalness": 0.0532,
-              "speechiness": 0.05412371134020619
+              "energy": 0.225,
+              "valence": 0.451,
+              "danceability": 0.4625506072874494,
+              "acousticness": 0.9518072289156626,
+              "instrumentalness": 0.00977,
+              "speechiness": 0.04587628865979381
             }
           },
           "nonpopular_profile": {
-            "count": 1583,
+            "count": 3845,
             "original": {
-              "energy": 0.316,
-              "valence": 0.648,
-              "danceability": 0.504,
-              "acousticness": 0.977,
-              "instrumentalness": 0.0853,
-              "speechiness": 0.052000000000000005
+              "energy": 0.214,
+              "valence": 0.521,
+              "danceability": 0.479,
+              "acousticness": 0.97,
+              "instrumentalness": 0.124,
+              "speechiness": 0.0518
             },
             "normalized": {
-              "energy": 0.316,
-              "valence": 0.648,
-              "danceability": 0.5101214574898786,
-              "acousticness": 0.9809236947791165,
-              "instrumentalness": 0.0853,
-              "speechiness": 0.053608247422680416
+              "energy": 0.214,
+              "valence": 0.521,
+              "danceability": 0.4848178137651822,
+              "acousticness": 0.9738955823293173,
+              "instrumentalness": 0.124,
+              "speechiness": 0.053402061855670105
             }
           }
         },
         {
           "decade": 1950,
           "label": "1950s",
-          "count": 2000,
-          "popular_count": 598,
-          "nonpopular_count": 1198,
-          "popularity_q1": 0.0,
-          "popularity_q3": 3.0,
+          "year_min": 1950,
+          "year_max": 1959,
+          "count": 19850,
+          "popular_count": 4963,
+          "nonpopular_count": 4963,
+          "popular_cut": 16.0,
+          "nonpopular_cut": 0.0,
+          "popularity_median": 8.0,
+          "popularity_zero_share": 0.26,
           "profile": {
-            "count": 2000,
+            "count": 19850,
             "original": {
-              "energy": 0.2845,
-              "valence": 0.578,
-              "danceability": 0.513,
-              "acousticness": 0.946,
-              "instrumentalness": 0.003155,
-              "speechiness": 0.0461
+              "energy": 0.254,
+              "valence": 0.48,
+              "danceability": 0.489,
+              "acousticness": 0.909,
+              "instrumentalness": 0.00217,
+              "speechiness": 0.0442
             },
             "normalized": {
-              "energy": 0.2845,
-              "valence": 0.578,
-              "danceability": 0.5192307692307693,
-              "acousticness": 0.9497991967871485,
-              "instrumentalness": 0.003155,
-              "speechiness": 0.047525773195876295
+              "energy": 0.254,
+              "valence": 0.48,
+              "danceability": 0.4949392712550607,
+              "acousticness": 0.9126506024096386,
+              "instrumentalness": 0.00217,
+              "speechiness": 0.04556701030927836
             }
           },
           "popular_profile": {
-            "count": 598,
+            "count": 4963,
             "original": {
-              "energy": 0.248,
-              "valence": 0.574,
-              "danceability": 0.5774999999999999,
-              "acousticness": 0.8690000000000001,
-              "instrumentalness": 0.00016150000000000002,
-              "speechiness": 0.0452
+              "energy": 0.263,
+              "valence": 0.502,
+              "danceability": 0.51,
+              "acousticness": 0.851,
+              "instrumentalness": 0.000125,
+              "speechiness": 0.0419
             },
             "normalized": {
-              "energy": 0.248,
-              "valence": 0.574,
-              "danceability": 0.5845141700404858,
-              "acousticness": 0.8724899598393575,
-              "instrumentalness": 0.00016150000000000002,
-              "speechiness": 0.046597938144329894
+              "energy": 0.263,
+              "valence": 0.502,
+              "danceability": 0.5161943319838057,
+              "acousticness": 0.8544176706827309,
+              "instrumentalness": 0.000125,
+              "speechiness": 0.04319587628865979
             }
           },
           "nonpopular_profile": {
-            "count": 1198,
+            "count": 4963,
             "original": {
-              "energy": 0.306,
-              "valence": 0.588,
-              "danceability": 0.483,
-              "acousticness": 0.971,
-              "instrumentalness": 0.0112,
-              "speechiness": 0.04635
+              "energy": 0.236,
+              "valence": 0.43,
+              "danceability": 0.44,
+              "acousticness": 0.97,
+              "instrumentalness": 0.0106,
+              "speechiness": 0.0515
             },
             "normalized": {
-              "energy": 0.306,
-              "valence": 0.588,
-              "danceability": 0.4888663967611336,
-              "acousticness": 0.9748995983935743,
-              "instrumentalness": 0.0112,
-              "speechiness": 0.04778350515463917
+              "energy": 0.236,
+              "valence": 0.43,
+              "danceability": 0.44534412955465585,
+              "acousticness": 0.9738955823293173,
+              "instrumentalness": 0.0106,
+              "speechiness": 0.05309278350515464
             }
           }
         },
         {
           "decade": 1960,
           "label": "1960s",
-          "count": 1850,
-          "popular_count": 511,
-          "nonpopular_count": 542,
-          "popularity_q1": 12.0,
-          "popularity_q3": 24.0,
+          "year_min": 1960,
+          "year_max": 1969,
+          "count": 19549,
+          "popular_count": 4888,
+          "nonpopular_count": 4888,
+          "popular_cut": 33.0,
+          "nonpopular_cut": 18.0,
+          "popularity_median": 24.0,
+          "popularity_zero_share": 0.0,
           "profile": {
-            "count": 1850,
+            "count": 19549,
             "original": {
-              "energy": 0.3045,
-              "valence": 0.5345,
-              "danceability": 0.5035000000000001,
-              "acousticness": 0.812,
-              "instrumentalness": 0.0001005,
-              "speechiness": 0.0406
+              "energy": 0.396,
+              "valence": 0.5660000000000001,
+              "danceability": 0.505,
+              "acousticness": 0.705,
+              "instrumentalness": 0.000125,
+              "speechiness": 0.0384
             },
             "normalized": {
-              "energy": 0.3045,
-              "valence": 0.5345,
-              "danceability": 0.5096153846153846,
-              "acousticness": 0.8152610441767069,
-              "instrumentalness": 0.0001005,
-              "speechiness": 0.04185567010309278
+              "energy": 0.396,
+              "valence": 0.5660000000000001,
+              "danceability": 0.5111336032388664,
+              "acousticness": 0.7078313253012047,
+              "instrumentalness": 0.000125,
+              "speechiness": 0.03958762886597938
             }
           },
           "popular_profile": {
-            "count": 511,
+            "count": 4888,
             "original": {
-              "energy": 0.322,
-              "valence": 0.5539999999999999,
-              "danceability": 0.51,
-              "acousticness": 0.78,
-              "instrumentalness": 1.24e-05,
-              "speechiness": 0.0401
+              "energy": 0.4305,
+              "valence": 0.5815,
+              "danceability": 0.509,
+              "acousticness": 0.629,
+              "instrumentalness": 5.4300000000000005e-05,
+              "speechiness": 0.0372
             },
             "normalized": {
-              "energy": 0.322,
-              "valence": 0.5539999999999999,
-              "danceability": 0.5161943319838057,
-              "acousticness": 0.783132530120482,
-              "instrumentalness": 1.24e-05,
-              "speechiness": 0.04134020618556701
+              "energy": 0.4305,
+              "valence": 0.5815,
+              "danceability": 0.5151821862348178,
+              "acousticness": 0.6315261044176707,
+              "instrumentalness": 5.4300000000000005e-05,
+              "speechiness": 0.038350515463917524
             }
           },
           "nonpopular_profile": {
-            "count": 542,
+            "count": 4888,
             "original": {
-              "energy": 0.3065,
-              "valence": 0.523,
+              "energy": 0.34600000000000003,
+              "valence": 0.5485,
               "danceability": 0.506,
-              "acousticness": 0.828,
-              "instrumentalness": 0.00011449999999999999,
-              "speechiness": 0.04095
+              "acousticness": 0.779,
+              "instrumentalness": 0.000175,
+              "speechiness": 0.039150000000000004
             },
             "normalized": {
-              "energy": 0.3065,
-              "valence": 0.523,
+              "energy": 0.34600000000000003,
+              "valence": 0.5485,
               "danceability": 0.5121457489878543,
-              "acousticness": 0.8313253012048193,
-              "instrumentalness": 0.00011449999999999999,
-              "speechiness": 0.04221649484536083
+              "acousticness": 0.782128514056225,
+              "instrumentalness": 0.000175,
+              "speechiness": 0.04036082474226804
             }
           }
         },
         {
           "decade": 1970,
           "label": "1970s",
-          "count": 2000,
-          "popular_count": 535,
-          "nonpopular_count": 583,
-          "popularity_q1": 26.0,
-          "popularity_q3": 40.0,
+          "year_min": 1970,
+          "year_max": 1979,
+          "count": 20000,
+          "popular_count": 5000,
+          "nonpopular_count": 5000,
+          "popular_cut": 41.0,
+          "nonpopular_cut": 27.0,
+          "popularity_median": 33.0,
+          "popularity_zero_share": 0.0,
           "profile": {
-            "count": 2000,
+            "count": 20000,
             "original": {
-              "energy": 0.4905,
-              "valence": 0.579,
-              "danceability": 0.5075000000000001,
-              "acousticness": 0.462,
-              "instrumentalness": 0.0007435,
-              "speechiness": 0.0381
+              "energy": 0.5329999999999999,
+              "valence": 0.605,
+              "danceability": 0.528,
+              "acousticness": 0.361,
+              "instrumentalness": 0.0006349999999999999,
+              "speechiness": 0.0402
             },
             "normalized": {
-              "energy": 0.4905,
-              "valence": 0.579,
-              "danceability": 0.513663967611336,
-              "acousticness": 0.46385542168674704,
-              "instrumentalness": 0.0007435,
-              "speechiness": 0.03927835051546392
+              "energy": 0.5329999999999999,
+              "valence": 0.605,
+              "danceability": 0.5344129554655871,
+              "acousticness": 0.36244979919678716,
+              "instrumentalness": 0.0006349999999999999,
+              "speechiness": 0.041443298969072166
             }
           },
           "popular_profile": {
-            "count": 535,
+            "count": 5000,
             "original": {
-              "energy": 0.494,
-              "valence": 0.574,
-              "danceability": 0.524,
-              "acousticness": 0.411,
-              "instrumentalness": 0.00043,
-              "speechiness": 0.0374
+              "energy": 0.535,
+              "valence": 0.62,
+              "danceability": 0.547,
+              "acousticness": 0.32299999999999995,
+              "instrumentalness": 0.00034700000000000003,
+              "speechiness": 0.039
             },
             "normalized": {
-              "energy": 0.494,
-              "valence": 0.574,
-              "danceability": 0.5303643724696356,
-              "acousticness": 0.4126506024096385,
-              "instrumentalness": 0.00043,
-              "speechiness": 0.038556701030927835
+              "energy": 0.535,
+              "valence": 0.62,
+              "danceability": 0.5536437246963564,
+              "acousticness": 0.32429718875502006,
+              "instrumentalness": 0.00034700000000000003,
+              "speechiness": 0.04020618556701031
             }
           },
           "nonpopular_profile": {
-            "count": 583,
+            "count": 5000,
             "original": {
-              "energy": 0.4970000000000001,
-              "valence": 0.586,
-              "danceability": 0.511,
-              "acousticness": 0.473,
-              "instrumentalness": 0.000628,
-              "speechiness": 0.0389
+              "energy": 0.53,
+              "valence": 0.604,
+              "danceability": 0.522,
+              "acousticness": 0.397,
+              "instrumentalness": 0.000668,
+              "speechiness": 0.0408
             },
             "normalized": {
-              "energy": 0.4970000000000001,
-              "valence": 0.586,
-              "danceability": 0.5172064777327935,
-              "acousticness": 0.47489959839357426,
-              "instrumentalness": 0.000628,
-              "speechiness": 0.04010309278350515
+              "energy": 0.53,
+              "valence": 0.604,
+              "danceability": 0.52834008097166,
+              "acousticness": 0.3985943775100402,
+              "instrumentalness": 0.000668,
+              "speechiness": 0.0420618556701031
             }
           }
         },
         {
           "decade": 1980,
           "label": "1980s",
-          "count": 1950,
-          "popular_count": 512,
-          "nonpopular_count": 518,
-          "popularity_q1": 28.0,
-          "popularity_q3": 42.0,
+          "year_min": 1980,
+          "year_max": 1989,
+          "count": 19850,
+          "popular_count": 4963,
+          "nonpopular_count": 4963,
+          "popular_cut": 44.0,
+          "nonpopular_cut": 29.0,
+          "popularity_median": 35.0,
+          "popularity_zero_share": 0.0,
           "profile": {
-            "count": 1950,
+            "count": 19850,
             "original": {
-              "energy": 0.619,
-              "valence": 0.64,
-              "danceability": 0.57,
-              "acousticness": 0.1805,
-              "instrumentalness": 0.0008655000000000001,
-              "speechiness": 0.0418
+              "energy": 0.622,
+              "valence": 0.5870000000000001,
+              "danceability": 0.562,
+              "acousticness": 0.16899999999999998,
+              "instrumentalness": 0.000325,
+              "speechiness": 0.0416
             },
             "normalized": {
-              "energy": 0.619,
-              "valence": 0.64,
-              "danceability": 0.5769230769230769,
-              "acousticness": 0.18122489959839355,
-              "instrumentalness": 0.0008655000000000001,
-              "speechiness": 0.043092783505154636
+              "energy": 0.622,
+              "valence": 0.5870000000000001,
+              "danceability": 0.5688259109311742,
+              "acousticness": 0.16967871485943772,
+              "instrumentalness": 0.000325,
+              "speechiness": 0.04288659793814433
             }
           },
           "popular_profile": {
-            "count": 512,
+            "count": 4963,
             "original": {
-              "energy": 0.6234999999999999,
-              "valence": 0.6755,
-              "danceability": 0.5994999999999999,
-              "acousticness": 0.21550000000000002,
-              "instrumentalness": 0.00049,
-              "speechiness": 0.0415
+              "energy": 0.632,
+              "valence": 0.622,
+              "danceability": 0.588,
+              "acousticness": 0.175,
+              "instrumentalness": 0.000139,
+              "speechiness": 0.0397
             },
             "normalized": {
-              "energy": 0.6234999999999999,
-              "valence": 0.6755,
-              "danceability": 0.6067813765182186,
-              "acousticness": 0.21636546184738958,
-              "instrumentalness": 0.00049,
-              "speechiness": 0.042783505154639176
+              "energy": 0.632,
+              "valence": 0.622,
+              "danceability": 0.5951417004048583,
+              "acousticness": 0.1757028112449799,
+              "instrumentalness": 0.000139,
+              "speechiness": 0.040927835051546395
             }
           },
           "nonpopular_profile": {
-            "count": 518,
+            "count": 4963,
             "original": {
-              "energy": 0.6275,
-              "valence": 0.6205,
-              "danceability": 0.5465,
-              "acousticness": 0.1405,
-              "instrumentalness": 0.0005825,
-              "speechiness": 0.041749999999999995
+              "energy": 0.623,
+              "valence": 0.581,
+              "danceability": 0.5529999999999999,
+              "acousticness": 0.162,
+              "instrumentalness": 0.000354,
+              "speechiness": 0.0427
             },
             "normalized": {
-              "energy": 0.6275,
-              "valence": 0.6205,
-              "danceability": 0.5531376518218625,
-              "acousticness": 0.14106425702811246,
-              "instrumentalness": 0.0005825,
-              "speechiness": 0.04304123711340206
+              "energy": 0.623,
+              "valence": 0.581,
+              "danceability": 0.5597165991902834,
+              "acousticness": 0.16265060240963855,
+              "instrumentalness": 0.000354,
+              "speechiness": 0.04402061855670104
             }
           }
         },
         {
           "decade": 1990,
           "label": "1990s",
-          "count": 2000,
-          "popular_count": 560,
-          "nonpopular_count": 514,
-          "popularity_q1": 33.0,
-          "popularity_q3": 46.0,
+          "year_min": 1990,
+          "year_max": 1999,
+          "count": 19901,
+          "popular_count": 4976,
+          "nonpopular_count": 4976,
+          "popular_cut": 50.0,
+          "nonpopular_cut": 37.0,
+          "popularity_median": 43.0,
+          "popularity_zero_share": 5.024873121953671e-05,
           "profile": {
-            "count": 2000,
+            "count": 19901,
             "original": {
-              "energy": 0.595,
-              "valence": 0.535,
-              "danceability": 0.5479999999999999,
-              "acousticness": 0.215,
-              "instrumentalness": 0.00015250000000000002,
-              "speechiness": 0.04035
+              "energy": 0.602,
+              "valence": 0.5579999999999999,
+              "danceability": 0.581,
+              "acousticness": 0.185,
+              "instrumentalness": 6.78e-05,
+              "speechiness": 0.0432
             },
             "normalized": {
-              "energy": 0.595,
-              "valence": 0.535,
-              "danceability": 0.554655870445344,
-              "acousticness": 0.21586345381526104,
-              "instrumentalness": 0.00015250000000000002,
-              "speechiness": 0.041597938144329896
+              "energy": 0.602,
+              "valence": 0.5579999999999999,
+              "danceability": 0.5880566801619432,
+              "acousticness": 0.1857429718875502,
+              "instrumentalness": 6.78e-05,
+              "speechiness": 0.04453608247422681
             }
           },
           "popular_profile": {
-            "count": 560,
+            "count": 4976,
             "original": {
-              "energy": 0.6154999999999999,
-              "valence": 0.5195000000000001,
-              "danceability": 0.5625,
-              "acousticness": 0.197,
-              "instrumentalness": 7.069999999999998e-05,
-              "speechiness": 0.0382
+              "energy": 0.635,
+              "valence": 0.57,
+              "danceability": 0.601,
+              "acousticness": 0.152,
+              "instrumentalness": 3.04e-05,
+              "speechiness": 0.041
             },
             "normalized": {
-              "energy": 0.6154999999999999,
-              "valence": 0.5195000000000001,
-              "danceability": 0.5693319838056681,
-              "acousticness": 0.19779116465863456,
-              "instrumentalness": 7.069999999999998e-05,
-              "speechiness": 0.039381443298969074
+              "energy": 0.635,
+              "valence": 0.57,
+              "danceability": 0.6082995951417004,
+              "acousticness": 0.15261044176706828,
+              "instrumentalness": 3.04e-05,
+              "speechiness": 0.042268041237113405
             }
           },
           "nonpopular_profile": {
-            "count": 514,
+            "count": 4976,
             "original": {
-              "energy": 0.5825,
-              "valence": 0.5565,
-              "danceability": 0.5539999999999999,
-              "acousticness": 0.195,
-              "instrumentalness": 0.000196,
-              "speechiness": 0.0418
+              "energy": 0.58,
+              "valence": 0.556,
+              "danceability": 0.568,
+              "acousticness": 0.2015,
+              "instrumentalness": 8.465e-05,
+              "speechiness": 0.04425
             },
             "normalized": {
-              "energy": 0.5825,
-              "valence": 0.5565,
-              "danceability": 0.5607287449392712,
-              "acousticness": 0.19578313253012047,
-              "instrumentalness": 0.000196,
-              "speechiness": 0.043092783505154636
+              "energy": 0.58,
+              "valence": 0.556,
+              "danceability": 0.5748987854251012,
+              "acousticness": 0.20230923694779118,
+              "instrumentalness": 8.465e-05,
+              "speechiness": 0.04561855670103093
             }
           }
         },
         {
           "decade": 2000,
           "label": "2000s",
-          "count": 1956,
-          "popular_count": 537,
-          "nonpopular_count": 574,
-          "popularity_q1": 40.0,
-          "popularity_q3": 52.0,
+          "year_min": 2000,
+          "year_max": 2009,
+          "count": 19646,
+          "popular_count": 4912,
+          "nonpopular_count": 4912,
+          "popular_cut": 55.0,
+          "nonpopular_cut": 43.0,
+          "popularity_median": 48.0,
+          "popularity_zero_share": 0.0017306321897587295,
           "profile": {
-            "count": 1956,
+            "count": 19646,
             "original": {
-              "energy": 0.6609999999999999,
-              "valence": 0.5825,
-              "danceability": 0.603,
-              "acousticness": 0.1525,
-              "instrumentalness": 2.205e-05,
-              "speechiness": 0.0458
+              "energy": 0.691,
+              "valence": 0.5355000000000001,
+              "danceability": 0.5820000000000001,
+              "acousticness": 0.134,
+              "instrumentalness": 7.605e-06,
+              "speechiness": 0.047
             },
             "normalized": {
-              "energy": 0.6609999999999999,
-              "valence": 0.5825,
-              "danceability": 0.6103238866396761,
-              "acousticness": 0.1531124497991968,
-              "instrumentalness": 2.205e-05,
-              "speechiness": 0.04721649484536083
+              "energy": 0.691,
+              "valence": 0.5355000000000001,
+              "danceability": 0.5890688259109312,
+              "acousticness": 0.13453815261044177,
+              "instrumentalness": 7.605e-06,
+              "speechiness": 0.04845360824742268
             }
           },
           "popular_profile": {
-            "count": 537,
+            "count": 4912,
             "original": {
-              "energy": 0.695,
-              "valence": 0.573,
-              "danceability": 0.612,
-              "acousticness": 0.117,
-              "instrumentalness": 1.09e-05,
-              "speechiness": 0.0425
+              "energy": 0.7140000000000001,
+              "valence": 0.5575,
+              "danceability": 0.605,
+              "acousticness": 0.112,
+              "instrumentalness": 3.0399999999999997e-06,
+              "speechiness": 0.0464
             },
             "normalized": {
-              "energy": 0.695,
-              "valence": 0.573,
-              "danceability": 0.6194331983805668,
-              "acousticness": 0.11746987951807229,
-              "instrumentalness": 1.09e-05,
-              "speechiness": 0.043814432989690726
+              "energy": 0.7140000000000001,
+              "valence": 0.5575,
+              "danceability": 0.6123481781376519,
+              "acousticness": 0.11244979919678715,
+              "instrumentalness": 3.0399999999999997e-06,
+              "speechiness": 0.04783505154639175
             }
           },
           "nonpopular_profile": {
-            "count": 574,
+            "count": 4912,
             "original": {
-              "energy": 0.6599999999999999,
-              "valence": 0.61,
-              "danceability": 0.5985,
-              "acousticness": 0.16349999999999998,
-              "instrumentalness": 1.0549999999999999e-05,
-              "speechiness": 0.05065
+              "energy": 0.682,
+              "valence": 0.537,
+              "danceability": 0.574,
+              "acousticness": 0.135,
+              "instrumentalness": 9.104999999999998e-06,
+              "speechiness": 0.04895
             },
             "normalized": {
-              "energy": 0.6599999999999999,
-              "valence": 0.61,
-              "danceability": 0.6057692307692308,
-              "acousticness": 0.16415662650602408,
-              "instrumentalness": 1.0549999999999999e-05,
-              "speechiness": 0.052216494845360825
+              "energy": 0.682,
+              "valence": 0.537,
+              "danceability": 0.5809716599190283,
+              "acousticness": 0.13554216867469882,
+              "instrumentalness": 9.104999999999998e-06,
+              "speechiness": 0.0504639175257732
             }
           }
         },
         {
           "decade": 2010,
           "label": "2010s",
-          "count": 2016,
-          "popular_count": 588,
-          "nonpopular_count": 546,
-          "popularity_q1": 47.0,
-          "popularity_q3": 57.0,
+          "year_min": 2010,
+          "year_max": 2019,
+          "count": 19774,
+          "popular_count": 4944,
+          "nonpopular_count": 4944,
+          "popular_cut": 65.0,
+          "nonpopular_cut": 52.0,
+          "popularity_median": 59.0,
+          "popularity_zero_share": 0.02832001618286639,
           "profile": {
-            "count": 2016,
+            "count": 19774,
             "original": {
-              "energy": 0.726,
-              "valence": 0.526,
-              "danceability": 0.588,
-              "acousticness": 0.115,
-              "instrumentalness": 3.44e-06,
-              "speechiness": 0.0463
+              "energy": 0.659,
+              "valence": 0.439,
+              "danceability": 0.61,
+              "acousticness": 0.132,
+              "instrumentalness": 2.7000000000000004e-06,
+              "speechiness": 0.0526
             },
             "normalized": {
-              "energy": 0.726,
-              "valence": 0.526,
-              "danceability": 0.5951417004048583,
-              "acousticness": 0.11546184738955824,
-              "instrumentalness": 3.44e-06,
-              "speechiness": 0.0477319587628866
+              "energy": 0.659,
+              "valence": 0.439,
+              "danceability": 0.6174089068825911,
+              "acousticness": 0.13253012048192772,
+              "instrumentalness": 2.7000000000000004e-06,
+              "speechiness": 0.05422680412371134
             }
           },
           "popular_profile": {
-            "count": 588,
+            "count": 4944,
             "original": {
-              "energy": 0.7390000000000001,
-              "valence": 0.578,
-              "danceability": 0.624,
-              "acousticness": 0.115,
+              "energy": 0.635,
+              "valence": 0.455,
+              "danceability": 0.6545000000000001,
+              "acousticness": 0.157,
               "instrumentalness": 0.0,
-              "speechiness": 0.04695
+              "speechiness": 0.0593
             },
             "normalized": {
-              "energy": 0.7390000000000001,
-              "valence": 0.578,
-              "danceability": 0.631578947368421,
-              "acousticness": 0.11546184738955824,
+              "energy": 0.635,
+              "valence": 0.455,
+              "danceability": 0.6624493927125507,
+              "acousticness": 0.1576305220883534,
               "instrumentalness": 0.0,
-              "speechiness": 0.0484020618556701
+              "speechiness": 0.0611340206185567
             }
           },
           "nonpopular_profile": {
-            "count": 546,
+            "count": 4944,
             "original": {
-              "energy": 0.733,
-              "valence": 0.502,
-              "danceability": 0.5529999999999999,
-              "acousticness": 0.09465,
-              "instrumentalness": 3.97e-06,
-              "speechiness": 0.045649999999999996
+              "energy": 0.7070000000000001,
+              "valence": 0.438,
+              "danceability": 0.575,
+              "acousticness": 0.0929,
+              "instrumentalness": 1.6800000000000002e-05,
+              "speechiness": 0.05
             },
             "normalized": {
-              "energy": 0.733,
-              "valence": 0.502,
-              "danceability": 0.5597165991902834,
-              "acousticness": 0.09503012048192772,
-              "instrumentalness": 3.97e-06,
-              "speechiness": 0.0470618556701031
+              "energy": 0.7070000000000001,
+              "valence": 0.438,
+              "danceability": 0.5819838056680161,
+              "acousticness": 0.09327309236947791,
+              "instrumentalness": 1.6800000000000002e-05,
+              "speechiness": 0.051546391752577324
             }
           }
         },
         {
           "decade": 2020,
           "label": "2020s",
+          "year_min": 2020,
+          "year_max": 2020,
           "count": 2030,
-          "popular_count": 546,
-          "nonpopular_count": 546,
-          "popularity_q1": 65.0,
-          "popularity_q3": 76.0,
+          "popular_count": 508,
+          "nonpopular_count": 508,
+          "popular_cut": 76.0,
+          "nonpopular_cut": 65.0,
+          "popularity_median": 70.0,
+          "popularity_zero_share": 0.030049261083743842,
           "profile": {
             "count": 2030,
             "original": {
@@ -976,46 +1131,47 @@
             }
           },
           "popular_profile": {
-            "count": 546,
+            "count": 508,
             "original": {
-              "energy": 0.6575,
-              "valence": 0.516,
-              "danceability": 0.7175,
+              "energy": 0.657,
+              "valence": 0.522,
+              "danceability": 0.721,
               "acousticness": 0.1305,
               "instrumentalness": 0.0,
-              "speechiness": 0.0784
+              "speechiness": 0.07885
             },
             "normalized": {
-              "energy": 0.6575,
-              "valence": 0.516,
-              "danceability": 0.7262145748987855,
+              "energy": 0.657,
+              "valence": 0.522,
+              "danceability": 0.729757085020243,
               "acousticness": 0.1310240963855422,
               "instrumentalness": 0.0,
-              "speechiness": 0.08082474226804123
+              "speechiness": 0.08128865979381444
             }
           },
           "nonpopular_profile": {
-            "count": 546,
+            "count": 508,
             "original": {
               "energy": 0.659,
-              "valence": 0.534,
+              "valence": 0.535,
               "danceability": 0.745,
-              "acousticness": 0.121,
+              "acousticness": 0.1205,
               "instrumentalness": 0.0,
-              "speechiness": 0.105
+              "speechiness": 0.1035
             },
             "normalized": {
               "energy": 0.659,
-              "valence": 0.534,
+              "valence": 0.535,
               "danceability": 0.7540485829959515,
-              "acousticness": 0.1214859437751004,
+              "acousticness": 0.1209839357429719,
               "instrumentalness": 0.0,
-              "speechiness": 0.10824742268041238
+              "speechiness": 0.10670103092783505
             }
           }
         }
       ],
       "eligible_decades": [
+        1920,
         1930,
         1940,
         1950,
@@ -1026,6 +1182,61 @@
         2000,
         2010,
         2020
+      ],
+      "findings": [
+        "Entre 1920s y 2020s el cambio más grande en el perfil de las canciones populares está en acústica: su mediana pasa de 0.95 a 0.13. Le sigue energía (0.19 → 0.66).",
+        "El salto más brusco entre décadas consecutivas ocurre en acústica de 1960s a 1970s (0.63 → 0.32).",
+        "La década donde el top 25 % se separa más del conjunto es 1960s: su acústica mediana es 0.63 frente a 0.70 en toda la década.",
+        "La bailabilidad mediana de las populares alcanza su máximo en 2020s (0.72) y la habla de 2020s (0.08) es 2.1 veces la de 1960s (0.04), consistente con el peso del rap y del pop urbano en el catálogo reciente.",
+        "En 1920s, 1930s, 1940s la mayoría de canciones tiene popularidad 0 en Spotify; allí el top 25 % equivale a las canciones que aún conservan alguna reproducción y debe leerse con cautela."
+      ],
+      "trend": {
+        "energy": {
+          "first": 0.187,
+          "last": 0.657,
+          "delta": 0.47000000000000003
+        },
+        "valence": {
+          "first": 0.433,
+          "last": 0.522,
+          "delta": 0.08900000000000002
+        },
+        "danceability": {
+          "first": 0.657,
+          "last": 0.721,
+          "delta": 0.06399999999999995
+        },
+        "acousticness": {
+          "first": 0.951,
+          "last": 0.1305,
+          "delta": -0.8205
+        },
+        "instrumentalness": {
+          "first": 0.006410000000000001,
+          "last": 0.0,
+          "delta": -0.006410000000000001
+        },
+        "speechiness": {
+          "first": 0.08005000000000001,
+          "last": 0.07885,
+          "delta": -0.0012000000000000066
+        }
+      },
+      "largest_shift": {
+        "feature": "acousticness",
+        "from": "1960s",
+        "to": "1970s",
+        "delta": -0.30600000000000005
+      },
+      "largest_popular_gap": {
+        "decade": "1960s",
+        "feature": "acousticness",
+        "delta": -0.07599999999999996
+      },
+      "weak_popularity_decades": [
+        "1920s",
+        "1930s",
+        "1940s"
       ]
     }
   }

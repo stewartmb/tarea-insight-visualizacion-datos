@@ -1,3 +1,10 @@
+"""Flask server for the Spotify multidimensional visualization.
+
+The server only delivers the page, the static D3 modules and the precomputed
+analysis produced by ``scripts/prepare_data.py``. Every chart is drawn in the
+browser with D3.
+"""
+
 from pathlib import Path
 
 from flask import Flask, jsonify, render_template
@@ -28,8 +35,3 @@ def health():
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5343, debug=False)
-
-"""
-cd /Users/stewart/Utec/visualizacion_datos/tareas/Tarea_Insight
-./.venv/bin/python app/app.py
-"""

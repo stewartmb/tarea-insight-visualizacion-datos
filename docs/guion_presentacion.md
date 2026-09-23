@@ -2,9 +2,9 @@
 
 ## Propósito del guion
 
-Este libreto está preparado para una exposición de **10 a 12 minutos**. Integra de forma natural los cinco aspectos evaluados: claridad, profundidad analítica, justificación del diseño, precisión técnica y cobertura de las cuatro tareas. No conviene mencionar repetidamente la rúbrica; debes demostrarla mediante las preguntas, las cifras, las decisiones y la interacción.
+Este libreto está preparado para una exposición de **10 a 12 minutos**. Integra de forma natural los cinco aspectos evaluados: claridad, profundidad analítica, justificación del diseño, precisión técnica y cobertura de las cuatro tareas, además de la interacción. No conviene mencionar repetidamente la rúbrica; debes demostrarla mediante las preguntas, las cifras, las decisiones y la interacción.
 
-Las partes entre comillas son el discurso sugerido. Las indicaciones entre corchetes son acciones y **no se leen**.
+Las partes entre comillas son el discurso sugerido. Las indicaciones entre corchetes son acciones y **no se leen**. Todas las cifras aparecen en el panel «Hallazgos» de la aplicación: no hace falta memorizarlas, basta leerlas.
 
 ---
 
@@ -14,7 +14,7 @@ Las partes entre comillas son el discurso sugerido. Las indicaciones entre corch
 2. Usar el navegador a pantalla completa y comprobar que se ven los títulos sin ampliar la página.
 3. Pulsar **Restablecer vista** y luego **Reproducir este análisis** en la Tarea 1.
 4. Comprobar que la insignia indique **Configuración guardada**.
-5. No comenzar con un filtro o un eje desplazado de una demostración anterior.
+5. No comenzar con un filtro, un eje invertido o una escala distinta de una demostración anterior.
 
 ---
 
@@ -24,9 +24,9 @@ Las partes entre comillas son el discurso sugerido. Las indicaciones entre corch
 
 > “Buenos días. Mi trabajo se llama *Perfiles musicales de Spotify*. Está pensado para una persona que crea playlists y necesita comparar perfiles de audio, encontrar canciones similares, diseñar un objetivo sonoro y estudiar la evolución temporal del catálogo.
 >
-> En lugar de elegir primero un gráfico, partí de cuatro preguntas analíticas. Después definí qué datos necesitaba y finalmente seleccioné las técnicas de representación. Es decir, seguí el marco WHAT–WHY–HOW trabajado en clase.
+> En lugar de elegir primero un gráfico, partí de cuatro preguntas analíticas. Después definí qué datos necesitaba y finalmente seleccioné las técnicas de representación: el marco WHAT–WHY–HOW trabajado en clase.
 >
-> La aplicación responde esas cuatro preguntas con cuatro técnicas multidimensionales: RadViz, Star Coordinates, Parallel Coordinates y una proyección MDS. Durante la demostración mostraré no solo cómo se ven, sino qué respuesta aporta cada una y qué limitaciones tiene.”
+> La aplicación responde esas cuatro preguntas con las cuatro técnicas multidimensionales exigidas: RadViz, Star Coordinates, Parallel Coordinates y una proyección MDS, más dos gráficos de apoyo. Cada tarea tiene una técnica principal, y en cada una mostraré no solo cómo se ve, sino qué respuesta concreta aporta y qué limitación tiene.”
 
 **Idea que debe quedar clara:** existe una audiencia, un propósito y cuatro preguntas. Las visualizaciones son medios para responderlas.
 
@@ -34,151 +34,125 @@ Las partes entre comillas son el discurso sugerido. Las indicaciones entre corch
 
 ## 2. Datos y preparación — 1 minuto
 
-[Señalar el resumen superior: 800 canciones, rango temporal y vecindad MDS. Luego bajar brevemente a “Método y alcance” si hace falta.]
+[Señalar el resumen superior: 170,653 canciones, 800 en la muestra, 1923–2020 y vecindad MDS.]
 
-> “Utilicé el archivo `data.csv` exacto del dataset de Spotify enlazado en el enunciado. La unidad de observación es una canción. El archivo contiene 170 mil 653 registros entre 1921 y 2020.
+> “Utilicé el archivo `data.csv` exacto del dataset de Spotify enlazado en el enunciado. La unidad de observación es una canción. El archivo contiene 170 mil 653 registros entre 1921 y 2020, sin duplicados ni valores inválidos en las variables de audio.
 >
-> Para que las interacciones y el cálculo de MDS fueran fluidos, trabajé con una muestra aleatoria reproducible de 800 canciones, usando la semilla 5343. Esto significa que el análisis se puede volver a generar con los mismos registros; no es una selección manual de canciones favorables.
+> Para que las interacciones y el cálculo de MDS fueran fluidos, las tareas 1 a 3 trabajan con una muestra aleatoria reproducible de 800 canciones, con la semilla 5343. La tarea temporal usa el dataset completo agrupado por décadas.
 >
-> Seleccioné seis atributos cuantitativos: energía, valencia, bailabilidad, acústica, instrumentalidad y habla. Antes del análisis verifiqué duplicados, valores faltantes y rangos. Los atributos se normalizaron entre cero y uno mediante min–max, conservando por separado los valores originales.
->
-> La normalización es necesaria porque la distancia y las técnicas de proyección deben comparar atributos en una escala común. Además, no incorporé género porque el archivo `data.csv` no ofrece una relación inequívoca entre cada canción y un género; preferí no crear una unión que no pudiera justificar.”
+> Seleccioné seis atributos cuantitativos: energía, valencia, bailabilidad, acústica, instrumentalidad y habla, normalizados entre cero y uno mediante min–max sobre el conjunto completo, conservando por separado los valores originales. No incorporé género porque el archivo no ofrece una relación inequívoca entre cada canción y un género; preferí no crear una unión que no pudiera justificar.”
 
 Si el profesor pide la fórmula:
 
-> “Para cada atributo usé: valor normalizado igual a valor menos mínimo, dividido entre máximo menos mínimo. Los mínimos y máximos se calcularon sobre el conjunto limpio completo, no solo sobre la muestra.”
+> “Valor normalizado igual a valor menos mínimo, dividido entre máximo menos mínimo. Los mínimos y máximos se calcularon sobre el conjunto limpio completo, no solo sobre la muestra.”
 
 ---
 
 ## 3. Tarea 1: comparar dos canciones — 1 minuto 40 segundos
 
-[Pulsar **Reproducir este análisis** en la tarjeta 1. Señalar la pregunta, el resultado y los bloques WHAT–WHY–HOW. Después bajar a Parallel Coordinates y RadViz.]
+[Pulsar **Reproducir este análisis** en la tarjeta 1. Señalar la pregunta, el resultado y los hallazgos. Después bajar a Parallel Coordinates.]
 
 > “La primera pregunta es: ¿en qué atributos son similares o diferentes dos canciones que podrían convivir en una playlist?
 >
-> Para responderla selecciono una Canción A y una Canción B. No creo categorías artificiales: comparo directamente sus seis perfiles normalizados.
+> La configuración guardada compara *La Santa*, de Bad Bunny y Daddy Yankee, con *Night by Night*, de Chromeo. Parallel Coordinates es la técnica principal porque cada línea conserva el perfil completo de una canción a través de las seis dimensiones; las líneas entrecortadas son directamente las dos canciones y el resto de la muestra queda como contexto tenue.
 >
-> La tabla permite identificar en qué atributos se separan más. Parallel Coordinates conserva el perfil completo de ambas canciones y las líneas entrecortadas señalan directamente sus perfiles, no medianas de grupos.
+> Los hallazgos son concretos: las mayores diferencias están en bailabilidad y energía, y coinciden casi por completo en habla e instrumentalidad. Su distancia normalizada es 0.075, más pequeña que la del 99 por ciento de las parejas posibles de la muestra: pueden convivir en una playlist según estas seis variables, aunque una tenga popularidad 84 y la otra 41, y las separen diez años.
 >
-> Parallel Coordinates es útil aquí porque cada línea conserva el perfil de una canción a través de las seis dimensiones. RadViz complementa esa lectura mostrando la posición multidimensional de las dos seleccionadas.
->
-> Por lo tanto, puedo decidir si la segunda canción mantiene un perfil compatible con la primera y exactamente qué atributo produce la diferencia. La compatibilidad se limita a estas seis variables de audio.”
+> El orden de los ejes no es arbitrario: energía y acústica van adyacentes porque son las variables más correlacionadas del dataset, con r igual a menos 0.75. Ese dato viene de la matriz de correlación que está justo debajo.”
 
-[Pasar el cursor sobre una línea o punto y luego hacer clic en una canción. Señalar que el nombre y los seis valores aparecen en “Selección coordinada”.]
-
-> “El mouseover permite identificar cada observación y el clic conserva la misma canción en todas las vistas. Así puedo verificar que el patrón agregado también corresponde a perfiles reales, no solo a una media o una mediana.”
+[Pasar el cursor sobre una línea y hacer clic en una canción. Señalar que el nombre y los seis valores aparecen en “Selección coordinada”.]
 
 **No decir:** “la energía causa menor acústica”. Hablar de asociación o diferencia observada.
 
 ---
 
-## 4. Demostración breve de Parallel Coordinates — 55 segundos
+## 4. Demostración de Parallel Coordinates — 1 minuto
 
-[En Parallel Coordinates, arrastrar el título de un eje para colocarlo junto a otro. Luego aplicar un brushing corto sobre un eje y finalmente restablecer la vista.]
+[Arrastrar el nombre de un eje para colocarlo junto a otro. Pulsar ⇅ sobre acústica para invertirla. Cambiar la escala a percentil. Aplicar un brushing corto sobre un eje y finalmente restablecer la vista.]
 
-> “El orden de los ejes en Parallel Coordinates afecta qué relaciones son fáciles de percibir. Por eso los ejes se pueden reordenar manualmente. Al colocar energía junto a acústica, la relación entre ambas resulta más directa de inspeccionar.
+> “Implementé las tres operaciones que el enunciado pide para Parallel Coordinates. Primero, el reordenamiento: el orden de los ejes cambia qué relaciones son fáciles de percibir. Segundo, la inversión de un eje: al invertir acústica junto a energía, los cruces se convierten en líneas paralelas, porque la correlación es negativa. Tercero, el escalado: además de la escala normalizada 0–1, puedo ver cada valor como percentil dentro de la muestra, lo que separa atributos concentrados cerca de cero como habla o instrumentalidad.
 >
-> También implementé brushing por eje. Al seleccionar un intervalo, las mismas canciones se resaltan de manera coordinada en Parallel Coordinates, RadViz, Star Coordinates y MDS. La aplicación cambia la etiqueta a *Exploración modificada* para distinguir una exploración libre del análisis guardado y reproducible.”
+> Y el brushing por eje: al seleccionar un intervalo, las mismas canciones se resaltan de manera coordinada en todas las vistas. La insignia cambia a *Exploración modificada* para distinguir la exploración libre del análisis guardado.”
 
-[Pulsar **Restablecer vista** o volver a **Reproducir este análisis** antes de continuar.]
+[Pulsar **Restablecer vista** antes de continuar.]
 
 ---
 
 ## 5. Tarea 2: encontrar canciones similares — 2 minutos
 
-[Pulsar **Reproducir este análisis** en la tarjeta 2. Verificar que se seleccione “La Santa”. Señalar MDS y luego la canción seleccionada.]
+[Pulsar **Reproducir este análisis** en la tarjeta 2. Verificar que se seleccione “La Santa”. Señalar MDS y la tabla de vecinas.]
 
 > “La segunda pregunta es: para una canción seleccionada, ¿cuáles son las diez más similares y qué atributos explican esa semejanza?
 >
-> La configuración reproducible parte de *La Santa*, de Bad Bunny y Daddy Yankee, porque es la canción de mayor popularidad dentro de la muestra. La similitud se calcula con distancia euclídea sobre los seis atributos normalizados y con el mismo peso inicial para todos.
+> Parto de *La Santa* porque es la canción de mayor popularidad en la muestra. La similitud se calcula con distancia euclídea sobre los seis atributos normalizados, con el mismo peso inicial. Su vecina más cercana es *Night by Night*, de Chromeo, a distancia 0.075.
 >
-> Su vecino más cercano es *Night by Night*, de Chromeo, con una distancia normalizada de 0.075. Entre los diez vecinos, instrumentalidad y habla presentan en promedio las menores diferencias cuadráticas respecto a la canción seleccionada. Esto indica en qué atributos ese grupo cercano se mantiene más parecido; no significa que sean las únicas razones musicales de similitud.
+> Las diez vecinas coinciden con la canción sobre todo en instrumentalidad y habla, y se separan más en bailabilidad. Abarcan de 1980 a 2018 y son de diez artistas distintos: un mismo perfil de audio aparece en épocas y catálogos muy diferentes. Su popularidad mediana es 45 frente a 84: el parecido sonoro no implica parecido en popularidad.
 >
-> MDS proyecta a dos dimensiones las distancias calculadas en seis dimensiones. Los puntos cercanos representan perfiles similares según estas variables. Los ejes de MDS no son energía ni valencia: son coordenadas de la proyección y no deben interpretarse como atributos originales.”
+> MDS proyecta a dos dimensiones las distancias calculadas en seis. Los ejes de MDS no son energía ni valencia: son coordenadas de la proyección. Y una comprobación importante: en el plano solo 4 de las 10 vecinas siguen entre las 10 más cercanas. Por eso la tabla es la evidencia y MDS es la vista para explorar, no para decidir.”
 
-[Pasar el cursor sobre puntos cercanos a la selección en MDS. Hacer clic en uno y mostrar que la selección se actualiza en todas las vistas.]
+[Pasar el cursor sobre puntos cercanos a la selección en MDS. Hacer clic en uno y mostrar que la selección se actualiza en todas las vistas. Señalar el panel de Calidad MDS.]
 
-> “No uso MDS como un algoritmo de clustering. Lo utilizo para inspeccionar proximidades. Después verifico esa proximidad en Parallel Coordinates y Star Coordinates, donde sí puedo observar el perfil de atributos que la produjo.”
-
-[Señalar el panel de Calidad MDS.]
-
-> “También evalué la proyección en lugar de juzgarla solo por su apariencia. El stress normalizado es 0.263; la correlación entre distancias originales y proyectadas es 0.909; y la preservación promedio de los diez vecinos es 31.6 por ciento.
->
-> Estas métricas no se contradicen. La correlación resume la relación global entre muchas distancias, mientras que la preservación de vecindad pregunta cuántos vecinos inmediatos se conservaron. La proyección mantiene bastante bien la estructura global, pero cambia una parte importante de los vecinos locales; por eso toda interpretación de cercanía debe contrastarse con las vistas de atributos.”
+> “Evalué la proyección en lugar de juzgarla por su apariencia: stress normalizado 0.263, correlación entre distancias 0.909 y preservación media de vecindad 31.6 por ciento. La correlación resume la estructura global; la vecindad pregunta cuántos vecinos inmediatos se conservan. La proyección mantiene bien la estructura global pero cambia una parte importante de los vecinos locales.”
 
 ---
 
 ## 6. Tarea 3: diseñar un perfil de playlist — 1 minuto 30 segundos
 
-[Pulsar **Reproducir este análisis** en la tarjeta 3. Señalar pregunta y resultado.]
+[Pulsar **Reproducir este análisis** en la tarjeta 3. Señalar pregunta, resultado y hallazgos. Mostrar Star Coordinates.]
 
 > “La tercera pregunta es: ¿qué canciones cumplen mejor un objetivo energético, positivo y bailable, y qué atributos explican ese perfil?
 >
-> La configuración inicial usa el brief: energía más valencia más bailabilidad, menos 0.5 veces acústica y menos 0.25 veces habla. La aplicación selecciona 60 candidatas reproducibles y permite modificar los pesos y direcciones en Star Coordinates.
+> El brief inicial es: energía más valencia más bailabilidad, menos 0.5 veces acústica y menos 0.25 veces habla. La aplicación selecciona 60 candidatas reproducibles. Lo que más las separa del resto de la muestra es la valencia, mediana 0.88 frente a 0.48, y la acústica, 0.04 frente a 0.55. El 58 por ciento son posteriores a 1990 y su popularidad mediana es 41 frente a 34: el brief describe sobre todo música reciente. Y las de mayor puntaje mezclan pop latino, rap sureño y pop-rock: Fanny Lu, Juvenile y Maroon 5 convergen en el mismo perfil de audio.
 >
-> El perfil mediano de esas candidatas resume qué combinación de atributos caracteriza el brief. No digo que estas canciones sean universalmente positivas: son candidatas bajo una definición explícita de audio.
->
-> Al mover un eje cambio la importancia de una dimensión y observo qué canciones siguen siendo candidatas. La palabra valencia proviene del dataset y no equivale a afirmar qué emoción experimenta realmente cada oyente.”
+> Star Coordinates es la técnica principal porque cada atributo es un vector y puedo cambiar su dirección y su peso. La escala es fija y coherente: una canción con valor 1 en un solo atributo cae exactamente en la punta de ese eje, y el anillo interior marca el alcance de un eje con peso 1. Al mover un eje cambio la importancia de una dimensión y observo qué candidatas siguen agrupadas; el marcador oscuro es su perfil mediano.”
 
-[Aplicar brevemente brushing en energía y valencia o pasar el cursor sobre los dos grupos. No dejar el filtro activo para el cierre.]
+[Arrastrar el extremo de un eje, por ejemplo acústica, hasta un peso mayor y luego restablecer.]
 
 ---
 
-## 7. Tarea 4: evolución temporal y popularidad — 1 minuto 20 segundos
+## 7. Tarea 4: evolución temporal y popularidad — 1 minuto 40 segundos
 
-[Pulsar **Reproducir este análisis** en la tarjeta 4. Mostrar RadViz y la tabla de décadas.]
+[Pulsar **Reproducir este análisis** en la tarjeta 4. Mostrar RadViz con la trayectoria y el gráfico de evolución.]
 
-> “La cuarta pregunta es: ¿cómo cambia el perfil sonoro de las canciones populares a través de las décadas y qué atributos explican esos cambios?
+> “La cuarta pregunta es: ¿cómo cambia el perfil sonoro de las canciones populares a través de las décadas y en qué se separan del resto de su época?
 >
-> Esta tarea utiliza únicamente columnas que ya existen en el CSV: año, fecha de lanzamiento, popularidad y los seis atributos de audio. Para evitar conclusiones basadas en grupos pequeños, solo se muestran décadas con al menos 20 canciones. Los perfiles agregados se calculan sobre el dataset limpio completo; la muestra de 800 se mantiene como contexto para las interacciones individuales.
+> Aquí uso el dataset completo, agrupado por décadas completas: de 1921 a 1929 son los años veinte, y así hasta 2020. Las once décadas superan el mínimo de 20 canciones. En cada década defino el top 25 por ciento popular por ranking dentro de la propia década, no con un corte global que favorecería a las épocas recientes, porque la popularidad de Spotify crece con el año.
 >
-> La popularidad se divide dentro de cada década mediante cuartiles. Así no comparo directamente un valor de popularidad de una época antigua con uno reciente como si fueran escalas históricas idénticas. RadViz es la técnica principal porque compara varios atributos simultáneamente; Parallel Coordinates sirve para inspeccionar dos décadas cuando se necesita detalle por canción.
+> RadViz es la técnica principal: cada marcador es el perfil mediano del top 25 por ciento de una década y la línea los une en orden cronológico. La trayectoria va del anclaje de acústica hacia energía, valencia y bailabilidad. En cifras: la acústica mediana de las populares pasa de 0.95 en los años veinte a 0.13 en 2020, y la energía de 0.19 a 0.66. El salto más brusco ocurre entre los sesenta y los setenta, de 0.63 a 0.32, coherente con la electrificación del pop y el rock. La bailabilidad alcanza su máximo en 2020 y la habla de 2020 duplica la de los sesenta, consistente con el peso del rap y del pop urbano.
 >
-> La tabla hace visible el tamaño de cada grupo. Si una década tuviera pocos registros, no la usaría para sostener un hallazgo. El resultado describe diferencias observadas en este catálogo y no demuestra que una época haya causado un cambio sonoro.”
+> Los marcadores huecos son el perfil de toda la década: las populares siguen de cerca a su época; donde más se separan es en los sesenta. Y una advertencia honesta: en los años veinte, treinta y cuarenta la mayoría de canciones tiene popularidad cero en Spotify, así que allí el top 25 por ciento es apenas lo que aún conserva reproducciones; la tabla muestra el corte y el porcentaje de ceros de cada década.”
 
-[Señalar una década en RadViz y luego la cantidad correspondiente en la tabla.]
+[Hacer clic en una década en el gráfico de evolución: RadViz, Parallel Coordinates y la tabla la enfocan. Volver a pulsar para liberar el enfoque.]
 
-## 8. Cómo funcionan RadViz y Star Coordinates — 1 minuto 20 segundos
-
-[Mostrar RadViz. Arrastrar un anclaje una distancia visible pero moderada. Después mostrar Star Coordinates y arrastrar el extremo de un eje.]
-
-> “RadViz y Star Coordinates parten del notebook multidimensional trabajado en clase, pero cumplen funciones distintas.
->
-> En RadViz, cada atributo es un anclaje sobre la circunferencia. La posición de una canción es el promedio ponderado de esos anclajes usando sus valores normalizados. Una canción se aproxima a los anclajes de los atributos que tienen mayor peso en su perfil. Si la suma de valores fuera cero, el código trata ese caso explícitamente para evitar una división inválida.
->
-> Los anclajes son arrastrables. Esto no cambia los datos; cambia la disposición desde la cual inspeccionamos el balance multidimensional.
->
-> En Star Coordinates, cada dimensión funciona como un vector. La posición resulta de sumar los vectores escalados por los valores de la canción. Al mover un extremo modifico simultáneamente dirección y peso del atributo. Por eso la escala de pantalla permanece estable: así el desplazamiento observado corresponde al cambio del vector y no a un autoajuste de la vista.”
-
-Si pide las fórmulas:
-
-> “En RadViz se usa la suma de cada valor por la posición de su anclaje, dividida entre la suma de los valores. En Star Coordinates se suman los vectores de los ejes multiplicados por cada valor normalizado.”
+> “El gráfico de evolución detalla cada atributo con la escala original, y Parallel Coordinates superpone los once perfiles: la misma respuesta desde tres representaciones coordinadas.”
 
 ---
 
-## 9. Procedencia del código y precisión técnica — 55 segundos
+## 8. Cómo funcionan RadViz y Star Coordinates — 50 segundos
 
-[Mantener las cuatro técnicas visibles o bajar a “Método y alcance”.]
+[Mostrar RadViz. Arrastrar un anclaje una distancia visible pero moderada y restablecer.]
 
-> “La implementación separa cada técnica en su propio módulo de JavaScript y utiliza D3 versión 7 para construir SVG, escalas, selecciones e interacciones.
+> “En RadViz, cada atributo es un anclaje sobre la circunferencia y la posición de una canción es el promedio ponderado de esos anclajes usando sus valores normalizados. Si la suma de valores fuera cero, el código trata ese caso explícitamente. Los anclajes son arrastrables: no cambian los datos, cambian la disposición desde la que inspeccionamos el balance multidimensional.
 >
-> Las fórmulas base de RadViz y Star Coordinates se adaptaron del notebook de clase. Parallel Coordinates se desarrolló con los patrones de escalas, ejes y data join vistos en D3, porque el material no incluía una implementación completa. El MDS clásico se calculó durante el preprocesamiento con Python y NumPy, y D3 representa las coordenadas resultantes.
->
-> Además, verifiqué con pruebas la normalización, un caso controlado de distancias MDS, el orden de los vecinos, el caso de suma cero en RadViz y la coordinación de la aplicación Flask. Así puedo diferenciar claramente el código adaptado de clase del desarrollo adicional requerido por la tarea.”
-
-No afirmar que NumPy es una biblioteca de visualización. Flask sirve la aplicación, NumPy calcula MDS y D3 realiza las visualizaciones.
+> En Star Coordinates, la posición es la suma de los vectores escalados por los valores de la canción; al mover un extremo modifico dirección y peso. Ambas técnicas adaptan las fórmulas del notebook de clase.”
 
 ---
 
-## 10. Cierre: respuestas, límites y aporte — 55 segundos
+## 9. Procedencia del código y precisión técnica — 45 segundos
 
-[Volver a la zona de las tres preguntas o dejar visibles las cuatro visualizaciones.]
+> “Todo lo visual es D3 versión 7: SVG, escalas, selecciones, brush, drag y transiciones. Cada técnica está en su propio módulo de JavaScript. Las fórmulas de RadViz y Star Coordinates se adaptaron del notebook de clase; Parallel Coordinates, los gráficos de apoyo y el MDS clásico, calculado en el preprocesamiento con NumPy, son desarrollos documentados en la trazabilidad.
+>
+> Verifiqué con pruebas la normalización, un caso controlado de distancias MDS, la agrupación por décadas completas, el top 25 por ciento por ranking, la escala de Star Coordinates, el orden de vecinas y la aplicación Flask.”
 
-> “En síntesis, el primer análisis permite verificar compatibilidad entre dos canciones. El segundo encuentra vecinos de una canción en seis dimensiones y comprueba que una proyección globalmente consistente todavía puede alterar vecindades locales. El tercero permite diseñar y ajustar un perfil objetivo de playlist. El cuarto compara perfiles agregados por década con evidencia del tamaño de cada grupo.
+No afirmar que NumPy es una biblioteca de visualización. Flask sirve la aplicación, NumPy precalcula y D3 realiza las visualizaciones.
+
+---
+
+## 10. Cierre: respuestas, límites y aporte — 45 segundos
+
+> “En síntesis: el primer análisis verifica la compatibilidad entre dos canciones con una distancia situada en la distribución de la muestra. El segundo encuentra vecinas en seis dimensiones y comprueba cuántas conserva la proyección. El tercero diseña y ajusta un perfil objetivo. El cuarto sigue la trayectoria del catálogo popular década a década, con el tamaño y la calidad de la señal de cada grupo a la vista.
 >
-> Las conclusiones se limitan a una muestra reproducible de 800 canciones, al dataset publicado hasta 2020 y a una definición de similitud basada únicamente en seis atributos con igual peso inicial. Por eso la aplicación permite explorar, pero siempre conserva una configuración guardada para reproducir cada respuesta.
->
-> El aporte central no es mostrar cuatro gráficos aislados, sino construir un recorrido en el que cada técnica responde una parte de la pregunta, las selecciones se coordinan y los hallazgos se expresan con cifras verificables. Gracias.”
+> Las conclusiones se limitan a una muestra reproducible de 800 canciones, al dataset publicado hasta 2020, a una popularidad medida en 2020 y a una similitud basada en seis atributos con igual peso. El aporte central no es mostrar cuatro gráficos aislados, sino un recorrido en el que cada técnica responde una parte de la pregunta, las selecciones se coordinan y los hallazgos se expresan con cifras verificables. Gracias.”
 
 ---
 
@@ -186,83 +160,53 @@ No afirmar que NumPy es una biblioteca de visualización. Flask sirve la aplicac
 
 ## ¿Por qué utilizaste una muestra de 800 y no todos los registros?
 
-> “El dataset original se conserva completo para limpieza y normalización. La muestra limita el costo de las interacciones y de la matriz de distancias de MDS, que crece cuadráticamente. Utilicé una semilla fija para que la selección fuera reproducible. Por eso mis conclusiones se presentan como resultados de la muestra, no como estimaciones de todo Spotify.”
+> “El dataset original se conserva completo para limpieza, normalización y para la tarea temporal. La muestra limita el costo de las interacciones y de la matriz de distancias de MDS, que crece cuadráticamente. Con una semilla fija la selección es reproducible.”
 
-## ¿Por qué usaste min–max?
+## ¿Cómo definiste «popular» en cada década?
 
-> “Porque las técnicas combinan atributos y calculan distancias. Llevarlos al intervalo cero–uno evita que una dimensión domine solo por su escala numérica y coincide con el tratamiento utilizado en los ejercicios multidimensionales de clase.”
+> “Por ranking dentro de la década: el 25 por ciento mejor clasificado. Un corte global favorecería a las décadas recientes porque la popularidad de Spotify crece con el año. En las tres primeras décadas la mayoría de canciones tiene popularidad cero, y la aplicación lo advierte explícitamente.”
 
-## ¿Por qué distancia euclídea?
+## ¿Por qué usaste min–max y distancia euclídea?
 
-> “Porque necesitaba una medida transparente y explicable sobre los seis atributos normalizados. Todos reciben el mismo peso inicial. Es una decisión de diseño, no una verdad universal sobre similitud musical; una versión futura podría comparar pesos o métricas.”
+> “Porque las técnicas combinan atributos y calculan distancias; llevarlos al intervalo cero–uno evita que una dimensión domine por su escala. La euclídea es transparente y explicable; todos los atributos reciben el mismo peso inicial, y es una decisión de diseño, no una verdad universal.”
 
 ## ¿MDS encontró clusters?
 
-> “No. MDS produjo una proyección que intenta conservar distancias. Las agrupaciones aparentes son patrones para inspeccionar, pero no etiquetas generadas por un algoritmo de clustering.”
+> “No. MDS produce una proyección que intenta conservar distancias. Las agrupaciones aparentes son patrones para inspeccionar, no etiquetas de un algoritmo de clustering.”
 
-## ¿Qué significa un stress de 0.263?
+## ¿Por qué la correlación es alta y la vecindad solo 31.6 %?
 
-> “Resume el error relativo entre distancias originales y proyectadas; menor es mejor. No lo convierto en una etiqueta automática de ‘bueno’ o ‘malo’. Lo interpreto junto con la correlación de distancias y la preservación de vecindad.”
+> “Porque miden escalas distintas. La correlación considera la estructura global de las distancias; la vecindad exige conservar miembros concretos entre los diez más cercanos. Para La Santa solo se conservan 4 de 10.”
 
-## ¿Por qué la correlación es alta y la vecindad solo 31.6%?
+## ¿Qué significa invertir un eje o cambiar la escala en Parallel Coordinates?
 
-> “Porque miden escalas distintas. La correlación considera la estructura global de las distancias, mientras que la vecindad exige conservar miembros concretos entre los diez más cercanos. Es posible mantener la tendencia global y cambiar vecinos locales.”
+> “Son operaciones de lectura, no de datos. Invertir un eje convierte cruces en paralelas cuando dos variables están negativamente correlacionadas; la escala por percentil sustituye cada valor por su rango en la muestra para separar atributos concentrados cerca de cero.”
 
-## ¿Por qué Parallel Coordinates para la primera tarea?
+## ¿Qué cambia al mover un anclaje de RadViz o un eje de Star Coordinates?
 
-> “Porque la tarea exige comparar perfiles completos, no solo dos variables. Cada polilínea mantiene los seis valores de una canción y el brushing permite localizar subconjuntos. El orden de ejes se puede modificar para poner juntas las variables cuya relación interesa examinar.”
-
-## ¿Qué cambia al mover un anclaje de RadViz?
-
-> “Cambia la disposición visual de las fuerzas o pesos, no los valores de los datos. La interacción ayuda a examinar solapamientos desde otra configuración, pero cualquier hallazgo se contrasta con los valores originales.”
-
-## ¿Qué cambia al mover un eje de Star Coordinates?
-
-> “Cambian la dirección y la magnitud del vector de esa dimensión. Por tanto, cambia cuánto y hacia dónde contribuye el atributo a la posición proyectada.”
-
-## ¿Cómo verificaste que las cuatro vistas hablan de la misma canción?
-
-> “Todos los registros tienen un identificador estable y comparten un estado de selección. Un clic en cualquier vista actualiza el panel de la canción y resalta ese mismo identificador en las demás.”
+> “En RadViz cambia la disposición de los anclajes, no los datos. En Star Coordinates cambian la dirección y la magnitud del vector, es decir, cuánto y hacia dónde contribuye el atributo; los puntos y los vectores comparten la misma escala.”
 
 ## ¿Por qué no analizaste géneros?
 
-> “El archivo requerido por el enunciado no incluye un campo de género por canción con una relación inequívoca. Usarlo habría exigido una unión adicional y supuestos que no podía defender con la misma precisión.”
-
-## ¿Qué viene de clase y qué desarrollaste tú?
-
-> “De clase adapté las fórmulas y patrones de RadViz y Star Coordinates, además de selecciones, escalas, ejes, SVG y data join en D3. Parallel Coordinates y el MDS clásico fueron desarrollos adicionales para completar las técnicas requeridas. La trazabilidad documenta esa diferencia.”
+> “El archivo requerido no incluye un campo de género por canción con una relación inequívoca. Usarlo habría exigido una unión adicional con supuestos que no podía defender con la misma precisión.”
 
 ## ¿Qué insight consideras más importante?
 
-> “La diferencia de acústica, porque aparece con mucha magnitud al comparar perfiles sonoros. Sin embargo, lo presento como un patrón de esta muestra y no como causalidad.”
+> “La trayectoria de las décadas: la acústica de las canciones populares cae de 0.95 a 0.13 mientras la energía sube de 0.19 a 0.66, con el salto más brusco entre los sesenta y los setenta. Lo presento como un patrón del catálogo, no como causalidad.”
 
 ## ¿Qué mejorarías con más tiempo?
 
-> “Compararía distintas métricas y pesos de similitud, evaluaría la estabilidad de los hallazgos en varias muestras y añadiría una comparación entre la muestra interactiva y estadísticas calculadas sobre el conjunto completo.”
-
----
-
-# Mapa privado de evidencia de la rúbrica
-
-Esta sección es para preparar la exposición; **no hace falta leerla ni mostrarla**.
-
-| Criterio | Dónde queda demostrado durante la exposición |
-|---|---|
-| Claridad | Se formula cada pregunta antes del gráfico; se explican títulos, escalas, leyenda, interacción y significado de los ejes; se evita lenguaje causal; cada tarea termina con una respuesta concreta. |
-| Perspectiva analítica | Se presentan cuartiles, recuentos, medianas, diferencias, vecino más cercano, métricas MDS y límites. Los resultados se conectan con la necesidad de construir playlists. |
-| Justificación de diseño | Se explica WHAT–WHY–HOW, por qué se usan seis variables, normalización, muestra, distancia y el papel complementario de cada técnica. |
-| Precisión técnica | Se describen correctamente RadViz, Star Coordinates, Parallel Coordinates y MDS; se distingue proyección de clustering; se explican interacciones, calidad, módulos, D3, Flask, NumPy y pruebas. |
-| Cobertura de tareas | Se reproducen en orden las cuatro tareas, cada una con pregunta, método, evidencia, respuesta y limitación. Las cuatro técnicas requeridas aparecen con un propósito distinto. |
+> “Incorporaría los archivos de artistas y géneros del mismo dataset de Kaggle para conectar los perfiles con géneros, compararía métricas y pesos de similitud, y evaluaría la estabilidad de los hallazgos en varias muestras.”
 
 ---
 
 # Lista final de ensayo
 
-- Pronunciar con seguridad las cifras clave: **170,653**, **800**, **0.253**, **0.715**, **0.933**, **0.075**, **37 frente a 17**, **0.263**, **0.909** y **31.6%**.
+- Pronunciar con seguridad las cifras clave: **170,653**, **800**, **0.075**, **99 %**, **−0.75**, **4 de 10**, **0.263**, **0.909**, **31.6 %**, **0.95 → 0.13**, **0.19 → 0.66**, **0.63 → 0.32**.
 - Poder definir en una frase RadViz, Star Coordinates, Parallel Coordinates y MDS.
 - No llamar clusters a los grupos visibles en MDS.
 - No afirmar causalidad.
 - No decir que la muestra representa todo Spotify.
-- Mostrar al menos una interacción de cada tipo: mouseover, clic, brushing y drag.
+- Mostrar al menos una interacción de cada tipo: mouseover, clic, brushing, arrastre, inversión de eje y cambio de escala.
 - Restablecer la vista después de una exploración para no mezclar configuraciones.
 - Terminar con respuestas y límites, no con una descripción del código.

@@ -11,12 +11,13 @@
     <div class="hero-copy">
       <p class="eyebrow">DS5343 · Visualización de Datos</p>
       <h1>Perfiles musicales de Spotify</h1>
-      <p class="lede">Compara perfiles, encuentra canciones similares, diseña un objetivo sonoro y estudia la evolución del catálogo con cuatro técnicas multidimensionales.</p>
+      <p class="lede">Compara perfiles, encuentra canciones similares, diseña un objetivo sonoro y estudia la evolución del catálogo con cuatro técnicas multidimensionales: RadViz, Star Coordinates, Parallel Coordinates y MDS.</p>
     </div>
     <div class="hero-stats" aria-label="Resumen del conjunto analizado">
-      <div><strong id="sample-count">—</strong><span>canciones analizadas</span></div>
-      <div><strong id="year-range">—</strong><span>rango de años</span></div>
-      <div><strong id="quality-score">—</strong><span>vecindad MDS (k=10)</span></div>
+      <div><strong id="clean-rows">—</strong><span>canciones en el dataset limpio</span></div>
+      <div><strong id="sample-count">—</strong><span>canciones en la muestra interactiva</span></div>
+      <div><strong id="year-range">—</strong><span>rango de años de la muestra</span></div>
+      <div><strong id="quality-score">—</strong><span>vecindad MDS preservada (k=10)</span></div>
     </div>
   </header>
 
@@ -24,7 +25,7 @@
     <section class="study-route" aria-labelledby="tasks-title">
       <div class="section-heading">
         <div><p class="eyebrow">Recorrido guiado</p><h2 id="tasks-title">Cuatro preguntas analíticas</h2></div>
-        <p>Selecciona una tarea para restaurar sus filtros, colores y canción de referencia.</p>
+        <p>Selecciona una tarea para restaurar sus filtros, colores, ejes y canción de referencia. Cada tarea tiene una técnica principal y vistas de apoyo.</p>
       </div>
       <div class="task-grid">
         <article class="task-card active" data-task="task1">
@@ -44,7 +45,7 @@
         </article>
         <article class="task-card" data-task="task4">
           <span class="task-number">04</span><h3>Examinar evolución</h3>
-          <p>¿Cómo cambia el perfil sonoro de las canciones populares a través de las décadas?</p>
+          <p>¿Cómo cambia el perfil sonoro de las canciones populares a través de las décadas y en qué se separan del resto de su época?</p>
           <button class="task-button" data-task="task4">Reproducir este análisis</button>
         </article>
       </div>
@@ -56,6 +57,8 @@
         <h2 id="analysis-title">Comparar dos canciones</h2>
         <p id="analysis-result" class="analysis-result">Cargando resultados…</p>
         <p id="analysis-evidence" class="analysis-evidence"></p>
+        <p class="findings-heading">Hallazgos</p>
+        <ul id="analysis-findings" class="analysis-findings"></ul>
       </div>
       <div class="why-how">
         <div><span>WHAT</span><p id="analysis-what"></p></div>
@@ -91,20 +94,34 @@
 
     <section class="visual-grid" aria-label="Visualizaciones multidimensionales">
       <article class="chart-card" data-chart="radviz">
-        <div class="chart-heading"><div><p class="method-tag">Anclajes dimensionales</p><h2>RadViz</h2></div><p>Arrastra cada anclaje por la circunferencia. La posición es un promedio ponderado por las características.</p></div>
+        <div class="chart-heading"><div><p class="method-tag">Anclajes dimensionales</p><h2>RadViz</h2></div><p>Cada canción se sitúa en el promedio ponderado de los anclajes según sus valores normalizados. Arrastra un anclaje por la circunferencia para cambiar la disposición sin alterar los datos. En la Tarea 4 la línea une, en orden cronológico, el perfil mediano del top 25 % popular de cada década.</p></div>
         <div id="radviz-chart" class="chart"></div>
       </article>
       <article class="chart-card" data-chart="star">
-        <div class="chart-heading"><div><p class="method-tag">Combinación de vectores</p><h2>Star Coordinates</h2></div><p>Arrastra los extremos para cambiar dirección y peso. La escala permanece estable para comparar cambios.</p></div>
+        <div class="chart-heading"><div><p class="method-tag">Combinación de vectores</p><h2>Star Coordinates</h2></div><p>Cada atributo es un vector y la posición es la suma de los vectores escalados por los valores. Arrastra los extremos para cambiar dirección y peso (0–1.5×). La escala es fija: una canción con valor 1 en un solo atributo cae exactamente en la punta de ese eje.</p></div>
         <div id="star-chart" class="chart"></div>
       </article>
       <article class="chart-card wide" data-chart="parallel">
-        <div class="chart-heading"><div><p class="method-tag">Perfiles por dimensión</p><h2>Parallel Coordinates</h2></div><p><strong>Cómo leerlo:</strong> cada línea representa una canción y su altura es el valor normalizado de cada atributo. En la Tarea 1, las líneas entrecortadas identifican directamente las dos canciones comparadas. Arrastra los nombres para reordenar ejes o selecciona intervalos para aplicar brushing.</p></div>
+        <div class="chart-heading">
+          <div><p class="method-tag">Perfiles por dimensión</p><h2>Parallel Coordinates</h2></div>
+          <div class="chart-side">
+            <p><strong>Cómo leerlo:</strong> cada línea es una canción y su altura en cada eje es el valor del atributo. Arrastra los nombres para reordenar ejes, pulsa ⇅ para invertir un eje, cambia la escala y selecciona intervalos sobre los ejes para aplicar brushing coordinado con las demás vistas.</p>
+            <label class="chart-control" for="parallel-scale">Escala de los ejes <select id="parallel-scale"></select></label>
+          </div>
+        </div>
         <div id="parallel-chart" class="chart parallel"></div>
       </article>
       <article class="chart-card" data-chart="mds">
-        <div class="chart-heading"><div><p class="method-tag">Proyección de distancias</p><h2>MDS</h2></div><p>La cercanía aproxima similitud en las seis características. Los ejes no representan atributos originales.</p></div>
+        <div class="chart-heading"><div><p class="method-tag">Proyección de distancias</p><h2>MDS</h2></div><p>MDS clásico calculado sobre las distancias euclídeas de las seis características normalizadas. La cercanía aproxima similitud; los ejes no representan atributos originales.</p></div>
         <div id="mds-chart" class="chart"></div>
+      </article>
+      <article class="chart-card" data-chart="evolution">
+        <div class="chart-heading"><div><p class="method-tag">Gráfico de apoyo</p><h2>Evolución por década</h2></div><p>Mediana de cada atributo por década: línea continua para el top 25 % popular de la década y línea punteada para todas sus canciones. Haz clic en una década para enfocarla en RadViz y Parallel Coordinates.</p></div>
+        <div id="evolution-chart" class="chart"></div>
+      </article>
+      <article class="chart-card" data-chart="correlation">
+        <div class="chart-heading"><div><p class="method-tag">Gráfico de apoyo</p><h2>Correlación entre atributos</h2></div><p>Coeficiente de Pearson sobre el dataset limpio completo. Justifica el orden de los ejes: energía y acústica van adyacentes porque son las variables más relacionadas.</p></div>
+        <div id="correlation-chart" class="chart"></div>
       </article>
       <article class="chart-card quality-card" data-chart="quality">
         <div class="chart-heading"><div><p class="method-tag">Evaluación de la proyección</p><h2>Calidad MDS</h2></div></div>
@@ -121,29 +138,37 @@
     <section class="visual-rationale" aria-labelledby="visual-rationale-title">
       <div class="section-heading">
         <div><p class="eyebrow">Gramática visual</p><h2 id="visual-rationale-title">Por qué se ve así</h2></div>
-        <p>Cada canal visual responde a una necesidad de lectura y conserva una configuración reproducible.</p>
+        <p>Cada canal visual responde a una necesidad de lectura y conserva una configuración reproducible por tarea.</p>
       </div>
       <div class="rationale-grid">
         <article class="rationale-card">
-          <h3>RadViz</h3>
-          <p><strong>Posición:</strong> promedio ponderado de las seis características. <strong>Canal:</strong> los anclajes verdes identifican dimensiones y el color separa los grupos de la tarea. La circunferencia fija una referencia común para comparar perfiles.</p>
+          <h3>RadViz · Tarea 4 (apoyo en 1 y 3)</h3>
+          <p><strong>Posición:</strong> promedio ponderado de las seis características. <strong>Canal:</strong> los anclajes verdes identifican dimensiones y el color separa los grupos de la tarea. La trayectoria cronológica de la Tarea 4 convierte once perfiles agregados en una dirección de cambio legible: de los anclajes de acústica hacia energía y bailabilidad.</p>
         </article>
         <article class="rationale-card">
-          <h3>Star Coordinates</h3>
-          <p><strong>Posición:</strong> suma de vectores por atributo. <strong>Canal:</strong> los ejes verdes muestran dirección y peso; sus extremos se pueden mover para explorar cómo cambia la contribución de cada dimensión.</p>
+          <h3>Star Coordinates · Tarea 3</h3>
+          <p><strong>Posición:</strong> suma de vectores por atributo. <strong>Canal:</strong> los ejes verdes muestran dirección y peso; sus extremos se pueden mover para explorar cómo cambia la contribución de cada dimensión. Puntos y ejes comparten la misma escala, por lo que un desplazamiento siempre corresponde a un cambio de peso o dirección y nunca a un autoajuste.</p>
         </article>
         <article class="rationale-card">
-          <h3>Parallel Coordinates</h3>
-          <p><strong>Posición vertical:</strong> valor normalizado de cada atributo. <strong>Canal:</strong> cada línea conserva el perfil de una canción. En la Tarea 1 el orden comienza por energía, sigue con acústica y valencia, y después muestra bailabilidad, instrumentalidad y habla; ese orden hace legible el hallazgo principal y se puede reordenar.</p>
+          <h3>Parallel Coordinates · Tarea 1 (apoyo en 2, 3 y 4)</h3>
+          <p><strong>Posición vertical:</strong> valor del atributo en la escala elegida. <strong>Canal:</strong> cada línea conserva el perfil de una canción. En la Tarea 1 el orden comienza por energía y acústica (correlación −0.75), sigue con valencia y bailabilidad, y termina con instrumentalidad y habla. Reordenar, invertir un eje y cambiar la escala son operaciones de lectura, no de datos.</p>
         </article>
         <article class="rationale-card">
-          <h3>MDS</h3>
-          <p><strong>Posición:</strong> proximidad entre perfiles en las seis variables. Los ejes no son atributos originales. <strong>Canal:</strong> color, opacidad, cursor y selección conectan la proyección con las otras vistas; las métricas evitan interpretar la apariencia sin evaluar su calidad.</p>
+          <h3>MDS · Tarea 2</h3>
+          <p><strong>Posición:</strong> proximidad entre perfiles en las seis variables. Los ejes no son atributos originales. <strong>Canal:</strong> color, opacidad, cursor y selección conectan la proyección con las otras vistas; las métricas de stress, correlación y vecindad evitan interpretar la apariencia sin evaluar su calidad.</p>
+        </article>
+        <article class="rationale-card">
+          <h3>Gráficos de apoyo</h3>
+          <p><strong>Evolución por década:</strong> una línea por atributo hace explícito lo que la trayectoria de RadViz resume, con la escala original 0–1 de Spotify. <strong>Correlación:</strong> el mapa de calor sobre las 170 mil canciones fundamenta qué variables deben quedar adyacentes en Parallel Coordinates y qué anclajes de RadViz se atraen.</p>
+        </article>
+        <article class="rationale-card">
+          <h3>Interacción</h3>
+          <p><strong>Mouseover</strong> identifica cualquier canción o perfil con un tooltip; <strong>clic</strong> fija la selección o enfoca una década en todas las vistas; <strong>brushing</strong> filtra por intervalos; <strong>arrastre</strong> mueve anclajes, vectores y ejes con transiciones animadas. Cada tarea puede restaurarse a su configuración guardada.</p>
         </article>
       </div>
       <div class="rationale-footer">
-        <p><strong>Color y atención.</strong> El color es categórico y depende de la tarea: naranja/azul para Canción A/B, morado/naranja para selección y vecinas, rosado para candidatas y azul para décadas. La opacidad deja el contexto visible y resalta el subconjunto relevante. No se usa color para representar magnitudes continuas.</p>
-        <p><strong>Idioma y consistencia.</strong> La interfaz está en español porque esa es la lengua de la exposición y del curso. Se conservan los nombres técnicos RadViz, Star Coordinates, Parallel Coordinates y MDS porque son las denominaciones del framework y de las API utilizadas en clase.</p>
+        <p><strong>Color y atención.</strong> El color es categórico y depende de la tarea: naranja/azul para Canción A/B, morado/naranja para selección y vecinas, rosado para candidatas y una escala ordenada (viridis) para décadas. La opacidad deja el contexto visible y resalta el subconjunto relevante. Solo el mapa de correlación usa color para una magnitud, con leyenda divergente explícita.</p>
+        <p><strong>Idioma y consistencia.</strong> La interfaz está en español porque esa es la lengua de la exposición y del curso. Se conservan los nombres técnicos RadViz, Star Coordinates, Parallel Coordinates y MDS porque son las denominaciones del material y de las API utilizadas en clase.</p>
       </div>
     </section>
 
@@ -151,9 +176,9 @@
       <p class="eyebrow">Método y alcance</p>
       <h2>Cómo leer los resultados</h2>
       <div class="method-grid">
-        <p><strong>Datos.</strong> Dataset exacto enlazado en el enunciado. Las tareas 1–3 usan una muestra reproducible de 800 canciones; la tarea temporal calcula perfiles por década sobre el dataset limpio completo y muestra la muestra como contexto individual.</p>
-        <p><strong>Interpretación.</strong> Las asociaciones describen esta muestra. No prueban causalidad ni representan por sí solas todo el catálogo de Spotify.</p>
-        <p><strong>Código.</strong> RadViz y Star Coordinates adaptan el notebook de clase. Parallel Coordinates y MDS son desarrollos documentados en la trazabilidad.</p>
+        <p><strong>Datos.</strong> Dataset exacto enlazado en el enunciado (170,653 canciones, 1921–2020). Las tareas 1–3 usan una muestra reproducible de 800 canciones (semilla 5343); la tarea temporal agrega décadas completas del dataset limpio y define el top 25 % popular por ranking dentro de cada década.</p>
+        <p><strong>Interpretación.</strong> Las asociaciones describen este catálogo. No prueban causalidad ni representan por sí solas todo Spotify; la popularidad es la del catálogo en 2020, por lo que en 1920–1949 la mayoría de canciones tiene popularidad cero.</p>
+        <p><strong>Código.</strong> Todo lo visual es D3 v7. RadViz y Star Coordinates adaptan el notebook de clase; Parallel Coordinates, los gráficos de apoyo y el MDS clásico (NumPy, precalculado) son desarrollos documentados en la trazabilidad.</p>
       </div>
     </section>
   </main>

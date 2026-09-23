@@ -1,6 +1,6 @@
 # Trazabilidad académica y decisiones
 
-Fecha de implementación: 21 de septiembre de 2026. Las páginas indicadas son páginas físicas del PDF, contadas desde 1. Esta trazabilidad se estableció antes de implementar los componentes.
+Fecha de implementación: 21 de septiembre de 2026; revisión y correcciones: 22 de septiembre de 2026. Las páginas indicadas son páginas físicas del PDF, contadas desde 1. Esta trazabilidad se estableció antes de implementar los componentes.
 
 ## Prioridad de fuentes
 
@@ -11,8 +11,9 @@ Enunciado y rúbrica → Observable original → PDFs (texto y diagramas) → tr
 | Componente | Fuente y localizador | Reutilización / adaptación / desarrollo nuevo |
 |---|---|---|
 | RadViz | `multidimensional_visualization_ejercicio.js`, `_4`, `_new_data`, `_anchor_points`, `_14`; U2_T1 p.53; semana6_clase1 00:16–00:18 | Adaptación de normalización y promedio ponderado de anclajes. Desarrollo nuevo: selección, etiquetas, arrastre y tratamiento de suma cero. |
-| Star Coordinates | Mismo notebook, `_19`, `_20`, `_21`; U2_T1 p.55–56; semana6_clase1 00:34–00:35 y 00:41:24–00:42:38 | Adaptación de combinación lineal de vectores. Desarrollo nuevo: puntos completos, pesos y controles de ángulos. |
-| Parallel Coordinates | U2_T1 p.36–39; semana5_clase1 01:20:28–01:25:20 y 01:30:53–01:33:08 | Implementación nueva basada en representación teórica. Usa escalas, ejes y `d3.line` enseñados en los notebooks de barras y líneas. Brushing y arrastre son ampliaciones técnicas. |
+| Star Coordinates | Mismo notebook, `_19`, `_20`, `_21`; U2_T1 p.55–56; semana6_clase1 00:34–00:35 y 00:41:24–00:42:38 | Adaptación de combinación lineal de vectores. Desarrollo nuevo: puntos completos, pesos, controles de ángulos y escala fija compartida entre vectores y puntos. |
+| Parallel Coordinates | U2_T1 p.36–39; semana5_clase1 01:20:28–01:25:20 y 01:30:53–01:33:08 | Implementación nueva basada en representación teórica. Usa escalas, ejes y `d3.line` enseñados en los notebooks de barras y líneas. Brushing, arrastre, inversión de ejes y modos de escala son ampliaciones técnicas. |
+| Evolución por década y matriz de correlación | Patrones de líneas, escalas de banda y `d3.interpolateRdBu` de la documentación de D3 | Desarrollo nuevo: gráficos de apoyo sugeridos por el enunciado («scatterplots, histograms, correlation matrices»). |
 | MDS | U2_T1 p.97 y p.102–105; semana6_clase1, explicación de distancias y 01:17:40–01:19:12 para calidad | Implementación nueva de MDS clásico con doble centrado y autodescomposición NumPy. No existe código MDS completo en los nueve notebooks inspeccionados. |
 | Vecindad | Notebook multidimensional: `euclidean`, `kNearestNeighbors`, `neighborhoodPreservation` | Adaptación a Python para precálculo. Mismos índices, exclusión del propio punto y fracción de vecinos compartidos; desempates deterministas. |
 | SVG y data join | `d_dd72e51d927a0f1a.js`; `d_7d5703c7f30132f2.js`; `d_0dd0a49165451966.js` | Patrones `selectAll`, `data`, `join`, `attr`, `scaleLinear`, ejes y `line` adaptados. |
@@ -63,3 +64,12 @@ La aplicación separa la solución en cuatro preguntas y asigna una técnica pri
 | 4. Evolución temporal | RadViz | perfiles medianos por década, cuartiles internos de popularidad y tabla de tamaños |
 
 RadViz y Star Coordinates adaptan las fórmulas y patrones del notebook multidimensional. Parallel Coordinates y la preparación de MDS se desarrollan a partir de las técnicas y patrones D3 trabajados en clase; esa diferencia se mantiene explícita. La tarea 4 usa únicamente columnas presentes en el CSV y no incorpora género ni el Million Playlist Dataset.
+
+## Correcciones de la revisión del 22 de septiembre
+
+- Tarea 4: las décadas se calculaban con `years == decade` (solo el año 1930, 1940, …); ahora `(years // 10) * 10 == decade` agrupa la década completa y aparece también 1920s.
+- Tarea 4: el top 25 % usaba el cuartil de popularidad (`popularity >= q3`), que con q3 = 0 incluía a toda la década; ahora se usa ranking dentro de la década (`rank_split`) con corte y porcentaje de ceros informados.
+- Parallel Coordinates: el arrastre leía `event.x` en el sistema de coordenadas del grupo desplazado y una transición de `reset()` devolvía los ejes al orden original tras `setDimensions()`; se usa `d3.pointer` sobre el SVG e `interrupt()`.
+- Star Coordinates: los vectores se dibujaban con `radius·w/2` y los puntos con `radius·Σ/6`; ahora ambos usan `radius·STAR_SCALE`.
+- Hallazgos: se calculan en `prepare_data.py` (tareas 3 y 4) y en `main.js` (tareas 1 y 2) a partir de los datos, con percentiles de distancia y correlaciones precalculados.
+

@@ -1,5 +1,11 @@
 import {FEATURES, LABELS, radvizPoint} from "./math.js";
-import {attachPointEvents, chartFrame, stylePoints} from "./chart_utils.js";
+import {attachPointEvents, attachSummaryEvents, chartFrame, stylePoints} from "./chart_utils.js";
+
+const SERIES_STYLE = {
+  popular: {radius: 5.6, fill: summary => summary.color, stroke: "#17222e", strokeWidth: 1.4, label: true},
+  all: {radius: 3.4, fill: () => "#ffffff", stroke: "#6b7b80", strokeWidth: 1.4, label: false},
+  target: {radius: 6.2, fill: summary => summary.color, stroke: "#ffffff", strokeWidth: 1.6, label: true}
+};
 
 export class RadVizChart {
   constructor(container, records, store) {
@@ -17,12 +23,13 @@ export class RadVizChart {
     this.anchors = this.defaultAnchors();
     this.anchorLayer = this.group.append("g").attr("class", "anchor-layer");
     this.pointLayer = this.group.append("g").attr("class", "point-layer");
+    this.trajectoryLayer = this.group.append("g").attr("class", "trajectory-layer");
     this.summaryLayer = this.group.append("g").attr("class", "summary-layer");
     this.renderAnchors();
     this.points = this.pointLayer.selectAll("circle").data(records, record => record.uid).join("circle").attr("class", "data-point");
     attachPointEvents(this.points, store);
     this.updateGeometry(false);
-    store.subscribe(() => this.updateStyle());
+    store.subscribe(() => { this.updateStyle(); this.updateSummaryStyle(); });
   }
 
   defaultAnchors() {
@@ -64,48 +71,102 @@ export class RadVizChart {
       .attr("dominant-baseline", "middle");
   }
 
+  project(point) {
+    return {x: this.center.x + point.x * this.radius, y: this.center.y + point.y * this.radius};
+  }
+
   updateGeometry(animate = true) {
     const positioned = new Map(this.records.map(record => [record.uid, radvizPoint(record, this.anchors)]));
     const target = animate ? this.points.transition().duration(180) : this.points;
     target
       .attr("cx", record => {
         const point = positioned.get(record.uid);
-        return point ? this.center.x + point.x * this.radius : this.center.x;
+        return point ? this.project(point).x : this.center.x;
       })
       .attr("cy", record => {
         const point = positioned.get(record.uid);
-        return point ? this.center.y + point.y * this.radius : this.center.y;
+        return point ? this.project(point).y : this.center.y;
       });
     this.points.attr("display", record => positioned.get(record.uid) ? null : "none");
     this.updateStyle();
     this.updateSummaries();
   }
 
+  // summaries: {id, label, color, series: popular|all|target, order, decade?, normalized, original?, count?}
   setSummaries(summaries = []) {
     this.summaries = summaries;
     this.updateSummaries();
   }
 
   updateSummaries() {
-    const summaries = this.summaries || [];
-    const positioned = summaries.map(summary => ({...summary, point: radvizPoint(summary, this.anchors)})).filter(summary => summary.point);
-    const marks = this.summaryLayer.selectAll("g.summary-mark").data(positioned, summary => summary.id || summary.label).join(enter => {
+    const summaries = (this.summaries || [])
+      .map(summary => ({...summary, series: summary.series || "target", point: radvizPoint(summary, this.anchors)}))
+      .filter(summary => summary.point)
+      .map(summary => ({...summary, pixel: this.project(summary.point)}));
+
+    // One trajectory per ordered series (chronological decades).
+    const bySeries = d3.groups(summaries.filter(summary => Number.isFinite(summary.order)), summary => summary.series)
+      .map(([series, items]) => ({series, items: items.sort((a, b) => a.order - b.order)}))
+      .filter(group => group.items.length > 1);
+    const line = d3.line().x(item => item.pixel.x).y(item => item.pixel.y);
+    this.trajectoryLayer.selectAll("path.trajectory").data(bySeries, group => group.series).join("path")
+      .attr("class", group => `trajectory trajectory-${group.series}`)
+      .attr("d", group => line(group.items));
+
+    // Labels: always the first and the last decade; the rest only when there is room.
+    const labelled = new Set();
+    for (const group of bySeries) {
+      if (!SERIES_STYLE[group.series]?.label) continue;
+      let last = null;
+      group.items.forEach((item, index) => {
+        const isEnd = index === 0 || index === group.items.length - 1;
+        const far = !last || Math.hypot(item.pixel.x - last.pixel.x, item.pixel.y - last.pixel.y) >= 26;
+        if (isEnd || far) { labelled.add(item.id); last = item; }
+      });
+    }
+    for (const summary of summaries) {
+      if (!Number.isFinite(summary.order) && SERIES_STYLE[summary.series]?.label) labelled.add(summary.id);
+    }
+
+    const marks = this.summaryLayer.selectAll("g.summary-mark").data(summaries, summary => summary.id || summary.label).join(enter => {
       const group = enter.append("g").attr("class", "summary-mark");
-      group.append("circle").attr("r", 5.2).append("title");
+      group.append("circle");
       group.append("text");
       return group;
     });
-    marks.attr("transform", summary => `translate(${this.center.x + summary.point.x * this.radius},${this.center.y + summary.point.y * this.radius})`);
+    marks
+      .attr("class", summary => `summary-mark summary-${summary.series}`)
+      .attr("transform", summary => `translate(${summary.pixel.x},${summary.pixel.y})`)
+      .style("pointer-events", "all");
     marks.select("circle")
-      .attr("r", 5.2)
-      .attr("fill", summary => summary.color || "#17222e")
-      .attr("stroke", "#17222e")
-      .attr("stroke-width", 1.3)
-      .select("title")
-      .text(summary => summary.label);
+      .attr("r", summary => SERIES_STYLE[summary.series].radius)
+      .attr("fill", summary => SERIES_STYLE[summary.series].fill(summary))
+      .attr("stroke", summary => SERIES_STYLE[summary.series].stroke === "#6b7b80" ? (summary.color || "#6b7b80") : SERIES_STYLE[summary.series].stroke)
+      .attr("stroke-width", summary => SERIES_STYLE[summary.series].strokeWidth);
     marks.select("text")
-      .text(summary => this.store.state.taskId === "task4" ? "" : summary.label)
-      .attr("dy", -10);
+      .text(summary => labelled.has(summary.id) ? summary.label : "")
+      .each((summary, index, nodes) => {
+        // Push the label outwards, away from the centre, so it does not sit on the trajectory.
+        const dx = summary.pixel.x - this.center.x, dy = summary.pixel.y - this.center.y;
+        const length = Math.hypot(dx, dy) || 1;
+        const offset = SERIES_STYLE[summary.series].radius + 9;
+        d3.select(nodes[index])
+          .attr("x", dx / length * offset)
+          .attr("y", dy / length * offset)
+          .attr("text-anchor", dx / length > 0.3 ? "start" : dx / length < -0.3 ? "end" : "middle")
+          .attr("dominant-baseline", dy / length > 0.3 ? "hanging" : dy / length < -0.3 ? "auto" : "middle");
+      });
+    attachSummaryEvents(marks, summary => {
+      if (Number.isFinite(summary.decade)) this.store.toggleDecade(summary.decade);
+    });
+    this.updateSummaryStyle();
+  }
+
+  updateSummaryStyle() {
+    const focus = this.store.state.focusDecade;
+    this.summaryLayer.selectAll("g.summary-mark")
+      .classed("is-dim", summary => focus !== null && Number.isFinite(summary.decade) && summary.decade !== focus)
+      .classed("is-focus", summary => focus !== null && summary.decade === focus);
   }
 
   updateStyle() {
