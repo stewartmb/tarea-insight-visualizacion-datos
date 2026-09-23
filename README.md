@@ -35,10 +35,14 @@ Las pruebas de Python cubren la normalización, el MDS clásico, la agrupación 
 ## Empaquetar la entrega
 
 ```bash
-./.venv/bin/python scripts/package_delivery.py
+./.venv/bin/python scripts/package_delivery.py --output ~/Desktop/entrega_tarea_insight.zip
 ```
 
-Genera `entrega_tarea_insight.zip` con la aplicación, los datos originales y procesados, la documentación y las pruebas (sin `.venv`, `.git` ni cachés).
+Genera el ZIP con la aplicación, los datos originales y procesados, la documentación y las pruebas (sin `.venv`, `.git` ni cachés). Sin `--output` se crea en la raíz del repositorio.
+
+## Presentación
+
+El guion de exposición (10–12 minutos), las preguntas probables y la lista de ensayo están en `docs/guion_presentacion.md`; todas sus cifras aparecen en el panel «Hallazgos» de la aplicación.
 
 ## Datos y reproducibilidad
 
