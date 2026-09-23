@@ -14,10 +14,12 @@ export class Store {
   constructor(data) {
     this.data = data;
     const decades = data.tasks.task4?.decades || [];
-    this.decadeColors = new Map(decades.map((item, index) => [
-      item.decade,
-      d3.interpolateViridis(0.08 + 0.84 * index / Math.max(1, decades.length - 1))
-    ]));
+    // Ordered colour scale for the decades (light for old, dark for recent):
+    // d3.scaleLinear as in class, with colours as the output range.
+    const first = decades.length ? decades[0].decade : 1920;
+    const last = decades.length ? decades[decades.length - 1].decade : 2020;
+    this.decadeScale = d3.scaleLinear().domain([first, (first + last) / 2, last]).range(["#e9c46a", "#2a9d8f", "#1d3557"]);
+    this.decadeColors = new Map(decades.map(item => [item.decade, this.decadeScale(item.decade)]));
     this.listeners = new Set();
     this.state = {
       taskId: "task1",

@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = ("app", "data", "docs", "scripts", "tests", "README.md", "package.json", "rubrica_tarea_insight.md")
-EXCLUDED_PARTS = {".venv", "__pycache__", "node_modules", ".git", ".DS_Store", ".claude"}
+EXCLUDED_PARTS = {".venv", "__pycache__", "node_modules", ".git", ".DS_Store"}
 
 
 def files_to_pack() -> list[Path]:

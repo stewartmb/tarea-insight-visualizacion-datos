@@ -191,7 +191,7 @@ function fillNarrative(data, state, byId) {
     const first = neighbors[0];
     const profile = neighborhoodProfile(selected, neighbors);
     const [p1, p2] = profile;
-    const farthest = profile.at(-1);
+    const farthest = profile[profile.length - 1];
     const years = neighbors.map(item => item.record.year).filter(Boolean);
     const artists = new Set(neighbors.map(item => item.record.artist));
     const projectedIds = new Set(nearestProjected(data.records, state.selectedId, 10).map(item => item.record.uid));
@@ -230,7 +230,7 @@ function fillNarrative(data, state, byId) {
     const focus = decades.find(item => item.decade === state.focusDecade);
     nodes.kicker.textContent = "Tarea 4 · Examinar evolución";
     nodes.title.textContent = "Perfil sonoro de las canciones populares a través de las décadas";
-    nodes.result.textContent = task.findings[0] || `Se comparan perfiles agregados desde ${decades[0]?.label} hasta ${decades.at(-1)?.label}.`;
+    nodes.result.textContent = task.findings[0] || `Se comparan perfiles agregados desde ${decades[0]?.label} hasta ${decades[decades.length - 1]?.label}.`;
     nodes.evidence.textContent = `${decades.length} décadas completas del dataset limpio (${int(data.metadata.clean_rows)} canciones). En cada década el top 25 % se define por ranking de popularidad dentro de la propia década; la trayectoria de RadViz une sus perfiles medianos en orden cronológico.`;
     findings = task.findings.slice(1);
     if (focus) {

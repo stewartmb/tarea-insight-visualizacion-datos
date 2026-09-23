@@ -1,15 +1,9 @@
 import {FEATURES, LABELS} from "./math.js";
 import {chartFrame, hideTooltip, moveTooltip, showTooltip, spreadLabels} from "./chart_utils.js";
 
-// One colour per audio attribute (nominal encoding used only in this chart).
-export const FEATURE_COLORS = {
-  energy: "#e4572e",
-  valence: "#f3a712",
-  danceability: "#1b998b",
-  acousticness: "#2e5eaa",
-  instrumentalness: "#7d5ba6",
-  speechiness: "#5c6b73"
-};
+// One colour per audio attribute (nominal encoding used only in this chart),
+// with the same ordinal scale and palette used in class.
+export const featureColor = d3.scaleOrdinal(d3.schemeTableau10).domain(FEATURES);
 
 // Supporting plot for Task 4: median of each attribute per decade, for the
 // top 25 % most popular songs (solid) and for every song of the decade (dashed).
@@ -34,7 +28,7 @@ export class EvolutionChart {
       .text("Mediana del atributo (unidades originales 0–1)");
     this.series = FEATURES.map(feature => ({
       feature,
-      color: FEATURE_COLORS[feature],
+      color: featureColor(feature),
       popular: decades.map(item => ({decade: item, value: item.popular_profile.original[feature]})),
       all: decades.map(item => ({decade: item, value: item.profile.original[feature]}))
     }));
@@ -64,11 +58,11 @@ export class EvolutionChart {
       .on("mouseleave", () => hideTooltip())
       .on("click", (event, point) => { event.stopPropagation(); this.store.toggleDecade(point.decade.decade); });
     // Labels at the right end, pushed apart when two lines finish close together.
-    const placements = this.series.map(item => ({item, y: this.y(item.popular.at(-1).value)}));
+    const placements = this.series.map(item => ({item, y: this.y(item.popular[item.popular.length - 1].value)}));
     spreadLabels(placements, 13, this.margin.top, this.height - this.margin.bottom);
     layer.selectAll("text.evolution-label").data(placements, item => item.item.feature).join("text")
       .attr("class", "evolution-label")
-      .attr("x", this.x(this.decades.at(-1).label) + 9).attr("y", item => item.y)
+      .attr("x", this.x(this.decades[this.decades.length - 1].label) + 9).attr("y", item => item.y)
       .attr("fill", item => item.item.color)
       .text(item => LABELS[item.item.feature]);
   }

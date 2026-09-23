@@ -74,8 +74,6 @@ export function stylePoints(selection, store, baseRadius = 3) {
     .attr("stroke-width", record => record.uid === state.selectedId ? 2 : inFocus(record) ? 0.6 : 0)
     .classed("is-hovered", record => record.uid === state.hoverId)
     .classed("is-context", record => !inFocus(record));
-  // Draw the focused records above the context.
-  selection.filter(record => inFocus(record)).raise();
 }
 
 export function chartFrame(container, width = 600, height = 480) {

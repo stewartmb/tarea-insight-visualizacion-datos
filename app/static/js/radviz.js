@@ -105,8 +105,14 @@ export class RadVizChart {
       .map(summary => ({...summary, pixel: this.project(summary.point)}));
 
     // One trajectory per ordered series (chronological decades).
-    const bySeries = d3.groups(summaries.filter(summary => Number.isFinite(summary.order)), summary => summary.series)
-      .map(([series, items]) => ({series, items: items.sort((a, b) => a.order - b.order)}))
+    const grouped = {};
+    summaries.forEach(summary => {
+      if (!Number.isFinite(summary.order)) return;
+      if (!grouped[summary.series]) grouped[summary.series] = [];
+      grouped[summary.series].push(summary);
+    });
+    const bySeries = Object.keys(grouped)
+      .map(series => ({series, items: grouped[series].sort((a, b) => a.order - b.order)}))
       .filter(group => group.items.length > 1);
     const line = d3.line().x(item => item.pixel.x).y(item => item.pixel.y);
     this.trajectoryLayer.selectAll("path.trajectory").data(bySeries, group => group.series).join("path")
@@ -143,19 +149,18 @@ export class RadVizChart {
       .attr("fill", summary => SERIES_STYLE[summary.series].fill(summary))
       .attr("stroke", summary => SERIES_STYLE[summary.series].stroke === "#6b7b80" ? (summary.color || "#6b7b80") : SERIES_STYLE[summary.series].stroke)
       .attr("stroke-width", summary => SERIES_STYLE[summary.series].strokeWidth);
+    // Push each label outwards, away from the centre, so it does not sit on the trajectory.
+    const direction = summary => {
+      const dx = summary.pixel.x - this.center.x, dy = summary.pixel.y - this.center.y;
+      const length = Math.hypot(dx, dy) || 1;
+      return {x: dx / length, y: dy / length, offset: SERIES_STYLE[summary.series].radius + 9};
+    };
     marks.select("text")
       .text(summary => labelled.has(summary.id) ? summary.label : "")
-      .each((summary, index, nodes) => {
-        // Push the label outwards, away from the centre, so it does not sit on the trajectory.
-        const dx = summary.pixel.x - this.center.x, dy = summary.pixel.y - this.center.y;
-        const length = Math.hypot(dx, dy) || 1;
-        const offset = SERIES_STYLE[summary.series].radius + 9;
-        d3.select(nodes[index])
-          .attr("x", dx / length * offset)
-          .attr("y", dy / length * offset)
-          .attr("text-anchor", dx / length > 0.3 ? "start" : dx / length < -0.3 ? "end" : "middle")
-          .attr("dominant-baseline", dy / length > 0.3 ? "hanging" : dy / length < -0.3 ? "auto" : "middle");
-      });
+      .attr("x", summary => direction(summary).x * direction(summary).offset)
+      .attr("y", summary => direction(summary).y * direction(summary).offset)
+      .attr("text-anchor", summary => direction(summary).x > 0.3 ? "start" : direction(summary).x < -0.3 ? "end" : "middle")
+      .attr("dominant-baseline", summary => direction(summary).y > 0.3 ? "hanging" : direction(summary).y < -0.3 ? "auto" : "middle");
     attachSummaryEvents(marks, summary => {
       if (Number.isFinite(summary.decade)) this.store.toggleDecade(summary.decade);
     });

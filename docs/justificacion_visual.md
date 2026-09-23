@@ -9,7 +9,7 @@ La aplicación sigue WHAT–WHY–HOW. Primero define qué entidad y atributos s
 | Decisión | Justificación | Evidencia en la interfaz |
 |---|---|---|
 | Idioma | La exposición y el curso se desarrollan en español. Se mantienen los nombres RadViz, Star Coordinates, Parallel Coordinates y MDS porque son nombres técnicos del material y de las API. | Títulos, instrucciones, tareas y etiquetas en español; nombres de técnicas sin traducción artificial. |
-| Color | Categorías nominales relacionadas con la tarea: Canción A/B, selección/vecinas, candidatas/perfil objetivo. Para las décadas se usa viridis, una escala ordenada y perceptualmente uniforme, porque el tiempo es una variable ordinal. | Leyenda dinámica y paleta estable por tarea. |
+| Color | Categorías nominales relacionadas con la tarea: Canción A/B, selección/vecinas, candidatas/perfil objetivo. Para las décadas se usa una escala de color ordenada (de arena a azul marino, construida con `d3.scaleLinear`), porque el tiempo es una variable ordinal. | Leyenda dinámica y paleta estable por tarea. |
 | Posición | Canal principal porque permite comparar perfiles y proximidades con mayor precisión que color o tamaño. | Coordenadas de líneas, puntos, anclajes, trayectoria y proyección. |
 | Contexto | Las canciones que no participan en la pregunta se dibujan en gris tenue y pequeñas; el subconjunto de la tarea, en color y encima. Sin contexto, RadViz o MDS con dos u once puntos no ofrecen referencia. | Todas las vistas de puntos y líneas. |
 | Texto | Identifica la pregunta, las variables, las unidades de lectura, los hallazgos y la limitación de cada análisis. | Panel WHAT–WHY–HOW, hallazgos, títulos, leyenda, tooltip y tarjetas de justificación. |

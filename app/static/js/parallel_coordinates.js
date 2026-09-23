@@ -19,8 +19,8 @@ export class ParallelCoordinatesChart {
     this.suppressBrushEvents = false;
     this.scaleMode = "normalized";
     this.inverted = new Set();
-    // Sorted values per feature for the percentile (rank) scale.
-    this.sortedValues = Object.fromEntries(FEATURES.map(feature => [feature, records.map(record => record.original[feature]).sort(d3.ascending)]));
+    // Values of the sample per feature, used by the percentile (rank) scale.
+    this.sampleValues = Object.fromEntries(FEATURES.map(feature => [feature, records.map(record => record.original[feature])]));
     this.svg = chartFrame(container, this.width, this.height);
     this.x = d3.scalePoint().domain(this.dimensions).range([this.margin.left, this.width - this.margin.right]).padding(0.25);
     this.y = {};
@@ -43,9 +43,10 @@ export class ParallelCoordinatesChart {
   // ----- scaling -----------------------------------------------------------
   // Percentile rank of a value inside the sample (ties share the mid rank).
   percentileRank(feature, value) {
-    const values = this.sortedValues[feature];
-    const lower = d3.bisectLeft(values, value), upper = d3.bisectRight(values, value);
-    return (lower + upper) / 2 / values.length;
+    const values = this.sampleValues[feature];
+    const below = values.filter(other => other < value).length;
+    const equal = values.filter(other => other === value).length;
+    return (below + equal / 2) / values.length;
   }
 
   value(record, feature) {
@@ -104,10 +105,10 @@ export class ParallelCoordinatesChart {
   setDimensions(dimensions) {
     this.dimensions = [...dimensions];
     this.x.domain(this.dimensions);
-    // Interrupt any running transition (e.g. from reset) so it cannot drag the
-    // axes back to their previous positions after this order is applied.
-    this.axes.interrupt().attr("transform", feature => `translate(${this.x(feature)},0)`);
-    this.paths.interrupt().attr("d", record => this.path(record));
+    // Applied without a transition: a pending transition would otherwise move
+    // the axes back to their previous positions after this order is set.
+    this.axes.attr("transform", feature => `translate(${this.x(feature)},0)`);
+    this.paths.attr("d", record => this.path(record));
     this.updateSummaries();
   }
 
@@ -119,11 +120,13 @@ export class ParallelCoordinatesChart {
 
   labelDimension(summaries) {
     // Put labels on the axis where the reference profiles are most spread out.
-    if (summaries.length < 2) return this.dimensions.at(-1);
-    return this.dimensions.reduce((best, feature) => {
-      const spread = d3.deviation(summaries, summary => this.y[feature](this.value(summary, feature))) || 0;
-      return spread > best.spread ? {feature, spread} : best;
-    }, {feature: this.dimensions.at(-1), spread: -1}).feature;
+    let best = {feature: this.dimensions[this.dimensions.length - 1], spread: -1};
+    if (summaries.length < 2) return best.feature;
+    this.dimensions.forEach(feature => {
+      const [low, high] = d3.extent(summaries, summary => this.value(summary, feature));
+      if (high - low > best.spread) best = {feature, spread: high - low};
+    });
+    return best.feature;
   }
 
   updateSummaries(animate = false) {
@@ -142,7 +145,7 @@ export class ParallelCoordinatesChart {
     const placements = summaries.map(summary => ({summary, y: this.y[feature](this.value(summary, feature))}));
     spreadLabels(placements, 13, this.margin.top - 4, this.height - this.margin.bottom + 4);
     const anchorX = this.position(feature);
-    const rightmost = anchorX >= this.position(this.dimensions.at(-1)) - 1;
+    const rightmost = anchorX >= this.position(this.dimensions[this.dimensions.length - 1]) - 1;
     const labels = this.summaryLayer.selectAll("text.summary-label").data(placements, item => item.summary.id || item.summary.label).join("text").attr("class", "summary-label");
     (animate ? labels.transition().duration(220) : labels)
       .attr("x", anchorX + (rightmost ? 10 : 8))
@@ -269,7 +272,7 @@ export class ParallelCoordinatesChart {
     this.scaleMode = "normalized";
     this.buildScales();
     this.clearBrushes();
-    this.axes.interrupt().attr("transform", feature => `translate(${this.x(feature)},0)`);
+    this.axes.attr("transform", feature => `translate(${this.x(feature)},0)`);
     this.redraw(false);
   }
 }
